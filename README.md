@@ -88,19 +88,19 @@ Understanding whitebox monitoring through logging, metrics, and distributed trac
 <div align="center">
 
 ### 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=hancengiz&theme=onedark&no-frame=true&row=1&column=7)
+![](https://github-profile-trophy.vercel.app/?username=hancengiz&theme=tokyonight&no-frame=true&row=1&column=7)
 
 ### 📈 GitHub Stats
 <p>
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=hancengiz&show_icons=true&theme=onedark&hide_border=true&count_private=true" />
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hancengiz&layout=compact&theme=onedark&hide_border=true&langs_count=8" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=hancengiz&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hancengiz&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" />
 </p>
 
 ### 🔥 GitHub Streak Stats
-![](https://github-readme-streak-stats.herokuapp.com/?user=hancengiz&theme=onedark&hide_border=true)
+![](https://github-readme-streak-stats.herokuapp.com/?user=hancengiz&theme=tokyonight&hide_border=true)
 
 ### 📉 Contribution Graph
-![](https://github-readme-activity-graph.vercel.app/graph?username=hancengiz&theme=one-dark&hide_border=true)
+![](https://github-readme-activity-graph.vercel.app/graph?username=hancengiz&theme=tokyo-night&hide_border=true)
 
 </div>
 
