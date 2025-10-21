@@ -88,27 +88,31 @@ Understanding whitebox monitoring through logging, metrics, and distributed trac
 <div align="center">
 
 ### 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=hancengiz&theme=tokyonight&no-frame=true&row=1&column=7)
+![](https://github-profile-trophy.vercel.app/?username=hancengiz&theme=flat&no-frame=true&row=1&column=7)
 
 ### 📈 GitHub Stats
 <p>
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=hancengiz&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" />
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hancengiz&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=hancengiz&show_icons=true&theme=solarized-light&hide_border=true&count_private=true" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hancengiz&layout=compact&theme=solarized-light&hide_border=true&langs_count=8" />
 </p>
 
 ### 🔥 GitHub Streak Stats
-![](https://github-readme-streak-stats.herokuapp.com/?user=hancengiz&theme=tokyonight&hide_border=true)
+![](https://github-readme-streak-stats.herokuapp.com/?user=hancengiz&theme=solarized-light&hide_border=true)
 
 ### 📉 Contribution Graph
-![](https://github-readme-activity-graph.vercel.app/graph?username=hancengiz&theme=tokyo-night&hide_border=true)
+![](https://github-readme-activity-graph.vercel.app/graph?username=hancengiz&theme=github-compact&hide_border=true&bg_color=fdf6e3&color=657b83&line=cb4b16&point=268bd2)
 
 </div>
 
-## 🐦 Latest from Twitter/X
+## 🐦 Follow Me on Twitter/X
 
 <div align="center">
 
-[![twitter](https://github-readme-twitter.gazf.vercel.app/api?id=hancengiz&layout=wide)](https://twitter.com/hancengiz)
+[![Twitter](https://img.shields.io/twitter/follow/hancengiz?style=for-the-badge&logo=x&logoColor=white&label=Follow%20@hancengiz&color=1DA1F2)](https://x.com/hancengiz)
+
+**Latest thoughts on AI-native development, serverless architectures, and modern SDLC**
+
+[→ See my latest tweets](https://x.com/hancengiz)
 
 </div>
 
