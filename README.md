@@ -32,6 +32,8 @@ Software Developer based in Istanbul, Turkey, specializing in cloud-native and s
 ![Cursor AI](https://img.shields.io/badge/Cursor_AI-000000?style=for-the-badge&logo=cursor&logoColor=white)
 ![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-000000?style=for-the-badge&logo=githubcopilot&logoColor=white)
 ![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
+![AI Agents](https://img.shields.io/badge/AI_Agents-FF6B6B?style=for-the-badge&logo=openai&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
 
 ### ☁️ Cloud Platforms
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
@@ -42,7 +44,6 @@ Software Developer based in Istanbul, Turkey, specializing in cloud-native and s
 ![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)
 ![RabbitMQ](https://img.shields.io/badge/Rabbitmq-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
-![EventBridge](https://img.shields.io/badge/AWS_EventBridge-FF4F8B?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
 ### 📊 Observability & Monitoring
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
@@ -87,19 +88,19 @@ Understanding whitebox monitoring through logging, metrics, and distributed trac
 <div align="center">
 
 ### 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=hancengiz&theme=flat&no-frame=true&row=1&column=7)
+![](https://github-profile-trophy.vercel.app/?username=hancengiz&theme=onedark&no-frame=true&row=1&column=7)
 
 ### 📈 GitHub Stats
 <p>
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=hancengiz&show_icons=true&theme=default&hide_border=true&count_private=true" />
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hancengiz&layout=compact&theme=default&hide_border=true&langs_count=8" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=hancengiz&show_icons=true&theme=onedark&hide_border=true&count_private=true" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hancengiz&layout=compact&theme=onedark&hide_border=true&langs_count=8" />
 </p>
 
 ### 🔥 GitHub Streak Stats
-![](https://github-readme-streak-stats.herokuapp.com/?user=hancengiz&theme=default&hide_border=true)
+![](https://github-readme-streak-stats.herokuapp.com/?user=hancengiz&theme=onedark&hide_border=true)
 
 ### 📉 Contribution Graph
-![](https://github-readme-activity-graph.vercel.app/graph?username=hancengiz&theme=github-compact&hide_border=true)
+![](https://github-readme-activity-graph.vercel.app/graph?username=hancengiz&theme=one-dark&hide_border=true)
 
 </div>
 
