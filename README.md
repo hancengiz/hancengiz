@@ -10,7 +10,7 @@
 
 ## About Me
 
-Software Architect based in Istanbul, Turkey, specializing in cloud-native and serverless event-driven microservices. I'm passionate about building scalable backend systems, AI-native solutions, and modern distributed architectures. I focus on creating robust logging infrastructure, improving developer experience through automation, better tooling, and AI-native SDLC practices.
+Software Developer based in Istanbul, Turkey, specializing in cloud-native and serverless event-driven microservices. I'm passionate about building scalable backend systems, AI-native solutions, and modern distributed architectures. I focus on creating robust logging infrastructure, improving developer experience through automation, better tooling, and AI-native SDLC practices.
 
 ## What I'm Working With
 
