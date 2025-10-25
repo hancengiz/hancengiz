@@ -30,13 +30,30 @@ jobs:
         working-directory: ./absolutely-right
         run: npx playwright install chromium
 
-      - name: Capture screenshot
+      - name: Capture screenshot and update README
         working-directory: ./absolutely-right
-        run: npm run capture-graph
+        run: |
+          # Capture the screenshot
+          npm run capture-graph
+
+          # Generate timestamp
+          TIMESTAMP=$(date +%s)
+
+          # Create timestamped filename
+          TIMESTAMPED_FILE="claude-code-graph-${TIMESTAMP}.png"
+
+          # Move the screenshot to timestamped filename
+          mv assets/claude-code-graph.png "assets/${TIMESTAMPED_FILE}"
+
+          # Delete old timestamped images (keep current one)
+          find assets/ -name "claude-code-graph-*.png" ! -name "${TIMESTAMPED_FILE}" -delete
+
+          # Update README with new filename
+          sed -i "s|absolutely-right/assets/claude-code-graph.*\.png[^)]*|absolutely-right/assets/${TIMESTAMPED_FILE}|g" ../README.md
 
       - name: Commit and push if changed
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add absolutely-right/assets/claude-code-graph.png
+          git add absolutely-right/assets/ README.md
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update Claude Code graph [skip ci]" && git push)
