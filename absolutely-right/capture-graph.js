@@ -49,8 +49,8 @@ const fs = require('fs');
   const outputPath = path.join(assetsDir, 'claude-code-graph.png');
   console.log(`Taking screenshot and saving to ${outputPath}...`);
 
-  // Try to find the chart-section element first, then fallback to other selectors
-  const selectors = ['.chart-section', '.graph-overlay', 'main', '.content', '.container', '#app', '#root'];
+  // Try to find the graph-container element first, then fallback to other selectors
+  const selectors = ['.graph-container', '.chart-section', '.graph-overlay', 'main', '.content', '.container', '#app', '#root'];
 
   let element = null;
   let usedSelector = null;
