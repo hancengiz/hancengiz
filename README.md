@@ -21,7 +21,7 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 <div align="center">
 
-![Claude Code Confidence Graph](absolutely-right/assets/claude-code-graph.png)
+![Claude Code Confidence Graph](absolutely-right/assets/claude-code-graph.png?v=2)
 
 *Updated daily via GitHub Actions*
 
