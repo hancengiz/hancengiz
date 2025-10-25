@@ -15,6 +15,18 @@
 
 Software Developer based in Istanbul, Turkey, specializing in cloud-native and serverless event-driven microservices. I'm passionate about building scalable backend systems, AI-native solutions, and modern distributed architectures. I focus on creating robust logging infrastructure, improving developer experience through automation, better tooling, and AI-native SDLC practices.
 
+## 🎯 How Right Am I?
+
+A fun experiment tracking how confident Claude Code is in my approaches! Check out the live stats at [cc.cengizhan.com](https://cc.cengizhan.com/)
+
+<div align="center">
+
+![Claude Code Confidence Graph](absolutely-right/assets/claude-code-graph.png)
+
+*Updated daily via GitHub Actions*
+
+</div>
+
 ## 🚀 Currently Working On
 
 - 🤖 Building AI-native solutions with spec-driven development

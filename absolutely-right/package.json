@@ -1,0 +1,16 @@
+{
+  "name": "hancengiz-readme",
+  "version": "1.0.0",
+  "description": "Scripts for updating README with Claude Code graph",
+  "main": "index.js",
+  "scripts": {
+    "capture-graph": "node capture-graph.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Cengiz Han",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.40.0"
+  }
+}
