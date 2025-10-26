@@ -78,10 +78,10 @@ jobs:
               return content.strip()
 
           def post_to_twitter(twitter_client, content, url):
-              """Post note to Twitter using tweepy."""
+              """Post note to Twitter using tweepy. Returns tweet_id on success, None on failure."""
               if not twitter_client:
                   print("⚠️  Twitter credentials not set, skipping post")
-                  return True
+                  return None
 
               try:
                   # Format tweet
@@ -107,17 +107,18 @@ jobs:
 
                   print(f"✓ Successfully posted to Twitter")
                   print(f"  Tweet ID: {tweet_id}")
+                  print(f"  Tweet URL: https://twitter.com/i/web/status/{tweet_id}")
                   print(f"  Length: {len(tweet_text)} chars")
                   print(f"  Preview: {tweet_text[:100]}...")
 
-                  return True
+                  return tweet_id
 
               except tweepy.TweepyException as e:
                   print(f"✗ Twitter API error: {e}")
-                  return False
+                  return None
               except Exception as e:
                   print(f"✗ Error posting to Twitter: {e}")
-                  return False
+                  return None
 
           # Main logic
           notes_dir = Path('substack-scraper/notes')
@@ -189,10 +190,15 @@ jobs:
                   print(f"   Content length: {len(main_content)} chars")
 
                   # Post to Twitter
-                  if post_to_twitter(twitter_client, main_content, note_url):
-                      # Mark as published
+                  tweet_id = post_to_twitter(twitter_client, main_content, note_url)
+
+                  if tweet_id:
+                      # Mark as published with tweet metadata
+                      tweet_url = f"https://twitter.com/i/web/status/{tweet_id}"
                       with open(published_marker, 'w') as f:
                           f.write(f"published_at: {datetime.utcnow().isoformat()}Z\n")
+                          f.write(f"tweet_id: {tweet_id}\n")
+                          f.write(f"tweet_url: {tweet_url}\n")
 
                       published_count += 1
                       print(f"✓ Marked as published")
