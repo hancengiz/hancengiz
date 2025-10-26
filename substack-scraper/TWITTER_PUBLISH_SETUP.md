@@ -1,66 +1,61 @@
 # Twitter Auto-Publishing Setup
 
-This guide explains how to automatically publish your Substack notes to Twitter using GitHub Actions and Zapier.
+This guide explains how to automatically publish your Substack notes to Twitter using GitHub Actions and Twitter API v2.
+
+**What you need:**
+- ✅ Twitter Developer Account (you already have this)
+- ✅ Twitter App with Read & Write permissions
+- ✅ 4 API credentials (API Key, API Secret, Access Token, Access Token Secret)
+- ✅ GitHub repository secrets configured
+
+**Cost:** Free (Twitter API v2 Free Tier: 1,500 tweets/month)
 
 ## Overview
 
 ```
-Substack Notes → GitHub (every 5 min) → Zapier Webhook → Buffer → Twitter
+Substack Notes → GitHub (every 5 min) → Twitter API v2 → Twitter
 ```
 
 ## How It Works
 
 1. **Substack Notes Scraper** runs every 5 minutes and saves notes to `substack-scraper/notes/`
 2. **Publish Notes to Twitter** workflow detects new notes (those without `.published` marker file)
-3. For each new note, it sends JSON data to Zapier webhook
-4. Zapier formats the data and posts to Buffer/Twitter
+3. For each new note, it posts directly to Twitter using the Twitter API v2
+4. Tweet is formatted with content (truncated to ~250 chars) + link
 5. A `.published` marker file is created in the note folder to prevent duplicates
 
 ## Setup Instructions
 
-### 1. Set Up Zapier Zap
+### 1. Get Twitter API Credentials
 
-Create a Zap with these steps:
+You already have a Twitter Developer account, so:
 
-#### Step 1: Webhooks by Zapier (Catch Hook)
-- **Trigger:** Catch Hook
-- **Action:** Wait for webhook data
-- Copy the webhook URL (you'll need this for GitHub)
+1. Go to [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard)
+2. Select your app (or create a new one)
+3. Go to **"Keys and tokens"** tab
+4. Generate/copy these credentials:
+   - **API Key** (Consumer Key)
+   - **API Secret** (Consumer Secret)
+   - **Access Token**
+   - **Access Token Secret**
 
-#### Step 2: Formatter by Zapier (Optional)
-- **Action:** Text → Truncate
-- **Input:** `{{content}}` from Step 1
-- **Length:** 250 characters
-- This ensures tweet doesn't exceed character limits
+**Important:** Make sure your app has **Read and Write** permissions:
+- Go to **"Settings"** tab
+- Under "User authentication settings"
+- Ensure "Read and write" is enabled
 
-#### Step 3: Formatter by Zapier (Format Tweet)
-- **Action:** Text → Custom
-- **Template Example:**
-  ```
-  {{1__content}}
-
-  👉 Read more: {{1__url}}
-  ```
-- Or with truncation:
-  ```
-  {{2__output}}...
-
-  Continue reading: {{1__url}}
-  ```
-
-#### Step 4: Buffer (or Twitter API)
-- **Action:** Create Post
-- **Account:** Connect your Twitter account via Buffer
-- **Text:** Use the formatted text from Step 3
-
-### 2. Add Zapier Webhook URL to GitHub Secrets
+### 2. Add Twitter Credentials to GitHub Secrets
 
 1. Go to your GitHub repository
 2. Navigate to **Settings** → **Secrets and variables** → **Actions**
-3. Click **New repository secret**
-4. Name: `ZAPIER_WEBHOOK_URL`
-5. Value: Paste the webhook URL from Zapier Step 1
-6. Click **Add secret**
+3. Add **four secrets** (click "New repository secret" for each):
+
+| Secret Name | Value from Twitter |
+|-------------|-------------------|
+| `TWITTER_API_KEY` | API Key (Consumer Key) |
+| `TWITTER_API_SECRET` | API Secret (Consumer Secret) |
+| `TWITTER_ACCESS_TOKEN` | Access Token |
+| `TWITTER_ACCESS_TOKEN_SECRET` | Access Token Secret |
 
 ### 3. Test the Workflow
 
@@ -74,68 +69,31 @@ Create a Zap with these steps:
 - The workflow automatically runs after the Notes Scraper completes
 - Check **Actions** tab to see when it runs next
 
-## JSON Payload Structure
+## Tweet Format
 
-The workflow sends this data to Zapier:
+The workflow automatically formats tweets like this:
 
-```json
-{
-  "note_id": "170317259",
-  "content": "Full note content without frontmatter or metadata...",
-  "url": "https://substack.com/note/c-170317259",
-  "author": "Cengiz Han",
-  "handle": "hancengiz",
-  "published_date": "Sun, 26 Oct 2025 12:42:17 GMT",
-  "reactions": "0",
-  "restacks": "0",
-  "replies": "0"
-}
+```
+{note content - truncated to ~250 chars if needed}...
+
+👉 {note URL}
 ```
 
-### Available Fields in Zapier
+**Character Limits:**
+- Maximum tweet length: 280 characters
+- Content is truncated at word boundaries (no mid-word cuts)
+- URLs count as 23 characters (Twitter's t.co shortening)
 
-- `{{note_id}}` - Note ID number
-- `{{content}}` - Full note text
-- `{{url}}` - Substack note URL
-- `{{author}}` - Author name
-- `{{handle}}` - Substack handle
-- `{{published_date}}` - Original publish date
-- `{{reactions}}` - Number of reactions
-- `{{restacks}}` - Number of restacks
-- `{{replies}}` - Number of replies
+## Example Tweet
 
-## Tweet Format Examples
+For a note with content:
+> "Even when I work alone, I still follow the BMAD Method or a similar approach I've designed. I usually start by 'vibing'—exploring ideas, testing possibilities..."
 
-### Simple
+**Posted tweet:**
 ```
-{{content}}
+Even when I work alone, I still follow the BMAD Method or a similar approach I've designed. I usually start by 'vibing'—exploring ideas, testing possibilities, and clarifying what I want to accomplish. Even at this early stage, I open...
 
-{{url}}
-```
-
-### With Emoji
-```
-{{content}}
-
-🔗 {{url}}
-
-#AI #TechLeadership
-```
-
-### With Engagement
-```
-{{content}}
-
-❤️ {{reactions}} | 🔄 {{restacks}}
-
-{{url}}
-```
-
-### Truncated
-```
-{{content|truncate:250}}...
-
-Continue reading: {{url}}
+👉 https://substack.com/note/c-170317259
 ```
 
 ## Tracking Published Notes
@@ -152,8 +110,8 @@ Continue reading: {{url}}
 
 ### To Stop Publishing
 
-1. Remove the `ZAPIER_WEBHOOK_URL` secret from GitHub
-2. The workflow will skip webhook calls but still create markers
+1. Disable the workflow in GitHub Actions
+2. Or remove the Twitter API secrets from GitHub
 
 ## Rate Limiting
 
@@ -166,21 +124,34 @@ Continue reading: {{url}}
 ### Notes Not Being Published
 
 1. Check if `.published` marker already exists
-2. Verify `ZAPIER_WEBHOOK_URL` secret is set
+2. Verify all 4 Twitter API secrets are set correctly
 3. Check GitHub Actions logs for errors
-4. Test Zapier webhook manually with sample data
+4. Verify Twitter app has Read and Write permissions
 
-### Zapier Not Receiving Data
+### Twitter API Errors
 
-1. Check webhook URL is correct
-2. Test webhook in Zapier using "Test trigger"
-3. Check GitHub Actions logs for HTTP response codes
+Common errors and solutions:
 
-### Tweets Not Posting
+**"403 Forbidden"**
+- Your app doesn't have write permissions
+- Go to Developer Portal → App Settings → Enable "Read and Write"
+- Regenerate Access Token and Access Token Secret
 
-1. Check Buffer/Twitter connection in Zapier
-2. Verify tweet format doesn't exceed 280 characters
-3. Check Buffer posting schedule
+**"401 Unauthorized"**
+- Credentials are incorrect
+- Regenerate all keys in Developer Portal
+- Update GitHub secrets with new values
+
+**"429 Too Many Requests"**
+- Hit rate limits (1,500 tweets/month on free tier)
+- Wait for rate limit to reset
+- Reduce posting frequency
+
+### Tweets Not Appearing
+
+1. Check Twitter API response in GitHub Actions logs
+2. Look for tweet ID in logs (confirms successful post)
+3. Check your Twitter profile
 
 ## Files Structure
 
@@ -208,7 +179,15 @@ Location: `.github/workflows/publish-notes-to-twitter.yml`
 ## Support
 
 If you encounter issues:
-1. Check GitHub Actions logs
-2. Test Zapier zap with sample data
-3. Verify all secrets are set correctly
-4. Check rate limits on Twitter/Buffer
+1. Check GitHub Actions logs for detailed error messages
+2. Verify all 4 Twitter secrets are set correctly
+3. Check Twitter app permissions (Read and Write required)
+4. Monitor rate limits (1,500 tweets/month on free tier)
+5. Test manually by triggering workflow in Actions tab
+
+## API Rate Limits
+
+**Twitter API v2 Free Tier:**
+- 1,500 tweets per month (~50 per day)
+- If you post 10 notes/day = ~300/month ✅ Well within limit
+- Rate limit resets monthly

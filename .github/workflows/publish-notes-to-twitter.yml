@@ -32,18 +32,24 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Check for unpublished notes and send to Zapier
+      - name: Install dependencies
+        run: |
+          pip install tweepy
+
+      - name: Check for unpublished notes and post to Twitter
         env:
-          ZAPIER_WEBHOOK_URL: ${{ secrets.ZAPIER_WEBHOOK_URL }}
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         run: |
           python3 << 'EOF'
           import os
-          import json
           import re
-          import subprocess
           import time
           from pathlib import Path
           from datetime import datetime
+          import tweepy
 
           def parse_frontmatter(content):
               """Extract frontmatter from markdown content."""
@@ -71,46 +77,77 @@ jobs:
 
               return content.strip()
 
-          def send_to_zapier(webhook_url, note_data):
-              """Send note data to Zapier webhook."""
-              if not webhook_url:
-                  print("⚠️  ZAPIER_WEBHOOK_URL not set, skipping webhook call")
+          def post_to_twitter(twitter_client, content, url):
+              """Post note to Twitter using tweepy."""
+              if not twitter_client:
+                  print("⚠️  Twitter credentials not set, skipping post")
                   return True
 
               try:
-                  # Using curl for simplicity
-                  result = subprocess.run(
-                      ['curl', '-X', 'POST', webhook_url,
-                       '-H', 'Content-Type: application/json',
-                       '-d', json.dumps(note_data),
-                       '-s', '-w', '\n%{http_code}'],
-                      capture_output=True,
-                      text=True,
-                      timeout=30
-                  )
+                  # Format tweet
+                  # Leave room for URL (23 chars) + formatting
+                  max_content_length = 250
 
-                  # Check HTTP status code (last line of output)
-                  lines = result.stdout.strip().split('\n')
-                  status_code = lines[-1] if lines else '000'
-
-                  if status_code.startswith('2'):
-                      print(f"✓ Successfully sent to Zapier (HTTP {status_code})")
-                      return True
+                  if len(content) > max_content_length:
+                      tweet_text = content[:max_content_length].rsplit(' ', 1)[0] + '...\n\n'
                   else:
-                      print(f"✗ Zapier webhook failed (HTTP {status_code})")
-                      print(f"Response: {result.stdout}")
-                      return False
+                      tweet_text = content + '\n\n'
 
-              except subprocess.TimeoutExpired:
-                  print("✗ Zapier webhook timed out")
+                  tweet_text += f"👉 {url}"
+
+                  # Ensure tweet doesn't exceed 280 characters
+                  if len(tweet_text) > 280:
+                      # Recalculate with smaller content
+                      max_content_length = 280 - len(f"\n\n👉 {url}") - 3  # -3 for "..."
+                      tweet_text = content[:max_content_length].rsplit(' ', 1)[0] + f'...\n\n👉 {url}'
+
+                  # Post tweet
+                  response = twitter_client.create_tweet(text=tweet_text)
+                  tweet_id = response.data['id']
+
+                  print(f"✓ Successfully posted to Twitter")
+                  print(f"  Tweet ID: {tweet_id}")
+                  print(f"  Length: {len(tweet_text)} chars")
+                  print(f"  Preview: {tweet_text[:100]}...")
+
+                  return True
+
+              except tweepy.TweepyException as e:
+                  print(f"✗ Twitter API error: {e}")
                   return False
               except Exception as e:
-                  print(f"✗ Error sending to Zapier: {e}")
+                  print(f"✗ Error posting to Twitter: {e}")
                   return False
 
           # Main logic
           notes_dir = Path('substack-scraper/notes')
-          webhook_url = os.environ.get('ZAPIER_WEBHOOK_URL', '')
+
+          # Initialize Twitter client
+          api_key = os.environ.get('TWITTER_API_KEY')
+          api_secret = os.environ.get('TWITTER_API_SECRET')
+          access_token = os.environ.get('TWITTER_ACCESS_TOKEN')
+          access_token_secret = os.environ.get('TWITTER_ACCESS_TOKEN_SECRET')
+
+          twitter_client = None
+          if api_key and api_secret and access_token and access_token_secret:
+              try:
+                  twitter_client = tweepy.Client(
+                      consumer_key=api_key,
+                      consumer_secret=api_secret,
+                      access_token=access_token,
+                      access_token_secret=access_token_secret
+                  )
+                  print("✓ Twitter client initialized")
+              except Exception as e:
+                  print(f"✗ Failed to initialize Twitter client: {e}")
+                  exit(1)
+          else:
+              print("✗ Twitter credentials not set. Please add secrets:")
+              print("  - TWITTER_API_KEY")
+              print("  - TWITTER_API_SECRET")
+              print("  - TWITTER_ACCESS_TOKEN")
+              print("  - TWITTER_ACCESS_TOKEN_SECRET")
+              exit(1)
 
           if not notes_dir.exists():
               print(f"Notes directory not found: {notes_dir}")
@@ -143,26 +180,16 @@ jobs:
                   frontmatter = parse_frontmatter(content)
                   main_content = extract_content(content)
 
-                  # Prepare payload for Zapier
-                  note_data = {
-                      'note_id': frontmatter.get('note_id', ''),
-                      'content': main_content,
-                      'url': frontmatter.get('url', ''),
-                      'author': frontmatter.get('author', ''),
-                      'handle': frontmatter.get('handle', ''),
-                      'published_date': frontmatter.get('date', ''),
-                      'reactions': frontmatter.get('reactions', '0'),
-                      'restacks': frontmatter.get('restacks', '0'),
-                      'replies': frontmatter.get('replies', '0')
-                  }
+                  note_id = frontmatter.get('note_id', '')
+                  note_url = frontmatter.get('url', '')
 
                   print(f"\n📝 Publishing note: {note_folder.name}")
-                  print(f"   Note ID: {note_data['note_id']}")
-                  print(f"   URL: {note_data['url']}")
-                  print(f"   Content length: {len(note_data['content'])} chars")
+                  print(f"   Note ID: {note_id}")
+                  print(f"   URL: {note_url}")
+                  print(f"   Content length: {len(main_content)} chars")
 
-                  # Send to Zapier
-                  if send_to_zapier(webhook_url, note_data):
+                  # Post to Twitter
+                  if post_to_twitter(twitter_client, main_content, note_url):
                       # Mark as published
                       with open(published_marker, 'w') as f:
                           f.write(f"published_at: {datetime.utcnow().isoformat()}Z\n")
