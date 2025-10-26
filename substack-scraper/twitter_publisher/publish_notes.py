@@ -84,9 +84,19 @@ def format_for_twitter(content):
     # Convert inline code (`code`) - just keep the text
     content = re.sub(r'`([^`]+)`', r'\1', content)
 
-    # Convert markdown links [text](url) to just text with URL after
-    # Twitter auto-links URLs, so we can just show the URL
-    content = re.sub(r'\[([^\]]+)\]\(([^\)]+)\)', r'\1: \2', content)
+    # Convert markdown links [text](url) to Twitter-friendly format
+    # If link text is the same as URL, just show URL once (Twitter auto-links)
+    # Otherwise show "text: url"
+    def convert_link(match):
+        text = match.group(1)
+        url = match.group(2)
+        # If text is the same as URL (or a shortened version), just return the URL
+        if text == url or text.startswith('http') and url.startswith(text):
+            return url
+        # Otherwise return "text: url"
+        return f"{text}: {url}"
+
+    content = re.sub(r'\[([^\]]+)\]\(([^\)]+)\)', convert_link, content)
 
     # Remove heading markers (# ## ###)
     content = re.sub(r'^#{1,6}\s+', '', content, flags=re.MULTILINE)
