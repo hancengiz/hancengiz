@@ -1,0 +1,71 @@
+name: Substack Notes Scraper
+
+on:
+  schedule:
+    # Runs every 5 minutes (notes are more frequent)
+    - cron: '*/5 * * * *'
+
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'substack-scraper/**'
+      - '.github/workflows/substack-notes.yml'
+
+jobs:
+  scrape-notes:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          cd substack-scraper
+          pip install -r requirements.txt
+
+      - name: Run notes scraper
+        run: |
+          cd substack-scraper
+          python -c "
+          from scraper import fetch_notes
+          fetch_notes('https://www.cengizhan.com', './notes')
+          "
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "New notes found!"
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No new notes"
+          fi
+
+      - name: Commit and push changes
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add substack-scraper/notes/*.md || true
+          git commit -m "Add new Substack notes - $(date +'%Y-%m-%d %H:%M:%S')
+
+          Generated with [Claude Code](https://claude.ai/code)
+          via [Happy](https://happy.engineering)
+
+          Co-Authored-By: Claude <noreply@anthropic.com>
+          Co-Authored-By: Happy <yesreply@happy.engineering>"
+          git push
