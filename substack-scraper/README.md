@@ -49,12 +49,13 @@ python scraper.py
 
 ## GitHub Actions
 
-Two separate workflows run independently:
+Three separate workflows run independently:
 
-- **Posts**: Every 6 hours (`.github/workflows/substack-posts.yml`)
+- **Posts**: Every hour (`.github/workflows/substack-posts.yml`)
 - **Notes**: Every 5 minutes (`.github/workflows/substack-notes.yml`)
+- **Twitter**: Auto-posts new notes to Twitter (`.github/workflows/publish-notes-to-twitter.yml`)
 
-Both run automatically, no setup required.
+Posts and notes scraping run automatically, no setup required. Twitter posting requires API credentials (see below).
 
 ## File Format
 
@@ -129,9 +130,9 @@ Edit the cron schedule in the respective workflow files:
 **Posts** (`.github/workflows/substack-posts.yml`):
 
 ```yaml
-- cron: '0 */6 * * *'   # Every 6 hours (current)
+- cron: '0 * * * *'     # Every hour (current)
+- cron: '0 */6 * * *'   # Every 6 hours
 - cron: '0 0 * * *'     # Daily
-- cron: '0 0,12 * * *'  # Twice daily
 ```
 
 **Notes** (`.github/workflows/substack-notes.yml`):
@@ -141,6 +142,23 @@ Edit the cron schedule in the respective workflow files:
 - cron: '*/15 * * * *'  # Every 15 minutes
 - cron: '0 * * * *'     # Hourly
 ```
+
+## Twitter Auto-Posting
+
+Automatically posts new Substack notes to Twitter when scraped.
+
+**Setup:**
+1. Get Twitter API credentials from [Developer Portal](https://developer.twitter.com/en/portal/dashboard)
+2. Add 4 secrets to GitHub: `TWITTER_API_KEY`, `TWITTER_API_SECRET`, `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_TOKEN_SECRET`
+3. Workflow runs automatically after notes scraper
+
+**Features:**
+- Posts directly to Twitter (free, 1,500 tweets/month)
+- Smart truncation (~250 chars + link)
+- Duplicate prevention via `.published` marker files
+- Tweet URL saved in each note folder
+
+**See:** [TWITTER_PUBLISH_SETUP.md](TWITTER_PUBLISH_SETUP.md) for detailed setup instructions
 
 ---
 
