@@ -1,21 +1,22 @@
 name: Update README with Latest Posts
 
 on:
-  # Trigger after posts workflow completes successfully
+  # Trigger after posts or notes workflows complete successfully
   workflow_run:
-    workflows: ["Substack Posts Scraper"]
+    workflows: ["Substack Posts Scraper", "Substack Notes Scraper"]
     types:
       - completed
 
   # Allow manual trigger
   workflow_dispatch:
 
-  # Also trigger on push to posts folder (for testing)
+  # Also trigger on push to posts or notes folders (for testing)
   push:
     branches:
       - main
     paths:
       - 'substack-scraper/posts/**'
+      - 'substack-scraper/notes/**'
 
 jobs:
   update-readme:
@@ -41,7 +42,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Update README with latest posts
+      - name: Update README with latest posts and notes
         run: |
           cd substack-scraper
           python update_readme.py
@@ -63,7 +64,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
-          git commit -m "Update README with latest blog posts
+          git commit -m "Update README with latest blog posts and notes
 
           🤖 Generated with [Claude Code](https://claude.com/claude-code)
           via [Happy](https://happy.engineering)

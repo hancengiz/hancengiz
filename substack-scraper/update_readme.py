@@ -118,6 +118,58 @@ def get_latest_posts(posts_dir, count=3):
     return posts[:count]
 
 
+def get_latest_notes(notes_dir, count=3):
+    """Get the latest N notes from the notes directory."""
+    notes = []
+
+    if not os.path.exists(notes_dir):
+        print(f"Notes directory not found: {notes_dir}")
+        return []
+
+    # Iterate through all note folders
+    for folder in sorted(Path(notes_dir).iterdir(), reverse=True):
+        if not folder.is_dir():
+            continue
+
+        # Read original_note.md
+        note_file = folder / 'original_note.md'
+        if not note_file.exists():
+            continue
+
+        try:
+            with open(note_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            frontmatter = parse_frontmatter(content)
+
+            # Parse date
+            date_str = frontmatter.get('date', '')
+            try:
+                parsed_date = datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S %Z')
+            except:
+                parsed_date = datetime.now()
+
+            # Extract note content (after frontmatter and metadata)
+            note_content = extract_first_paragraph(content)
+
+            notes.append({
+                'title': frontmatter.get('title', 'Untitled'),
+                'url': frontmatter.get('url', ''),
+                'date': parsed_date,
+                'date_str': parsed_date.strftime('%B %d, %Y'),
+                'content': note_content,
+                'reactions': frontmatter.get('reactions', '0'),
+                'restacks': frontmatter.get('restacks', '0')
+            })
+        except Exception as e:
+            print(f"Error processing {folder.name}: {e}")
+            continue
+
+    # Sort by date (most recent first) and return top N
+    notes.sort(key=lambda x: x['date'], reverse=True)
+    return notes[:count]
+
+
 def generate_blog_section(posts):
     """Generate the Latest Blog Posts markdown section."""
     if not posts:
@@ -142,18 +194,64 @@ No posts available yet. Check back soon!
     return '\n'.join(lines)
 
 
-def update_readme(readme_path, posts_dir, num_posts=3):
-    """Update the README.md file with latest posts."""
+def generate_notes_section(notes):
+    """Generate the Latest Notes markdown section."""
+    if not notes:
+        return """## Latest Notes
 
-    # Get latest posts
+No notes available yet. Check back soon!
+
+➡️ [See all notes](https://www.cengizhan.com/notes)
+"""
+
+    lines = ["## Latest Notes", ""]
+
+    for note in notes:
+        # Truncate title if too long
+        title = note['title']
+        if len(title) > 60:
+            title = title[:60] + '...'
+
+        lines.append(f"**[{title}]({note['url']})** · *{note['date_str']}*")
+        lines.append("")
+        lines.append(note['content'])
+
+        # Add engagement metrics if present
+        reactions = int(note.get('reactions', 0))
+        restacks = int(note.get('restacks', 0))
+        if reactions > 0 or restacks > 0:
+            metrics = []
+            if reactions > 0:
+                metrics.append(f"❤️ {reactions}")
+            if restacks > 0:
+                metrics.append(f"🔄 {restacks}")
+            lines.append("")
+            lines.append(f"*{' · '.join(metrics)}*")
+
+        lines.append("")
+        lines.append("---")
+        lines.append("")
+
+    # Remove trailing separator
+    if lines[-1] == "" and lines[-2] == "---":
+        lines = lines[:-2]
+
+    lines.append("")
+    lines.append("➡️ [See all notes](https://www.cengizhan.com/notes)")
+
+    return '\n'.join(lines)
+
+
+def update_readme(readme_path, posts_dir, notes_dir, num_posts=3, num_notes=3):
+    """Update the README.md file with latest posts and notes."""
+
+    # Get latest posts and notes
     posts = get_latest_posts(posts_dir, num_posts)
+    notes = get_latest_notes(notes_dir, num_notes)
 
-    if not posts:
-        print("No posts found to update README")
+    if not posts and not notes:
+        print("No posts or notes found to update README")
         return False
-
-    # Generate new section
-    new_section = generate_blog_section(posts)
 
     # Read current README
     try:
@@ -163,29 +261,47 @@ def update_readme(readme_path, posts_dir, num_posts=3):
         print(f"README not found at {readme_path}")
         return False
 
-    # Find and replace the Latest Blog Posts section
-    # Pattern matches from "## Latest Blog Posts" to the next "## " section
-    pattern = r'## Latest Blog Posts\n.*?(?=\n## |\n---\n|\Z)'
+    updated_content = readme_content
 
-    if not re.search(pattern, readme_content, re.DOTALL):
-        print("Could not find 'Latest Blog Posts' section in README")
-        return False
+    # Update posts section if we have posts
+    if posts:
+        new_posts_section = generate_blog_section(posts)
+        posts_pattern = r'## Latest Blog Posts\n.*?(?=\n## |\n---\n|\Z)'
 
-    # Replace the section
-    updated_content = re.sub(
-        pattern,
-        new_section,
-        readme_content,
-        flags=re.DOTALL
-    )
+        if re.search(posts_pattern, updated_content, re.DOTALL):
+            updated_content = re.sub(
+                posts_pattern,
+                new_posts_section,
+                updated_content,
+                flags=re.DOTALL
+            )
+            print(f"✓ Updated README with {len(posts)} latest posts")
+            for post in posts:
+                print(f"  - {post['title']} ({post['date_str']})")
+        else:
+            print("Could not find 'Latest Blog Posts' section in README")
+
+    # Update notes section if we have notes
+    if notes:
+        new_notes_section = generate_notes_section(notes)
+        notes_pattern = r'## Latest Notes\n.*?(?=\n## |\n---\n|\Z)'
+
+        if re.search(notes_pattern, updated_content, re.DOTALL):
+            updated_content = re.sub(
+                notes_pattern,
+                new_notes_section,
+                updated_content,
+                flags=re.DOTALL
+            )
+            print(f"✓ Updated README with {len(notes)} latest notes")
+            for note in notes:
+                print(f"  - {note['title']} ({note['date_str']})")
+        else:
+            print("Could not find 'Latest Notes' section in README")
 
     # Write back
     with open(readme_path, 'w', encoding='utf-8') as f:
         f.write(updated_content)
-
-    print(f"✓ Updated README with {len(posts)} latest posts")
-    for post in posts:
-        print(f"  - {post['title']} ({post['date_str']})")
 
     return True
 
@@ -196,14 +312,16 @@ def main():
     script_dir = Path(__file__).parent
     repo_root = script_dir.parent
     posts_dir = script_dir / 'posts'
+    notes_dir = script_dir / 'notes'
     readme_path = repo_root / 'README.md'
 
     print(f"Posts directory: {posts_dir}")
+    print(f"Notes directory: {notes_dir}")
     print(f"README path: {readme_path}")
     print()
 
     # Update README
-    success = update_readme(readme_path, posts_dir, num_posts=3)
+    success = update_readme(readme_path, posts_dir, notes_dir, num_posts=3, num_notes=3)
 
     if success:
         print("\n✓ README updated successfully!")
