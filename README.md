@@ -102,6 +102,12 @@ Vibe-coding is fun. You throw an idea at the AI, see what it spits out, tweak it
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
+**[I automated my Substack notes to Twitter (complete...](https://substack.com/note/c-170364932)** · *October 26, 2025*
+
+I automated my Substack notes to Twitter (completely free) Every time I publish a note here on Substack, it automatically posts to Twitter within 5 minutes. No Zapier, no Buffer, no manual copying. Just pure automation. How it works: 1\. GitHub...
+
+---
+
 **[Response to this comment : https://www.cengizhan.c...](https://substack.com/note/c-170317259)** · *October 26, 2025*
 
 Response to this comment : https://www.cengizhan.com/p/the-ai-native-way-of- building/comments Even when I work alone, I still follow the BMAD Method or a similar approach I've designed. I usually start by "vibing"—exploring ideas, testing...
