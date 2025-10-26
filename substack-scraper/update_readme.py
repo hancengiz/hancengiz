@@ -126,15 +126,11 @@ def get_latest_notes(notes_dir, count=3):
         print(f"Notes directory not found: {notes_dir}")
         return []
 
-    # Iterate through all note folders
-    for folder in sorted(Path(notes_dir).iterdir(), reverse=True):
-        if not folder.is_dir():
-            continue
+    # Recursively find all original_note.md files
+    note_files = sorted(Path(notes_dir).rglob('*/original_note.md'), reverse=True)
 
-        # Read original_note.md
-        note_file = folder / 'original_note.md'
-        if not note_file.exists():
-            continue
+    for note_file in note_files:
+        note_folder = note_file.parent
 
         try:
             with open(note_file, 'r', encoding='utf-8') as f:
@@ -162,7 +158,9 @@ def get_latest_notes(notes_dir, count=3):
                 'restacks': frontmatter.get('restacks', '0')
             })
         except Exception as e:
-            print(f"Error processing {folder.name}: {e}")
+            # Show relative path from notes_dir
+            rel_path = note_folder.relative_to(Path(notes_dir))
+            print(f"Error processing {rel_path}: {e}")
             continue
 
     # Sort by date (most recent first) and return top N

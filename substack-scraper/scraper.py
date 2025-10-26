@@ -629,14 +629,22 @@ def fetch_notes(base_url, output_dir):
                 try:
                     if pub_date_str:
                         parsed_date = datetime.fromisoformat(pub_date_str.replace('Z', '+00:00'))
-                        date_str = parsed_date.strftime('%Y-%m-%d')
+                        year = parsed_date.strftime('%Y')
+                        month = parsed_date.strftime('%m')
+                        day = parsed_date.strftime('%d')
                         formatted_date = parsed_date.strftime('%a, %d %b %Y %H:%M:%S GMT')
                     else:
-                        date_str = datetime.now().strftime('%Y-%m-%d')
-                        formatted_date = datetime.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
+                        now = datetime.now()
+                        year = now.strftime('%Y')
+                        month = now.strftime('%m')
+                        day = now.strftime('%d')
+                        formatted_date = now.strftime('%a, %d %b %Y %H:%M:%S GMT')
                 except:
-                    date_str = datetime.now().strftime('%Y-%m-%d')
-                    formatted_date = datetime.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
+                    now = datetime.now()
+                    year = now.strftime('%Y')
+                    month = now.strftime('%m')
+                    day = now.strftime('%d')
+                    formatted_date = now.strftime('%a, %d %b %Y %H:%M:%S GMT')
 
                 # Convert body_json to markdown (with fallback to plain body)
                 if body_json and isinstance(body_json, dict) and body_json.get('content'):
@@ -664,10 +672,11 @@ def fetch_notes(base_url, output_dir):
                     if clean_att_url not in image_urls:
                         image_urls.append(clean_att_url)
 
-                # Create folder name
+                # Create folder structure: notes/YYYY/MM/DD_note-ID
                 slug = f"note-{note_id}"
-                folder_name = f"{date_str}_{slug}"
-                folder_path = os.path.join(output_dir, folder_name)
+                folder_name = f"{day}_{slug}"
+                year_month_dir = os.path.join(output_dir, year, month)
+                folder_path = os.path.join(year_month_dir, folder_name)
 
                 # Build markdown content
                 frontmatter = build_note_frontmatter(
@@ -692,10 +701,10 @@ def fetch_notes(base_url, output_dir):
                 should_update, reason = should_update_folder(folder_path, content_hash)
 
                 if not should_update:
-                    print(f"  Skipping (unchanged): {folder_name}")
+                    print(f"  Skipping (unchanged): {year}/{month}/{folder_name}")
                     continue
 
-                # Create folder
+                # Create year/month directories and note folder
                 Path(folder_path).mkdir(parents=True, exist_ok=True)
 
                 # Save original markdown (with remote URLs)
@@ -713,9 +722,9 @@ def fetch_notes(base_url, output_dir):
                     f.write(formatted_markdown)
 
                 if reason == "new":
-                    print(f"  Saved: {folder_name} ({len(url_to_filename)} images)")
+                    print(f"  Saved: {year}/{month}/{folder_name} ({len(url_to_filename)} images)")
                 else:
-                    print(f"  Updated: {folder_name} ({len(url_to_filename)} images)")
+                    print(f"  Updated: {year}/{month}/{folder_name} ({len(url_to_filename)} images)")
                 saved_count += 1
 
             except Exception as e:

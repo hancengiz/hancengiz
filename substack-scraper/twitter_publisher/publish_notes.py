@@ -265,21 +265,18 @@ def main():
 
     published_count = 0
 
-    # Iterate through all note folders
-    for note_folder in sorted(notes_dir.iterdir()):
-        if not note_folder.is_dir():
-            continue
+    # Recursively find all original_note.md files
+    note_files = sorted(notes_dir.rglob('*/original_note.md'))
+
+    for note_file in note_files:
+        note_folder = note_file.parent
 
         # Check if already published
         published_marker = note_folder / '.published'
         if published_marker.exists():
-            print(f"⏭️  Skipping {note_folder.name} (already published)")
-            continue
-
-        # Read original_note.md
-        note_file = note_folder / 'original_note.md'
-        if not note_file.exists():
-            print(f"⚠️  No original_note.md in {note_folder.name}")
+            # Show relative path from notes_dir
+            rel_path = note_folder.relative_to(notes_dir)
+            print(f"⏭️  Skipping {rel_path} (already published)")
             continue
 
         try:
@@ -293,7 +290,9 @@ def main():
             note_id = frontmatter.get('note_id', '')
             note_url = frontmatter.get('url', '')
 
-            print(f"\n📝 Publishing note: {note_folder.name}")
+            # Show relative path from notes_dir
+            rel_path = note_folder.relative_to(notes_dir)
+            print(f"\n📝 Publishing note: {rel_path}")
             print(f"   Note ID: {note_id}")
             print(f"   URL: {note_url}")
             print(f"   Content length: {len(main_content)} chars")
@@ -318,7 +317,8 @@ def main():
                 print(f"✗ Failed to publish, will retry next run")
 
         except Exception as e:
-            print(f"✗ Error processing {note_folder.name}: {e}")
+            rel_path = note_folder.relative_to(notes_dir)
+            print(f"✗ Error processing {rel_path}: {e}")
             continue
 
     print(f"\n{'='*50}")
