@@ -1,7 +1,5 @@
 ---
-title: …
-
-Even when I work alone, I still follow the BMAD...
+title: Even when I work alone, I still follow the BMAD Me...
 date: Sun, 26 Oct 2025 12:42:17 GMT
 author: Cengiz Han
 handle: hancengiz
@@ -14,9 +12,7 @@ restacks: 0
 replies: 0
 ---
 
-# …
-
-Even when I work alone, I still follow the BMAD...
+# Even when I work alone, I still follow the BMAD Me...
 
 **Published:** Sun, 26 Oct 2025 12:42:17 GMT
 **Author:** Cengiz Han (@hancengiz)
@@ -24,7 +20,7 @@ Even when I work alone, I still follow the BMAD...
 
 ---
 
-… Even when I work alone, I still follow the BMAD Method or a similar approach
+Even when I work alone, I still follow the BMAD Method or a similar approach
 I've designed. I usually start by "vibing"—exploring ideas, testing
 possibilities, and clarifying what I want to accomplish. Even at this early
 stage, I open Claude Code and write an ADR (Architecture Decision Record) for
@@ -37,7 +33,7 @@ preserving the creative spark that initiated the project. This approach aligns
 with Rick Nason’s philosophy in "It’s Not Complicated": some projects are
 simple, others are complicated, and some are truly complex. Each type requires
 a different level of structure. That’s exactly what I'm integrating into
-Fabriqa.ai (the ai-native sdlc product I am building)—a set of adaptive
+http://fabriqa.ai (the ai-native sdlc product I am building)—a set of adaptive
 workflows for simple, complicated, and complex projects, along with one that
 helps convert a prototype into a spec-driven production project. If you're
 working solo, you can start crafting your own version of this: 1\. Define your
