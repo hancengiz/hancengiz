@@ -434,6 +434,15 @@ def fetch_notes(base_url, output_dir):
                 restacks = comment.get('restacks', 0)
                 replies_count = comment.get('children_count', 0)
 
+                # Extract attachment images (separate from body content)
+                attachments = comment.get('attachments', [])
+                attachment_image_urls = []
+                for attachment in attachments:
+                    if attachment.get('type') == 'image':
+                        img_url = attachment.get('imageUrl', '')
+                        if img_url:
+                            attachment_image_urls.append(img_url)
+
                 # Reply context
                 post = item.get('post')
                 reply_to_post = None
@@ -473,9 +482,21 @@ def fetch_notes(base_url, output_dir):
                 else:
                     content_md = 'No content'
 
+                # Append attachment images to markdown content
+                if attachment_image_urls:
+                    content_md += '\n\n'
+                    for img_url in attachment_image_urls:
+                        content_md += f'![Image]({img_url})\n\n'
+
                 # Extract images from markdown and clean URLs (remove newlines from wrapped text)
                 markdown_image_urls = extract_images_from_markdown(content_md)
                 image_urls = list(set(clean_url(url) for url in markdown_image_urls))
+
+                # Add attachment images to the list
+                for att_url in attachment_image_urls:
+                    clean_att_url = clean_url(att_url)
+                    if clean_att_url not in image_urls:
+                        image_urls.append(clean_att_url)
 
                 # Create folder name
                 slug = f"note-{note_id}"

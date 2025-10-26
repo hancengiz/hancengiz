@@ -23,3 +23,9 @@ replies: 0
 Just added a feature to publish formatted tweets with images from my Substack
 to Twitter completely from my phone during bumper-to-bumper traffic. 🚀🚀 I love
 this new AI era❤️
+
+![Image](image2.jpeg)
+
+![Image](image1.jpeg)
+
+
