@@ -266,7 +266,7 @@ def update_readme(readme_path, posts_dir, notes_dir, num_posts=3, num_notes=3):
     # Update posts section if we have posts
     if posts:
         new_posts_section = generate_blog_section(posts)
-        posts_pattern = r'## Latest Blog Posts\n.*?(?=\n## |\n---\n|\Z)'
+        posts_pattern = r'## Latest Blog Posts\n.*?(?=\n## |\Z)'
 
         if re.search(posts_pattern, updated_content, re.DOTALL):
             updated_content = re.sub(
@@ -284,7 +284,7 @@ def update_readme(readme_path, posts_dir, notes_dir, num_posts=3, num_notes=3):
     # Update notes section if we have notes
     if notes:
         new_notes_section = generate_notes_section(notes)
-        notes_pattern = r'## Latest Notes\n.*?(?=\n## |\n---\n|\Z)'
+        notes_pattern = r'## Latest Notes\n.*?(?=\n## |\Z)'
 
         if re.search(notes_pattern, updated_content, re.DOTALL):
             updated_content = re.sub(
