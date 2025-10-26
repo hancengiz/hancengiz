@@ -84,17 +84,22 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 ## Latest Blog Posts
 
-### [Beyond Vibe-Coding: Spec-Driven Development](https://medium.com/@hancengiz/beyond-vibe-coding-spec-driven-development-80e80aade50e)
-Exploring spec-driven development in the age of AI-native engineering. How specs reduce ambiguity and make AI-generated code more predictable and production-ready.
+### [Claude Claude, Don’t Be Mean—How Right Have I Been?](https://www.cengizhan.com/p/claude-claude-dont-be-meanhow-right)
+*October 25, 2025*
 
-### [(Micro)services with Event Notifications](https://medium.com/hepsiburadatech/micro-services-with-event-notifications-c8462792e700)
-Deep dive into event-driven architecture for microservices, discussing how event notification patterns help build decoupled, fail-safe distributed systems.
+You know what's funny about working with Claude Code? It's relentlessly encouraging. Every conversation feels like having a very supportive colleague who's genuinely excited about your ideas--sometimes to an almost comical degree.
 
-### [3 Pillars of Observability](https://medium.com/hepsiburadatech/3-pillars-of-observability-d458c765dd26)
-Understanding whitebox monitoring through logging, metrics, and distributed tracing. A comprehensive guide to building observable production systems.
+### [The AI-Native Way of Building](https://www.cengizhan.com/p/the-ai-native-way-of-building)
+*October 25, 2025*
 
-➡️ [Read more on Medium](https://medium.com/@hancengiz)
+TL;DR: The "spec-first" vs "ship-fast" debate is a dead end.   AI-native software teams don't win by rejecting process--they win by evolving it.   They know when to explore freely, when to specify what they've learned into structure, and when to...
 
+### [Beyond Vibe-Coding: Spec-Driven Development](https://www.cengizhan.com/p/beyond-vibe-coding-spec-driven-development-80e80aade50e)
+*July 28, 2025*
+
+Vibe-coding is fun. You throw an idea at the AI, see what it spits out, tweak it, and repeat. For side projects, that's fine.
+
+➡️ [Read more on my blog](https://www.cengizhan.com)
 ## 📊 GitHub Stats & Activity
 
 <div align="center">
