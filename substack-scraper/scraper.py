@@ -2,6 +2,7 @@
 """
 Substack Content Scraper
 Fetches both posts (from RSS feed) and notes (from notes page) from Substack.
+Creates folders with original and formatted markdown files, plus downloaded images.
 """
 
 import feedparser
@@ -13,32 +14,125 @@ from html2text import html2text
 from pathlib import Path
 import hashlib
 import urllib.request
-from urllib.parse import urljoin
+import urllib.parse
+from urllib.parse import urljoin, urlparse
+from html.parser import HTMLParser
+
+
+class ImageExtractor(HTMLParser):
+    """Extract image URLs from HTML."""
+    def __init__(self):
+        super().__init__()
+        self.images = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'img':
+            attrs_dict = dict(attrs)
+            if 'src' in attrs_dict:
+                self.images.append(attrs_dict['src'])
 
 
 def sanitize_filename(title):
     """Convert title to safe filename."""
-    # Remove or replace invalid characters
     filename = re.sub(r'[<>:"/\\|?*]', '', title)
-    # Replace spaces and special chars with hyphens
     filename = re.sub(r'[\s\-]+', '-', filename)
-    # Remove leading/trailing hyphens
     filename = filename.strip('-')
-    # Limit length
     return filename[:100].lower()
+
+
+def clean_markdown_urls(markdown_content):
+    """Remove newlines and extra whitespace from URLs in markdown syntax."""
+    # First, handle clickable images: [![](url1)](url2)
+    # This pattern has two URLs that both need cleaning
+    markdown_content = re.sub(
+        r'\[!\[(.*?)\]\(([^)]+)\)\]\(([^)]+)\)',
+        lambda m: f'[![{m.group(1)}]({clean_url(m.group(2))})]({clean_url(m.group(3))})',
+        markdown_content,
+        flags=re.DOTALL
+    )
+
+    # Then handle standalone images: ![alt](url)
+    markdown_content = re.sub(
+        r'!\[(.*?)\]\(([^)]+)\)',
+        lambda m: f'![{m.group(1)}]({clean_url(m.group(2))})',
+        markdown_content,
+        flags=re.DOTALL
+    )
+
+    # Finally handle regular links: [text](url)
+    markdown_content = re.sub(
+        r'\[(.*?)\]\(([^)]+)\)',
+        lambda m: f'[{m.group(1)}]({clean_url(m.group(2))})',
+        markdown_content,
+        flags=re.DOTALL
+    )
+
+    return markdown_content
 
 
 def convert_html_to_markdown(html_content):
     """Convert HTML content to markdown."""
-    # Use html2text to convert HTML to markdown
     markdown = html2text(html_content)
+    # Clean up URLs by removing newlines from within parentheses
+    markdown = clean_markdown_urls(markdown)
     return markdown.strip()
 
 
-def generate_file_hash(title, link):
-    """Generate a unique hash for the file based on title and link."""
-    content = f"{title}{link}"
-    return hashlib.md5(content.encode()).hexdigest()[:8]
+def extract_images_from_html(html_content):
+    """Extract all image URLs from HTML content."""
+    parser = ImageExtractor()
+    parser.feed(html_content)
+    return parser.images
+
+
+def extract_images_from_markdown(markdown_content):
+    """Extract image URLs from markdown content."""
+    # Match markdown image syntax: ![alt](url)
+    # Allow newlines within URLs to handle wrapped text
+    pattern = r'!\[.*?\]\((https?://[^\)]+)\)'
+    return re.findall(pattern, markdown_content, re.DOTALL)
+
+
+def download_image(url, filepath):
+    """Download an image from URL to filepath."""
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+        }
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=30) as response:
+            with open(filepath, 'wb') as f:
+                f.write(response.read())
+        return True
+    except Exception as e:
+        print(f"    Failed to download {url}: {e}")
+        return False
+
+
+def clean_url(url):
+    """Remove newlines and extra whitespace from URLs."""
+    return re.sub(r'\s+', '', url)
+
+
+def replace_image_urls_with_local(markdown_content, url_to_filename_map):
+    """Replace remote image URLs with local file paths in markdown."""
+    result = markdown_content
+    for url, filename in url_to_filename_map.items():
+        # Replace in markdown image syntax and bare URLs
+        # URL may contain newlines from text wrapping
+        result = result.replace(f']({url})', f']({filename})')
+        result = result.replace(url, filename)
+
+    # Remove clickable image wrappers that link to Substack CDN
+    # Convert [![](local_image)](https://substackcdn...) to just ![](local_image)
+    result = re.sub(
+        r'\[!\[(.*?)\]\((image\d+\.[^)]+)\)\]\(https?://substackcdn\.com/[^)]+\)',
+        r'![\1](\2)',
+        result,
+        flags=re.DOTALL
+    )
+
+    return result
 
 
 def hash_content(content):
@@ -46,72 +140,35 @@ def hash_content(content):
     return hashlib.md5(content.encode('utf-8')).hexdigest()
 
 
-def extract_content_from_markdown(filepath):
-    """Extract content from markdown file (everything after the frontmatter)."""
-    try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-
-        # Find the end of frontmatter (second occurrence of ---)
-        frontmatter_count = 0
-        content_start_idx = 0
-
-        for idx, line in enumerate(lines):
-            if line.strip() == '---':
-                frontmatter_count += 1
-                if frontmatter_count == 2:
-                    content_start_idx = idx + 1
-                    break
-
-        # Return content after frontmatter
-        if content_start_idx > 0:
-            return ''.join(lines[content_start_idx:])
-        return ''.join(lines)
-
-    except Exception:
-        return ''
-
-
-def should_update_file(filepath, new_content):
-    """Check if file should be updated based on content hash comparison."""
-    if not os.path.exists(filepath):
+def should_update_folder(folder_path, new_content_hash):
+    """Check if folder content should be updated."""
+    original_file = os.path.join(folder_path, 'original_post.md')
+    if not os.path.exists(folder_path):
         return True, "new"
 
-    # Extract existing content (without frontmatter)
-    existing_content = extract_content_from_markdown(filepath)
+    if not os.path.exists(original_file):
+        original_file = os.path.join(folder_path, 'original_note.md')
 
-    # For new content, we need to extract just the content part (after frontmatter)
-    # Split by --- and take everything after the second ---
-    new_content_lines = new_content.split('\n')
-    frontmatter_count = 0
-    content_start_idx = 0
+    if not os.path.exists(original_file):
+        return True, "new"
 
-    for idx, line in enumerate(new_content_lines):
-        if line.strip() == '---':
-            frontmatter_count += 1
-            if frontmatter_count == 2:
-                content_start_idx = idx + 1
-                break
+    try:
+        with open(original_file, 'r', encoding='utf-8') as f:
+            existing_content = f.read()
+        existing_hash = hash_content(existing_content)
 
-    new_content_only = '\n'.join(new_content_lines[content_start_idx:])
-
-    # Compare hashes
-    existing_hash = hash_content(existing_content)
-    new_hash = hash_content(new_content_only)
-
-    if existing_hash != new_hash:
-        return True, "updated"
-
-    return False, "unchanged"
+        if existing_hash != new_content_hash:
+            return True, "updated"
+        return False, "unchanged"
+    except:
+        return True, "new"
 
 
 def fetch_posts(feed_url, output_dir):
-    """Fetch blog posts from RSS feed and save as markdown files."""
+    """Fetch blog posts from RSS feed and save as folders with markdown and images."""
 
-    # Create output directory if it doesn't exist
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
-    # Parse RSS feed
     print(f"Fetching posts from {feed_url}...")
     feed = feedparser.parse(feed_url)
 
@@ -123,7 +180,6 @@ def fetch_posts(feed_url, output_dir):
         return 0
 
     print(f"Found {len(feed.entries)} posts")
-
     saved_count = 0
 
     for entry in feed.entries:
@@ -134,13 +190,29 @@ def fetch_posts(feed_url, output_dir):
             pub_date = entry.get('published', '')
             author = entry.get('author', 'Unknown')
 
-            # Get content (try different fields)
+            # Get content HTML
             content_html = entry.get('content', [{}])[0].get('value', '') if 'content' in entry else ''
             if not content_html:
                 content_html = entry.get('summary', '')
 
-            # Convert HTML to markdown
+            # Convert HTML to markdown first
             content_md = convert_html_to_markdown(content_html) if content_html else 'No content available'
+
+            # Extract images from both HTML and markdown to catch all image URLs
+            html_image_urls = extract_images_from_html(content_html)
+            markdown_image_urls_raw = extract_images_from_markdown(content_md)
+
+            # Build mapping from clean URLs to original URLs (preserving newlines for replacement)
+            url_variants = {}  # clean_url -> list of original variants
+            for url in html_image_urls + markdown_image_urls_raw:
+                clean = clean_url(url)
+                if clean not in url_variants:
+                    url_variants[clean] = []
+                if url not in url_variants[clean]:
+                    url_variants[clean].append(url)
+
+            # Use clean URLs for downloading
+            image_urls = list(url_variants.keys())
 
             # Parse date
             try:
@@ -152,48 +224,85 @@ def fetch_posts(feed_url, output_dir):
             except:
                 date_str = datetime.now().strftime('%Y-%m-%d')
 
-            # Extract slug from URL (e.g., /p/slug-here -> slug-here)
+            # Extract slug from URL
             slug = link.split('/')[-1] if link else sanitize_filename(title)
 
-            # Create filename using slug
-            filename = f"{date_str}_{slug}.md"
-            filepath = os.path.join(output_dir, filename)
+            # Create folder name
+            folder_name = f"{date_str}_{slug}"
+            folder_path = os.path.join(output_dir, folder_name)
 
             # Create markdown content with frontmatter
-            markdown_content = f"""---
+            frontmatter = f"""---
 title: {title}
 date: {pub_date}
 author: {author}
 url: {link}
 type: post
----
+---"""
 
-# {title}
+            metadata = f"""# {title}
 
 **Published:** {pub_date}
 **Author:** {author}
 **Link:** [{link}]({link})
 
----
+---"""
+
+            original_markdown = f"""{frontmatter}
+
+{metadata}
 
 {content_md}
 """
 
-            # Check if file should be updated
-            should_update, reason = should_update_file(filepath, markdown_content)
+            # Check if update is needed
+            content_hash = hash_content(original_markdown)
+            should_update, reason = should_update_folder(folder_path, content_hash)
 
             if not should_update:
-                print(f"  Skipping (unchanged): {filename}")
+                print(f"  Skipping (unchanged): {folder_name}")
                 continue
 
-            # Save to file
-            with open(filepath, 'w', encoding='utf-8') as f:
-                f.write(markdown_content)
+            # Create folder
+            Path(folder_path).mkdir(parents=True, exist_ok=True)
+
+            # Save original markdown (with remote URLs)
+            original_path = os.path.join(folder_path, 'original_post.md')
+            with open(original_path, 'w', encoding='utf-8') as f:
+                f.write(original_markdown)
+
+            # Download images and build URL mapping
+            url_to_filename = {}
+            for idx, img_url in enumerate(image_urls, 1):
+                # Determine file extension
+                parsed_url = urlparse(img_url)
+                path = parsed_url.path
+
+                # Try to extract extension from URL
+                ext = os.path.splitext(path)[1].lower()
+                if not ext or ext not in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']:
+                    ext = '.jpg'  # default extension
+
+                # Use sequential numbering
+                img_filename = f"image{idx}{ext}"
+                img_path = os.path.join(folder_path, img_filename)
+
+                # Download image using clean URL
+                if download_image(img_url, img_path):
+                    # Map all variants of this URL (including ones with newlines) to the local file
+                    for variant in url_variants.get(img_url, [img_url]):
+                        url_to_filename[variant] = img_filename
+
+            # Create formatted markdown with local image paths
+            formatted_markdown = replace_image_urls_with_local(original_markdown, url_to_filename)
+            formatted_path = os.path.join(folder_path, 'formatted_post.md')
+            with open(formatted_path, 'w', encoding='utf-8') as f:
+                f.write(formatted_markdown)
 
             if reason == "new":
-                print(f"  Saved: {filename}")
+                print(f"  Saved: {folder_name} ({len(url_to_filename)} images)")
             else:
-                print(f"  Updated: {filename}")
+                print(f"  Updated: {folder_name} ({len(url_to_filename)} images)")
             saved_count += 1
 
         except Exception as e:
@@ -205,17 +314,14 @@ type: post
 
 
 def fetch_notes(base_url, output_dir):
-    """Fetch short-form notes from Substack notes API (public, no auth needed)."""
+    """Fetch short-form notes from Substack notes API and save as folders with markdown and images."""
 
-    # Create output directory if it doesn't exist
     Path(output_dir).mkdir(parents=True, exist_ok=True)
-
     notes_url = urljoin(base_url, '/api/v1/notes')
 
     print(f"Fetching notes from {notes_url}...")
 
     try:
-        # Make request to notes API (public endpoint)
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
             'Accept': 'application/json',
@@ -232,12 +338,10 @@ def fetch_notes(base_url, output_dir):
             return 0
 
         print(f"Found {len(items)} notes")
-
         saved_count = 0
 
         for item in items:
             try:
-                # Extract note data from comment object
                 comment = item.get('comment', {})
 
                 note_id = comment.get('id', '')
@@ -252,7 +356,7 @@ def fetch_notes(base_url, output_dir):
                 restacks = comment.get('restacks', 0)
                 replies_count = comment.get('children_count', 0)
 
-                # Reply context (if this note is a reply to a post)
+                # Reply context
                 post = item.get('post')
                 reply_to_post = None
                 reply_to_url = None
@@ -260,14 +364,13 @@ def fetch_notes(base_url, output_dir):
                     reply_to_post = post.get('title', '')
                     reply_to_url = post.get('canonical_url', '')
 
-                # Build note URL - notes appear as comments in the Notes feed
-                # Format: https://substack.com/@handle or publication URL
+                # Build note URL
                 if handle:
                     note_url = f"https://substack.com/note/c-{note_id}"
                 else:
                     note_url = urljoin(base_url, f'/notes/post/{note_id}')
 
-                # Create a title from body (notes don't have separate titles)
+                # Create title from body
                 if body:
                     title = body[:50] + ('...' if len(body) > 50 else '')
                 else:
@@ -276,7 +379,6 @@ def fetch_notes(base_url, output_dir):
                 # Parse date
                 try:
                     if pub_date_str:
-                        # Substack API returns ISO format dates
                         parsed_date = datetime.fromisoformat(pub_date_str.replace('Z', '+00:00'))
                         date_str = parsed_date.strftime('%Y-%m-%d')
                         formatted_date = parsed_date.strftime('%a, %d %b %Y %H:%M:%S GMT')
@@ -287,18 +389,22 @@ def fetch_notes(base_url, output_dir):
                     date_str = datetime.now().strftime('%Y-%m-%d')
                     formatted_date = datetime.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
 
-                # Convert body to markdown if it's HTML
+                # Convert body to markdown
                 if body:
                     content_md = convert_html_to_markdown(body)
                 else:
                     content_md = 'No content'
 
-                # Create filename using note ID as slug
-                slug = f"note-{note_id}"
-                filename = f"{date_str}_{slug}.md"
-                filepath = os.path.join(output_dir, filename)
+                # Extract images from markdown and clean URLs (remove newlines from wrapped text)
+                markdown_image_urls = extract_images_from_markdown(content_md)
+                image_urls = list(set(clean_url(url) for url in markdown_image_urls))
 
-                # Build frontmatter with conditional fields
+                # Create folder name
+                slug = f"note-{note_id}"
+                folder_name = f"{date_str}_{slug}"
+                folder_path = os.path.join(output_dir, folder_name)
+
+                # Build frontmatter
                 frontmatter = f"""---
 title: {title}
 date: {formatted_date}
@@ -312,7 +418,6 @@ reactions: {reaction_count}
 restacks: {restacks}
 replies: {replies_count}"""
 
-                # Add reply context if this is a reply to a post
                 if reply_to_post and reply_to_url:
                     frontmatter += f"""
 reply_to_post: {reply_to_post}
@@ -320,23 +425,21 @@ reply_to_url: {reply_to_url}"""
 
                 frontmatter += "\n---"
 
-                # Build metadata section
+                # Build metadata
                 metadata = f"""**Published:** {formatted_date}
 **Author:** {name} (@{handle})
 **Link:** [{note_url}]({note_url})"""
 
-                # Add engagement metrics if any
                 if reaction_count > 0 or restacks > 0 or replies_count > 0:
                     metadata += f"""
 **Engagement:** {reaction_count} reactions, {restacks} restacks, {replies_count} replies"""
 
-                # Add reply context if present
                 if reply_to_post and reply_to_url:
                     metadata += f"""
 **In reply to:** [{reply_to_post}]({reply_to_url})"""
 
-                # Create markdown content
-                markdown_content = f"""{frontmatter}
+                # Create original markdown
+                original_markdown = f"""{frontmatter}
 
 # {title}
 
@@ -347,21 +450,52 @@ reply_to_url: {reply_to_url}"""
 {content_md}
 """
 
-                # Check if file should be updated
-                should_update, reason = should_update_file(filepath, markdown_content)
+                # Check if update is needed
+                content_hash = hash_content(original_markdown)
+                should_update, reason = should_update_folder(folder_path, content_hash)
 
                 if not should_update:
-                    print(f"  Skipping (unchanged): {filename}")
+                    print(f"  Skipping (unchanged): {folder_name}")
                     continue
 
-                # Save to file
-                with open(filepath, 'w', encoding='utf-8') as f:
-                    f.write(markdown_content)
+                # Create folder
+                Path(folder_path).mkdir(parents=True, exist_ok=True)
+
+                # Save original markdown (with remote URLs)
+                original_path = os.path.join(folder_path, 'original_note.md')
+                with open(original_path, 'w', encoding='utf-8') as f:
+                    f.write(original_markdown)
+
+                # Download images and build URL mapping
+                url_to_filename = {}
+                for idx, img_url in enumerate(image_urls, 1):
+                    # Determine file extension
+                    parsed_url = urlparse(img_url)
+                    path = parsed_url.path
+
+                    # Try to extract extension from URL
+                    ext = os.path.splitext(path)[1].lower()
+                    if not ext or ext not in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']:
+                        ext = '.jpg'  # default extension
+
+                    # Use sequential numbering
+                    img_filename = f"image{idx}{ext}"
+                    img_path = os.path.join(folder_path, img_filename)
+
+                    # Download image
+                    if download_image(img_url, img_path):
+                        url_to_filename[img_url] = img_filename
+
+                # Create formatted markdown with local image paths
+                formatted_markdown = replace_image_urls_with_local(original_markdown, url_to_filename)
+                formatted_path = os.path.join(folder_path, 'formatted_note.md')
+                with open(formatted_path, 'w', encoding='utf-8') as f:
+                    f.write(formatted_markdown)
 
                 if reason == "new":
-                    print(f"  Saved: {filename}")
+                    print(f"  Saved: {folder_name} ({len(url_to_filename)} images)")
                 else:
-                    print(f"  Updated: {filename}")
+                    print(f"  Updated: {folder_name} ({len(url_to_filename)} images)")
                 saved_count += 1
 
             except Exception as e:
@@ -381,13 +515,11 @@ reply_to_url: {reply_to_url}"""
 
 def main():
     """Main function."""
-    # Configuration
     BASE_URL = "https://www.cengizhan.com"
     FEED_URL = f"{BASE_URL}/feed"
     POSTS_DIR = "./posts"
     NOTES_DIR = "./notes"
 
-    # You can override these with environment variables
     base_url = os.environ.get('SUBSTACK_BASE_URL', BASE_URL)
     feed_url = os.environ.get('SUBSTACK_FEED_URL', FEED_URL)
     posts_dir = os.environ.get('POSTS_DIR', POSTS_DIR)
@@ -398,10 +530,7 @@ def main():
     print("=" * 60)
     print()
 
-    # Fetch posts
     posts_saved = fetch_posts(feed_url, posts_dir)
-
-    # Fetch notes
     notes_saved = fetch_notes(base_url, notes_dir)
 
     print("=" * 60)

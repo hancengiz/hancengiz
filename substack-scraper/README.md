@@ -1,15 +1,26 @@
 # Substack Content Scraper
 
-Automatically fetches blog posts and notes from your Substack and saves them as markdown files.
+Automatically fetches blog posts and notes from your Substack and saves them as markdown files with downloaded images.
 
 ## Structure
 
 ```text
 substack-scraper/
-├── scraper.py          # Main scraper script
-├── requirements.txt    # feedparser, html2text
-├── posts/             # Blog posts (from RSS feed)
-└── notes/             # Short-form notes (from public API)
+├── scraper.py              # Main scraper script
+├── requirements.txt        # feedparser, html2text
+├── posts/                 # Blog posts (from RSS feed)
+│   └── YYYY-MM-DD_slug/  # One folder per post
+│       ├── original_post.md     # Markdown with remote image URLs
+│       ├── formatted_post.md    # Markdown with local image paths (for viewing)
+│       ├── image1.jpg          # Downloaded images
+│       ├── image2.jpg
+│       └── ...
+└── notes/                 # Short-form notes (from public API)
+    └── YYYY-MM-DD_note-{id}/  # One folder per note
+        ├── original_note.md     # Markdown with remote image URLs
+        ├── formatted_note.md    # Markdown with local image paths (for viewing)
+        ├── image1.jpg          # Downloaded images (if any)
+        └── ...
 ```
 
 ## Approach
@@ -47,12 +58,27 @@ Both run automatically, no setup required.
 
 ## File Format
 
-Files saved as `YYYY-MM-DD_slug.md` using Substack's URL slugs:
+### Folder Structure
 
-**Posts**: `2025-10-25_the-ai-native-way-of-building.md`
-**Notes**: `2025-10-26_note-170317259.md`
+Each post/note is saved in its own folder named `YYYY-MM-DD_slug`:
 
-All files include YAML frontmatter:
+**Posts**: `2025-10-25_the-ai-native-way-of-building/`
+**Notes**: `2025-10-26_note-170317259/`
+
+### Two File Formats
+
+Each folder contains the content in two formats:
+
+1. **original_post.md / original_note.md** - Markdown conversion with remote image URLs preserved
+2. **formatted_post.md / formatted_note.md** - Markdown with local image paths for offline viewing
+
+### Downloaded Images
+
+All images are downloaded and saved as `image1.jpg`, `image2.jpg`, etc. in the same folder.
+
+### Frontmatter
+
+All markdown files include YAML frontmatter:
 
 **Posts:**
 
@@ -166,15 +192,31 @@ curl 'https://www.cengizhan.com/api/v1/notes' \
 ### Update Detection
 
 The scraper uses **content hash comparison** to detect changes:
-- New content → saved
-- Changed content → updated
-- Unchanged content → skipped
+- New content → creates new folder with all files
+- Changed content → updates existing folder (rewrites all files and re-downloads images)
+- Unchanged content → skips folder entirely
 
 This means:
 - ✅ Captures edits to posts/notes
 - ✅ Updates engagement metrics (reactions, restacks, replies)
-- ✅ Doesn't create duplicate files
-- ✅ Only rewrites files when content actually changes
+- ✅ Doesn't create duplicate folders
+- ✅ Only rewrites folders when content actually changes
+- ✅ Re-downloads images if content hash changes (ensures image updates are captured)
+
+### Viewing Content Offline
+
+Use the **formatted_post.md** / **formatted_note.md** files to view content with a markdown previewer:
+
+**VS Code**: Open folder and use built-in markdown preview (Cmd+Shift+V)
+**Obsidian**: Add `posts/` or `notes/` folder to vault
+**Typora / Marked**: Open formatted markdown files directly
+
+All images will display correctly since they use relative paths to local files.
+
+### Why Two Formats?
+
+- **original_*.md** - Human-readable markdown with remote image URLs (preserves original source)
+- **formatted_*.md** - Best for offline viewing with all images local
 
 ### Why No Authentication?
 
