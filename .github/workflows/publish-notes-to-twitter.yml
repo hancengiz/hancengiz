@@ -34,7 +34,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install tweepy
+          pip install tweepy pyyaml
 
       - name: Check for unpublished notes and post to Twitter
         env:
@@ -47,6 +47,7 @@ jobs:
           import os
           import re
           import time
+          import yaml
           from pathlib import Path
           from datetime import datetime
           import tweepy
@@ -77,29 +78,36 @@ jobs:
 
               return content.strip()
 
-          def post_to_twitter(twitter_client, content, url):
+          def post_to_twitter(twitter_client, content, url, premium_mode=False):
               """Post note to Twitter using tweepy. Returns tweet_id on success, None on failure."""
               if not twitter_client:
                   print("⚠️  Twitter credentials not set, skipping post")
                   return None
 
               try:
-                  # Format tweet
-                  # Leave room for URL (23 chars) + formatting
-                  max_content_length = 250
-
-                  if len(content) > max_content_length:
-                      tweet_text = content[:max_content_length].rsplit(' ', 1)[0] + '...\n\n'
+                  # Format tweet based on premium mode
+                  if premium_mode:
+                      # Premium mode: Post full content (up to 4000 chars for Twitter Premium)
+                      print("📱 Using Twitter Premium mode - posting full content")
+                      tweet_text = content + f'\n\n👉 {url}'
                   else:
-                      tweet_text = content + '\n\n'
+                      # Free mode: Use current truncation logic (280 char limit)
+                      print("📱 Using Twitter Free mode - truncating to 280 chars")
+                      # Leave room for URL (23 chars) + formatting
+                      max_content_length = 250
 
-                  tweet_text += f"👉 {url}"
+                      if len(content) > max_content_length:
+                          tweet_text = content[:max_content_length].rsplit(' ', 1)[0] + '...\n\n'
+                      else:
+                          tweet_text = content + '\n\n'
 
-                  # Ensure tweet doesn't exceed 280 characters
-                  if len(tweet_text) > 280:
-                      # Recalculate with smaller content
-                      max_content_length = 280 - len(f"\n\n👉 {url}") - 3  # -3 for "..."
-                      tweet_text = content[:max_content_length].rsplit(' ', 1)[0] + f'...\n\n👉 {url}'
+                      tweet_text += f"👉 {url}"
+
+                      # Ensure tweet doesn't exceed 280 characters
+                      if len(tweet_text) > 280:
+                          # Recalculate with smaller content
+                          max_content_length = 280 - len(f"\n\n👉 {url}") - 3  # -3 for "..."
+                          tweet_text = content[:max_content_length].rsplit(' ', 1)[0] + f'...\n\n👉 {url}'
 
                   # Post tweet
                   response = twitter_client.create_tweet(text=tweet_text)
@@ -122,6 +130,23 @@ jobs:
 
           # Main logic
           notes_dir = Path('substack-scraper/notes')
+
+          # Read Twitter Premium setting from config file
+          config_path = Path('twitter.yaml')
+          twitter_premium = False  # Default to free mode
+
+          if config_path.exists():
+              try:
+                  with open(config_path, 'r') as f:
+                      config = yaml.safe_load(f)
+                      twitter_premium = config.get('twitter', {}).get('premium', False)
+                  print(f"🔧 Twitter Premium Mode: {'Enabled' if twitter_premium else 'Disabled'}")
+              except Exception as e:
+                  print(f"⚠️  Error reading twitter.yaml: {e}")
+                  print(f"🔧 Defaulting to Twitter Free Mode")
+          else:
+              print(f"⚠️  twitter.yaml not found")
+              print(f"🔧 Defaulting to Twitter Free Mode")
 
           # Initialize Twitter client
           api_key = os.environ.get('TWITTER_API_KEY')
@@ -190,7 +215,7 @@ jobs:
                   print(f"   Content length: {len(main_content)} chars")
 
                   # Post to Twitter
-                  tweet_id = post_to_twitter(twitter_client, main_content, note_url)
+                  tweet_id = post_to_twitter(twitter_client, main_content, note_url, twitter_premium)
 
                   if tweet_id:
                       # Mark as published with tweet metadata

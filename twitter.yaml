@@ -1,0 +1,9 @@
+# Twitter Publishing Configuration
+#
+# This file controls how notes are published to Twitter.
+# Change the 'premium' setting based on your Twitter subscription status.
+
+twitter:
+  # Set to true if you have Twitter Premium subscription (allows posting full content)
+  # Set to false for Twitter Free (truncates posts to 280 characters)
+  premium: true
