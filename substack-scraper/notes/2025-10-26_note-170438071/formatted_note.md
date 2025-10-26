@@ -20,4 +20,4 @@ replies: 0
 
 ---
 
-right about the time I was considering switching to chatgpt atlas browser:) **Piloting Claude for Chrome **[https://www.anthropic.com/news/claude-for-chrome](https://www.anthropic.com/news/claude-for-chrome)
+right about the time I was considering switching to chatgpt atlas browser:) **Piloting Claude for Chrome** <https://www.anthropic.com/news/claude-for-chrome>
