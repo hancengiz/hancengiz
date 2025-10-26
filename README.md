@@ -102,9 +102,9 @@ Vibe-coding is fun. You throw an idea at the AI, see what it spits out, tweak it
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
-**[Hey Osman, long time no see! Great question, by th...](https://substack.com/note/c-170317259)** · *October 26, 2025*
+**[…](https://substack.com/note/c-170317259)** · *October 26, 2025*
 
-Hey Osman, long time no see! Great question, by the way. Even when I work alone, I still follow the BMAD Method or a similar approach I've designed. I usually start by "vibing"—exploring ideas, testing possibilities, and clarifying what I want to...
+Even when I work alone, I still follow the BMAD...
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
