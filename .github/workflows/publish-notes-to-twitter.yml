@@ -1,0 +1,211 @@
+name: Publish Notes to Twitter
+
+on:
+  # Trigger after notes scraper completes successfully
+  workflow_run:
+    workflows: ["Substack Notes Scraper"]
+    types:
+      - completed
+
+  # Allow manual trigger for testing
+  workflow_dispatch:
+
+jobs:
+  publish-notes:
+    runs-on: ubuntu-latest
+    # Only run if the notes workflow succeeded (or if manually triggered)
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check for unpublished notes and send to Zapier
+        env:
+          ZAPIER_WEBHOOK_URL: ${{ secrets.ZAPIER_WEBHOOK_URL }}
+        run: |
+          python3 << 'EOF'
+          import os
+          import json
+          import re
+          import subprocess
+          import time
+          from pathlib import Path
+          from datetime import datetime
+
+          def parse_frontmatter(content):
+              """Extract frontmatter from markdown content."""
+              match = re.match(r'^---\n(.*?)\n---', content, re.DOTALL)
+              if not match:
+                  return {}
+
+              frontmatter = {}
+              for line in match.group(1).split('\n'):
+                  if ':' in line:
+                      key, value = line.split(':', 1)
+                      frontmatter[key.strip()] = value.strip()
+              return frontmatter
+
+          def extract_content(content):
+              """Extract main content from note (after frontmatter and metadata)."""
+              # Remove frontmatter
+              content = re.sub(r'^---\n.*?\n---\n+', '', content, flags=re.DOTALL)
+
+              # Remove title heading (may have whitespace before it)
+              content = re.sub(r'^\s*#\s+.*?\n+', '', content, flags=re.DOTALL)
+
+              # Remove metadata section (**Published:** ... **Link:** ... \n---)
+              content = re.sub(r'^\*\*Published:.*?^---\n+', '', content, flags=re.DOTALL | re.MULTILINE)
+
+              return content.strip()
+
+          def send_to_zapier(webhook_url, note_data):
+              """Send note data to Zapier webhook."""
+              if not webhook_url:
+                  print("⚠️  ZAPIER_WEBHOOK_URL not set, skipping webhook call")
+                  return True
+
+              try:
+                  # Using curl for simplicity
+                  result = subprocess.run(
+                      ['curl', '-X', 'POST', webhook_url,
+                       '-H', 'Content-Type: application/json',
+                       '-d', json.dumps(note_data),
+                       '-s', '-w', '\n%{http_code}'],
+                      capture_output=True,
+                      text=True,
+                      timeout=30
+                  )
+
+                  # Check HTTP status code (last line of output)
+                  lines = result.stdout.strip().split('\n')
+                  status_code = lines[-1] if lines else '000'
+
+                  if status_code.startswith('2'):
+                      print(f"✓ Successfully sent to Zapier (HTTP {status_code})")
+                      return True
+                  else:
+                      print(f"✗ Zapier webhook failed (HTTP {status_code})")
+                      print(f"Response: {result.stdout}")
+                      return False
+
+              except subprocess.TimeoutExpired:
+                  print("✗ Zapier webhook timed out")
+                  return False
+              except Exception as e:
+                  print(f"✗ Error sending to Zapier: {e}")
+                  return False
+
+          # Main logic
+          notes_dir = Path('substack-scraper/notes')
+          webhook_url = os.environ.get('ZAPIER_WEBHOOK_URL', '')
+
+          if not notes_dir.exists():
+              print(f"Notes directory not found: {notes_dir}")
+              exit(0)
+
+          published_count = 0
+
+          # Iterate through all note folders
+          for note_folder in sorted(notes_dir.iterdir()):
+              if not note_folder.is_dir():
+                  continue
+
+              # Check if already published
+              published_marker = note_folder / '.published'
+              if published_marker.exists():
+                  print(f"⏭️  Skipping {note_folder.name} (already published)")
+                  continue
+
+              # Read original_note.md
+              note_file = note_folder / 'original_note.md'
+              if not note_file.exists():
+                  print(f"⚠️  No original_note.md in {note_folder.name}")
+                  continue
+
+              try:
+                  with open(note_file, 'r', encoding='utf-8') as f:
+                      content = f.read()
+
+                  # Parse frontmatter and content
+                  frontmatter = parse_frontmatter(content)
+                  main_content = extract_content(content)
+
+                  # Prepare payload for Zapier
+                  note_data = {
+                      'note_id': frontmatter.get('note_id', ''),
+                      'content': main_content,
+                      'url': frontmatter.get('url', ''),
+                      'author': frontmatter.get('author', ''),
+                      'handle': frontmatter.get('handle', ''),
+                      'published_date': frontmatter.get('date', ''),
+                      'reactions': frontmatter.get('reactions', '0'),
+                      'restacks': frontmatter.get('restacks', '0'),
+                      'replies': frontmatter.get('replies', '0')
+                  }
+
+                  print(f"\n📝 Publishing note: {note_folder.name}")
+                  print(f"   Note ID: {note_data['note_id']}")
+                  print(f"   URL: {note_data['url']}")
+                  print(f"   Content length: {len(note_data['content'])} chars")
+
+                  # Send to Zapier
+                  if send_to_zapier(webhook_url, note_data):
+                      # Mark as published
+                      with open(published_marker, 'w') as f:
+                          f.write(f"published_at: {datetime.utcnow().isoformat()}Z\n")
+
+                      published_count += 1
+                      print(f"✓ Marked as published")
+
+                      # Rate limiting - wait 10 seconds before next post
+                      time.sleep(10)
+                  else:
+                      print(f"✗ Failed to publish, will retry next run")
+
+              except Exception as e:
+                  print(f"✗ Error processing {note_folder.name}: {e}")
+                  continue
+
+          print(f"\n{'='*50}")
+          print(f"Published {published_count} new note(s) to Twitter")
+          print(f"{'='*50}")
+          EOF
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "New .published markers created"
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No new notes published"
+          fi
+
+      - name: Commit published markers
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add substack-scraper/notes/**/.published
+          git commit -m "Mark notes as published to Twitter
+
+          🤖 Generated with [Claude Code](https://claude.com/claude-code)
+          via [Happy](https://happy.engineering)
+
+          Co-Authored-By: Claude <noreply@anthropic.com>
+          Co-Authored-By: Happy <yesreply@happy.engineering>"
+          git push
