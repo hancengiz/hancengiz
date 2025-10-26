@@ -1,0 +1,20 @@
+# Twitter Publishing Configuration
+#
+# This file controls how notes are published to Twitter.
+# Change the 'premium' setting based on your Twitter subscription status.
+
+twitter:
+  # Set to true if you have Twitter Premium subscription
+  # Set to false for Twitter Free (truncates posts to 280 characters)
+  premium: true
+
+# Premium Mode Features (when premium: true):
+# - Posts full note content (up to 4000 characters for Twitter Premium)
+# - Includes images from note folder (up to 4 images per tweet)
+# - Preserves text formatting from Substack (converts Markdown to Twitter-friendly format)
+# - Automatically handles line breaks, links, and special formatting
+#
+# Free Mode Features (when premium: false):
+# - Truncates content to 280 characters
+# - No image uploads
+# - Basic text-only tweets with URL link
