@@ -38,16 +38,6 @@ Every time I publish a note here on Substack, it automatically posts to Twitter 
 
 **What I like about it:**
 
-  - ✅ Completely free (within Twitter's 1,500 tweets/month)
-
-  - ✅ No third-party dependencies
-
-  - ✅ Tweet URLs saved in each note folder
-
-  - ✅ Smart truncation at word boundaries
-
-  - ✅ Open source, easy to modify
-
 The whole setup is here if you want to clone it: [https://github.com/hancengiz/hancengiz/tree/main/substack-scraper](https://github.com/hancengiz/hancengiz/tree/main/substack-scraper)
 
 Built with Claude Code in one afternoon. AI-native development is wild.
