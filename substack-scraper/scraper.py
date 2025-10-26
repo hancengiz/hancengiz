@@ -14,7 +14,6 @@ from html2text import html2text
 from pathlib import Path
 import hashlib
 import urllib.request
-import urllib.parse
 from urllib.parse import urljoin, urlparse
 from html.parser import HTMLParser
 
@@ -78,81 +77,161 @@ def convert_html_to_markdown(html_content):
     return markdown.strip()
 
 
-def parse_body_json_to_markdown(body_json):
-    """
-    Parse Substack's ProseMirror-style body_json to markdown.
+def apply_marks(text, marks):
+    """Apply ProseMirror marks (bold, italic, links, code) to text."""
+    if not marks:
+        return text
 
-    Handles the structured document format with proper inline formatting
-    (bold, italic, links) and converts it to clean markdown.
-    """
+    # Sort marks by type to ensure consistent nesting
+    # Links should be applied last to wrap other formatting
+    mark_order = {'code': 0, 'bold': 1, 'italic': 2, 'link': 3}
+    sorted_marks = sorted(marks, key=lambda m: mark_order.get(m.get('type', ''), 99))
+
+    result = text
+    for mark in sorted_marks:
+        mark_type = mark.get('type')
+        if mark_type == 'bold':
+            result = f"**{result}**"
+        elif mark_type == 'italic':
+            result = f"*{result}*"
+        elif mark_type == 'link':
+            href = mark.get('attrs', {}).get('href', '')
+            result = f"[{result}]({href})"
+        elif mark_type == 'code':
+            result = f"`{result}`"
+
+    return result
+
+
+def parse_paragraph_node(node):
+    """Parse a paragraph node from ProseMirror JSON."""
+    content = node.get('content', [])
+    parts = []
+
+    for item in content:
+        if item.get('type') == 'text':
+            text = item.get('text', '')
+            marks = item.get('marks', [])
+            parts.append(apply_marks(text, marks))
+
+    return ''.join(parts)
+
+
+def parse_list_item_node(node):
+    """Parse a list item node from ProseMirror JSON."""
+    content = node.get('content', [])
+    parts = []
+
+    for item in content:
+        if item.get('type') == 'paragraph':
+            parts.append(parse_paragraph_node(item))
+        elif item.get('type') == 'orderedList':
+            # Nested ordered list
+            parts.append('\n' + parse_ordered_list_node(item, indent_level=1))
+        elif item.get('type') == 'bulletList':
+            # Nested bullet list
+            parts.append('\n' + parse_bullet_list_node(item, indent_level=1))
+
+    return ' '.join(parts)
+
+
+def parse_ordered_list_node(node, indent_level=0):
+    """Parse an ordered list node from ProseMirror JSON."""
+    content = node.get('content', [])
+    lines = []
+    indent = '  ' * indent_level
+
+    for idx, item in enumerate(content, 1):
+        if item.get('type') == 'listItem':
+            item_text = parse_list_item_node(item)
+            lines.append(f"{indent}{idx}. {item_text}")
+
+    return '\n'.join(lines)
+
+
+def parse_bullet_list_node(node, indent_level=0):
+    """Parse a bullet list node from ProseMirror JSON."""
+    content = node.get('content', [])
+    lines = []
+    indent = '  ' * indent_level
+
+    for item in content:
+        if item.get('type') == 'listItem':
+            item_text = parse_list_item_node(item)
+            lines.append(f"{indent}- {item_text}")
+
+    return '\n'.join(lines)
+
+
+def parse_body_json_to_markdown_custom(body_json):
+    """Parse Substack's ProseMirror-style body_json to markdown using custom parser."""
     if not body_json or not isinstance(body_json, dict):
         return ""
 
-    content_nodes = body_json.get('content', [])
-    if not content_nodes:
+    content = body_json.get('content', [])
+    if not content:
         return ""
 
     paragraphs = []
-
-    for node in content_nodes:
-        node_type = node.get('type', '')
+    for node in content:
+        node_type = node.get('type')
 
         if node_type == 'paragraph':
             para_text = parse_paragraph_node(node)
-            paragraphs.append(para_text)
-        # Could add support for other node types here (lists, headings, etc.)
+            if para_text:  # Only add non-empty paragraphs
+                paragraphs.append(para_text)
+        elif node_type == 'orderedList':
+            list_text = parse_ordered_list_node(node)
+            if list_text:
+                paragraphs.append(list_text)
+        elif node_type == 'bulletList':
+            list_text = parse_bullet_list_node(node)
+            if list_text:
+                paragraphs.append(list_text)
 
     return '\n\n'.join(paragraphs)
 
 
-def parse_paragraph_node(node):
-    """Parse a paragraph node with inline formatting."""
-    content_items = node.get('content', [])
-    if not content_items:
+def parse_body_json_to_markdown(body_json):
+    """
+    Parse Substack's ProseMirror-style body_json to markdown.
+
+    Uses the official prosemirror-markdown Node.js library via subprocess.
+    Falls back to custom parser if Node.js is not available.
+    """
+    if not body_json or not isinstance(body_json, dict):
         return ""
 
-    result = []
+    try:
+        import subprocess
 
-    for item in content_items:
-        if item.get('type') == 'text':
-            text = item.get('text', '')
-            marks = item.get('marks', [])
+        # Get the script directory
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        converter_script = os.path.join(script_dir, 'prosemirror-to-markdown.js')
 
-            # Apply marks (formatting) to the text
-            formatted_text = apply_marks(text, marks)
-            result.append(formatted_text)
+        # Call Node.js script with JSON input
+        result = subprocess.run(
+            ['node', converter_script],
+            input=json.dumps(body_json),
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
 
-    return ''.join(result)
+        if result.returncode == 0:
+            return result.stdout.strip()
+        else:
+            print(f"Warning: Node.js converter failed: {result.stderr}")
+            print(f"  Falling back to custom parser...")
+            return parse_body_json_to_markdown_custom(body_json)
 
-
-def apply_marks(text, marks):
-    """Apply inline formatting marks to text and convert to markdown."""
-    if not marks:
-        return text
-
-    # Sort marks by priority (innermost first)
-    # Bold and italic should wrap around links
-    mark_priority = {'link': 3, 'code': 2, 'bold': 1, 'italic': 0}
-    sorted_marks = sorted(marks, key=lambda m: mark_priority.get(m['type'], 99))
-
-    result = text
-
-    for mark in sorted_marks:
-        mark_type = mark.get('type', '')
-
-        if mark_type == 'bold':
-            result = f'**{result}**'
-        elif mark_type == 'italic':
-            result = f'*{result}*'
-        elif mark_type == 'code':
-            result = f'`{result}`'
-        elif mark_type == 'link':
-            attrs = mark.get('attrs', {})
-            href = attrs.get('href', '')
-            if href:
-                result = f'[{result}]({href})'
-
-    return result
+    except FileNotFoundError:
+        print(f"Warning: Node.js not found, falling back to custom parser...")
+        return parse_body_json_to_markdown_custom(body_json)
+    except Exception as e:
+        print(f"Warning: Failed to parse body_json with Node.js: {e}")
+        print(f"  Falling back to custom parser...")
+        return parse_body_json_to_markdown_custom(body_json)
 
 
 def extract_images_from_html(html_content):

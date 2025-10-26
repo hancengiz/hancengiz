@@ -25,8 +25,8 @@ Just added a feature to publish formatted tweets with images from my Substack to
 
 **I love this new AI era❤️**
 
-![Image](image1.jpeg)
-
 ![Image](image2.jpeg)
+
+![Image](image1.jpeg)
 
 

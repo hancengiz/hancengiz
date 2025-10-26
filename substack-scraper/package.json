@@ -1,0 +1,10 @@
+{
+  "name": "substack-scraper-prosemirror",
+  "version": "1.0.0",
+  "description": "ProseMirror to Markdown converter for Substack scraper",
+  "main": "prosemirror-to-markdown.js",
+  "dependencies": {
+    "prosemirror-markdown": "^1.13.0",
+    "prosemirror-model": "^1.22.3"
+  }
+}
