@@ -86,11 +86,11 @@ over time.
 
 The original author added chart annotations (like marking when Sonnet 4.5 was
 released) to see how affirmation patterns shift after model upgrades. My own
-feed doesn't have much data (I am using a one week old laptop) yet--for a
+feed doesn't have much data (I am using a one-week-old laptop) yet--for a
 better example of what this looks like with months of history, check out the
-[original site](https://absolutelyright.lol/):
+[original site](https://absolutelyright.lol/).
 
-[![](https://substackcdn.com/image/fetch/$s_!39I5!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F31e46193-9422-4317-b21b-81a53aa450f3_1656x1338.png)](https://substackcdn.com/image/fetch/$s_!39I5!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F31e46193-9422-4317-b21b-81a53aa450f3_1656x1338.png)
+[![](https://substackcdn.com/image/fetch/$s_!FvAW!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F919af5e0-b7e7-4800-831b-368017da104e_868x664.png)](https://substackcdn.com/image/fetch/$s_!FvAW!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F919af5e0-b7e7-4800-831b-368017da104e_868x664.png)
 
  _You can actually see the drop in affirmations after the Sonnet 4.5 upgrade
 (marked with the red dashed line). Fascinating, right?_

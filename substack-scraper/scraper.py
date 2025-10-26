@@ -576,6 +576,11 @@ def fetch_notes(base_url, output_dir):
 
         for item in items:
             try:
+                # Skip restacks - only save original notes
+                context = item.get('context', {})
+                if context.get('type') == 'comment_restack':
+                    continue
+
                 comment = item.get('comment', {})
 
                 note_id = comment.get('id', '')

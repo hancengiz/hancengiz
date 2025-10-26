@@ -86,9 +86,9 @@ over time.
 
 The original author added chart annotations (like marking when Sonnet 4.5 was
 released) to see how affirmation patterns shift after model upgrades. My own
-feed doesn't have much data (I am using a one week old laptop) yet--for a
+feed doesn't have much data (I am using a one-week-old laptop) yet--for a
 better example of what this looks like with months of history, check out the
-[original site](https://absolutelyright.lol/):
+[original site](https://absolutelyright.lol/).
 
 ![](image2.png)
 
