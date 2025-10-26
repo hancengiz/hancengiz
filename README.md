@@ -116,7 +116,7 @@ I automated my Substack notes to Twitter (completely free)
 
 **[Response to this comment : https://www.cengizhan.c...](https://substack.com/note/c-170317259)** · *October 26, 2025*
 
-Response to this comment : <https://www.cengizhan.com/p/the-ai-native-way-of-building/comments?utmsource=substack&utmmedium=web&utmcampaign=postviewer>
+Response to this comment :...
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
