@@ -214,7 +214,7 @@ jobs:
           notes_dir = Path('substack-scraper/notes')
 
           # Read Twitter Premium setting from config file
-          config_path = Path('twitter.yaml')
+          config_path = Path('substack-scraper/twitter.yaml')
           twitter_premium = False  # Default to free mode
 
           if config_path.exists():
