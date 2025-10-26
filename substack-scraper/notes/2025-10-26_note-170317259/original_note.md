@@ -20,21 +20,21 @@ replies: 0
 
 ---
 
-Response to this comment : <https://www.cengizhan.com/p/the-ai-native-way-of-building/comments?utm_source=substack&utm_medium=web&utm_campaign=post_viewer>
+Response to this comment : [https://www.cengizhan.com/p/the-ai-native-way-of-building/comments?utm_source=substack&utm_medium=web&utm_campaign=post_viewer](https://www.cengizhan.com/p/the-ai-native-way-of-building/comments?utm_source=substack&utm_medium=web&utm_campaign=post_viewer)
 
 Even when I work alone, I still follow the BMAD Method or a similar approach I've designed. I usually start by "vibing"—exploring ideas, testing possibilities, and clarifying what I want to accomplish. Even at this early stage, I open Claude Code and write an ADR (Architecture Decision Record) for every significant decision. This is where I capture my reasoning, trade-offs, code snippets, and experiments—essentially my thought process in action.
 
 Currently, I’m turning one of those vibe-coded prototypes into production-ready software, and that prototype already has 12 ADRs. These early records are now shaping formal specifications, architecture, and delivery plans while preserving the creative spark that initiated the project.
 
-This approach aligns with Rick Nason’s philosophy in "It’s Not Complicated": some projects are simple, others are complicated, and some are truly complex. Each type requires a different level of structure. That’s exactly what I'm integrating into <http://fabriqa.ai> (the ai-native sdlc product I am building)—a set of adaptive workflows for simple, complicated, and complex projects, along with one that helps convert a prototype into a spec-driven production project.
+This approach aligns with Rick Nason’s philosophy in "It’s Not Complicated": some projects are simple, others are complicated, and some are truly complex. Each type requires a different level of structure. That’s exactly what I'm integrating into [http://fabriqa.ai](http://fabriqa.ai) (the ai-native sdlc product I am building)—a set of adaptive workflows for simple, complicated, and complex projects, along with one that helps convert a prototype into a spec-driven production project.
 
 If you're working solo, you can start crafting your own version of this:
 
-1\. Define your workflow types (e.g., prototype, simple, complex).
+1. Define your workflow types (e.g., prototype, simple, complex).
 
-2\. List the document types you need for each (e.g., ADRs, PRDs, design briefs, test specs).
+2. List the document types you need for each (e.g., ADRs, PRDs, design briefs, test specs).
 
-3\. Define your AI agents—each with a specific role (e.g., “Spec Reviewer,” “Technical Architect,” “Compliance Expert”).
+3. Define your AI agents—each with a specific role (e.g., “Spec Reviewer,” “Technical Architect,” “Compliance Expert”).
 
 There are already solid agent templates you can prompt and adapt using Claude or ChatGPT to specialize in your workflow.
 
