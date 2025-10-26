@@ -78,6 +78,83 @@ def convert_html_to_markdown(html_content):
     return markdown.strip()
 
 
+def parse_body_json_to_markdown(body_json):
+    """
+    Parse Substack's ProseMirror-style body_json to markdown.
+
+    Handles the structured document format with proper inline formatting
+    (bold, italic, links) and converts it to clean markdown.
+    """
+    if not body_json or not isinstance(body_json, dict):
+        return ""
+
+    content_nodes = body_json.get('content', [])
+    if not content_nodes:
+        return ""
+
+    paragraphs = []
+
+    for node in content_nodes:
+        node_type = node.get('type', '')
+
+        if node_type == 'paragraph':
+            para_text = parse_paragraph_node(node)
+            paragraphs.append(para_text)
+        # Could add support for other node types here (lists, headings, etc.)
+
+    return '\n\n'.join(paragraphs)
+
+
+def parse_paragraph_node(node):
+    """Parse a paragraph node with inline formatting."""
+    content_items = node.get('content', [])
+    if not content_items:
+        return ""
+
+    result = []
+
+    for item in content_items:
+        if item.get('type') == 'text':
+            text = item.get('text', '')
+            marks = item.get('marks', [])
+
+            # Apply marks (formatting) to the text
+            formatted_text = apply_marks(text, marks)
+            result.append(formatted_text)
+
+    return ''.join(result)
+
+
+def apply_marks(text, marks):
+    """Apply inline formatting marks to text and convert to markdown."""
+    if not marks:
+        return text
+
+    # Sort marks by priority (innermost first)
+    # Bold and italic should wrap around links
+    mark_priority = {'link': 3, 'code': 2, 'bold': 1, 'italic': 0}
+    sorted_marks = sorted(marks, key=lambda m: mark_priority.get(m['type'], 99))
+
+    result = text
+
+    for mark in sorted_marks:
+        mark_type = mark.get('type', '')
+
+        if mark_type == 'bold':
+            result = f'**{result}**'
+        elif mark_type == 'italic':
+            result = f'*{result}*'
+        elif mark_type == 'code':
+            result = f'`{result}`'
+        elif mark_type == 'link':
+            attrs = mark.get('attrs', {})
+            href = attrs.get('href', '')
+            if href:
+                result = f'[{result}]({href})'
+
+    return result
+
+
 def extract_images_from_html(html_content):
     """Extract all image URLs from HTML content."""
     parser = ImageExtractor()
@@ -426,6 +503,7 @@ def fetch_notes(base_url, output_dir):
                 name = comment.get('name', 'Unknown')
                 handle = comment.get('handle', '')
                 body = comment.get('body', '')
+                body_json = comment.get('body_json', {})
                 pub_date_str = comment.get('date', '')
                 photo_url = comment.get('photo_url', '')
 
@@ -457,7 +535,7 @@ def fetch_notes(base_url, output_dir):
                 else:
                     note_url = urljoin(base_url, f'/notes/post/{note_id}')
 
-                # Create title from body
+                # Create title from body (use plain body for title, not formatted)
                 if body:
                     title = body[:50] + ('...' if len(body) > 50 else '')
                 else:
@@ -476,9 +554,13 @@ def fetch_notes(base_url, output_dir):
                     date_str = datetime.now().strftime('%Y-%m-%d')
                     formatted_date = datetime.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
 
-                # Convert body to markdown
-                if body:
-                    content_md = convert_html_to_markdown(body)
+                # Convert body_json to markdown (with fallback to plain body)
+                if body_json and isinstance(body_json, dict) and body_json.get('content'):
+                    # Parse structured JSON format with formatting preserved
+                    content_md = parse_body_json_to_markdown(body_json)
+                elif body:
+                    # Fallback to plain text body (legacy support)
+                    content_md = body
                 else:
                     content_md = 'No content'
 
