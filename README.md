@@ -114,6 +114,14 @@ Response to this comment : https://www.cengizhan.com/p/the-ai-native-way-of- bui
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
+---
+
+**[Response to this comment : https://www.cengizhan.c...](https://substack.com/note/c-170317259)** · *October 26, 2025*
+
+Response to this comment : https://www.cengizhan.com/p/the-ai-native-way-of- building/comments Even when I work alone, I still follow the BMAD Method or a similar approach I've designed. I usually start by "vibing"—exploring ideas, testing...
+
+
+➡️ [See all notes](https://www.cengizhan.com/notes)
 ## 📊 GitHub Stats & Activity
 
 <div align="center">
