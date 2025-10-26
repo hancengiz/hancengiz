@@ -83,6 +83,9 @@ jobs:
               # Preserve the content but clean up markdown syntax for Twitter
               # Twitter doesn't support Markdown, so we'll keep basic formatting
 
+              # Remove markdown images ![alt](url) - images will be attached via media_ids
+              content = re.sub(r'!\[([^\]]*)\]\([^\)]+\)', '', content)
+
               # Convert bold (**text** or __text__) - just keep the text
               # Twitter doesn't have bold, but we can use Unicode alternatives if needed
               content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
