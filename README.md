@@ -104,7 +104,7 @@ Vibe-coding is fun. You throw an idea at the AI, see what it spits out, tweak it
 
 **[right about the time I was considering switching t...](https://substack.com/note/c-170438071)** · *October 26, 2025*
 
-right about the time I was considering switching to chatgpt atlas browser:) Piloting Claude for Chrome [https://www.anthropic.com/news/claude-for-chrome](https://www.anthropic.com/news/claude-for-chrome)
+right about the time I was considering switching to chatgpt atlas browser:) Piloting Claude for Chrome <https://www.anthropic.com/news/claude-for-chrome>
 
 ---
 
