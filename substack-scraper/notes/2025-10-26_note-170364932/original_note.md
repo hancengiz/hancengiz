@@ -22,21 +22,13 @@ replies: 0
 
 I automated my Substack notes to Twitter (completely free)
 
-  Every time I publish a note here on Substack, it automatically posts to Twitter within 5 minutes. No Zapier, no Buffer, no manual copying. Just pure automation.
+Every time I publish a note here on Substack, it automatically posts to Twitter within 5 minutes. No Zapier, no Buffer, no manual copying. Just pure automation.
 
-  How it works:
-
-  1. GitHub Actions scrapes my Substack notes API every 5 minutes
-
-  2. When a new note appears, another workflow kicks in
-
-  3. It posts directly to Twitter using the API v2 (free tier: 1,500 tweets/month)
-
-  4. A .published marker file tracks which notes have been tweeted
+**How it works:**
 
   Why I built this:
 
-  I decided to use Substack more actively for my quick thoughts and updates. But I didn't want to completely ignore Twitter in the process.
+  I decided to use Substack more actively for my quick thoughts and updates. But I didn't want to ignore Twitter in the process completely.
 
   I looked at Zapier ($20/mo) and Buffer ($6/mo) - both felt like overkill for "just post this text to Twitter." So I spent an afternoon with Claude Code building a free alternative.
 
@@ -44,15 +36,7 @@ I automated my Substack notes to Twitter (completely free)
 
   The tech stack:
 
-  - GitHub Actions (cron: every 5 minutes)
-
-  - Twitter API v2 (free tier, no credit card)
-
-  - Python + tweepy
-
-  - Marker files for duplicate prevention
-
-  What I like about it:
+**What I like about it:**
 
   - ✅ Completely free (within Twitter's 1,500 tweets/month)
 
@@ -64,8 +48,8 @@ I automated my Substack notes to Twitter (completely free)
 
   - ✅ Open source, easy to modify
 
-  The whole setup is here if you want to clone it: [https://github.com/hancengiz/hancengiz/tree/main/substack-scraper](https://github.com/hancengiz/hancengiz/tree/main/substack-scraper)
+The whole setup is here if you want to clone it: [https://github.com/hancengiz/hancengiz/tree/main/substack-scraper](https://github.com/hancengiz/hancengiz/tree/main/substack-scraper)
 
-  Built with Claude Code in one afternoon. AI-native development is wild.
+Built with Claude Code in one afternoon. AI-native development is wild.
 
-Let’s see if this gets automatically posted to twitter(yeah I know now it is called x) ;)
+Let’s see if this gets automatically posted to Twitter (yeah, I know now it is called x) ;)
