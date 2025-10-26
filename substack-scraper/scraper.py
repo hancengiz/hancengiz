@@ -164,6 +164,117 @@ def should_update_folder(folder_path, new_content_hash):
         return True, "new"
 
 
+def download_images_to_folder(image_urls, folder_path, url_variants=None):
+    """
+    Download images to a folder and return URL-to-filename mapping.
+
+    Args:
+        image_urls: List of clean image URLs to download
+        folder_path: Destination folder path
+        url_variants: Optional dict mapping clean URLs to list of URL variants (for posts)
+
+    Returns:
+        dict: Mapping from URL (and variants) to local filename
+    """
+    url_to_filename = {}
+
+    for idx, img_url in enumerate(image_urls, 1):
+        # Determine file extension
+        parsed_url = urlparse(img_url)
+        path = parsed_url.path
+
+        # Try to extract extension from URL
+        ext = os.path.splitext(path)[1].lower()
+        if not ext or ext not in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']:
+            ext = '.jpg'  # default extension
+
+        # Use sequential numbering
+        img_filename = f"image{idx}{ext}"
+        img_path = os.path.join(folder_path, img_filename)
+
+        # Download image
+        if download_image(img_url, img_path):
+            # If url_variants provided (for posts), map all variants
+            if url_variants:
+                for variant in url_variants.get(img_url, [img_url]):
+                    url_to_filename[variant] = img_filename
+            else:
+                # For notes, just map the clean URL
+                url_to_filename[img_url] = img_filename
+
+    return url_to_filename
+
+
+def build_post_frontmatter(title, pub_date, author, link):
+    """Build YAML frontmatter for a post."""
+    return f"""---
+title: {title}
+date: {pub_date}
+author: {author}
+url: {link}
+type: post
+---"""
+
+
+def build_note_frontmatter(title, formatted_date, name, handle, note_url, note_id,
+                          photo_url, reaction_count, restacks, replies_count,
+                          reply_to_post=None, reply_to_url=None):
+    """Build YAML frontmatter for a note."""
+    frontmatter = f"""---
+title: {title}
+date: {formatted_date}
+author: {name}
+handle: {handle}
+url: {note_url}
+type: note
+note_id: {note_id}
+photo_url: {photo_url}
+reactions: {reaction_count}
+restacks: {restacks}
+replies: {replies_count}"""
+
+    if reply_to_post and reply_to_url:
+        frontmatter += f"""
+reply_to_post: {reply_to_post}
+reply_to_url: {reply_to_url}"""
+
+    frontmatter += "\n---"
+    return frontmatter
+
+
+def build_post_metadata(title, pub_date, author, link):
+    """Build metadata section for a post."""
+    return f"""# {title}
+
+**Published:** {pub_date}
+**Author:** {author}
+**Link:** [{link}]({link})
+
+---"""
+
+
+def build_note_metadata(title, formatted_date, name, handle, note_url,
+                       reaction_count, restacks, replies_count,
+                       reply_to_post=None, reply_to_url=None):
+    """Build metadata section for a note."""
+    metadata = f"""# {title}
+
+**Published:** {formatted_date}
+**Author:** {name} (@{handle})
+**Link:** [{note_url}]({note_url})"""
+
+    if reaction_count > 0 or restacks > 0 or replies_count > 0:
+        metadata += f"""
+**Engagement:** {reaction_count} reactions, {restacks} restacks, {replies_count} replies"""
+
+    if reply_to_post and reply_to_url:
+        metadata += f"""
+**In reply to:** [{reply_to_post}]({reply_to_url})"""
+
+    metadata += "\n\n---"
+    return metadata
+
+
 def fetch_posts(feed_url, output_dir):
     """Fetch blog posts from RSS feed and save as folders with markdown and images."""
 
@@ -231,23 +342,9 @@ def fetch_posts(feed_url, output_dir):
             folder_name = f"{date_str}_{slug}"
             folder_path = os.path.join(output_dir, folder_name)
 
-            # Create markdown content with frontmatter
-            frontmatter = f"""---
-title: {title}
-date: {pub_date}
-author: {author}
-url: {link}
-type: post
----"""
-
-            metadata = f"""# {title}
-
-**Published:** {pub_date}
-**Author:** {author}
-**Link:** [{link}]({link})
-
----"""
-
+            # Build markdown content
+            frontmatter = build_post_frontmatter(title, pub_date, author, link)
+            metadata = build_post_metadata(title, pub_date, author, link)
             original_markdown = f"""{frontmatter}
 
 {metadata}
@@ -272,26 +369,7 @@ type: post
                 f.write(original_markdown)
 
             # Download images and build URL mapping
-            url_to_filename = {}
-            for idx, img_url in enumerate(image_urls, 1):
-                # Determine file extension
-                parsed_url = urlparse(img_url)
-                path = parsed_url.path
-
-                # Try to extract extension from URL
-                ext = os.path.splitext(path)[1].lower()
-                if not ext or ext not in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']:
-                    ext = '.jpg'  # default extension
-
-                # Use sequential numbering
-                img_filename = f"image{idx}{ext}"
-                img_path = os.path.join(folder_path, img_filename)
-
-                # Download image using clean URL
-                if download_image(img_url, img_path):
-                    # Map all variants of this URL (including ones with newlines) to the local file
-                    for variant in url_variants.get(img_url, [img_url]):
-                        url_to_filename[variant] = img_filename
+            url_to_filename = download_images_to_folder(image_urls, folder_path, url_variants)
 
             # Create formatted markdown with local image paths
             formatted_markdown = replace_image_urls_with_local(original_markdown, url_to_filename)
@@ -404,48 +482,20 @@ def fetch_notes(base_url, output_dir):
                 folder_name = f"{date_str}_{slug}"
                 folder_path = os.path.join(output_dir, folder_name)
 
-                # Build frontmatter
-                frontmatter = f"""---
-title: {title}
-date: {formatted_date}
-author: {name}
-handle: {handle}
-url: {note_url}
-type: note
-note_id: {note_id}
-photo_url: {photo_url}
-reactions: {reaction_count}
-restacks: {restacks}
-replies: {replies_count}"""
-
-                if reply_to_post and reply_to_url:
-                    frontmatter += f"""
-reply_to_post: {reply_to_post}
-reply_to_url: {reply_to_url}"""
-
-                frontmatter += "\n---"
-
-                # Build metadata
-                metadata = f"""**Published:** {formatted_date}
-**Author:** {name} (@{handle})
-**Link:** [{note_url}]({note_url})"""
-
-                if reaction_count > 0 or restacks > 0 or replies_count > 0:
-                    metadata += f"""
-**Engagement:** {reaction_count} reactions, {restacks} restacks, {replies_count} replies"""
-
-                if reply_to_post and reply_to_url:
-                    metadata += f"""
-**In reply to:** [{reply_to_post}]({reply_to_url})"""
-
-                # Create original markdown
+                # Build markdown content
+                frontmatter = build_note_frontmatter(
+                    title, formatted_date, name, handle, note_url, note_id,
+                    photo_url, reaction_count, restacks, replies_count,
+                    reply_to_post, reply_to_url
+                )
+                metadata = build_note_metadata(
+                    title, formatted_date, name, handle, note_url,
+                    reaction_count, restacks, replies_count,
+                    reply_to_post, reply_to_url
+                )
                 original_markdown = f"""{frontmatter}
 
-# {title}
-
 {metadata}
-
----
 
 {content_md}
 """
@@ -467,24 +517,7 @@ reply_to_url: {reply_to_url}"""
                     f.write(original_markdown)
 
                 # Download images and build URL mapping
-                url_to_filename = {}
-                for idx, img_url in enumerate(image_urls, 1):
-                    # Determine file extension
-                    parsed_url = urlparse(img_url)
-                    path = parsed_url.path
-
-                    # Try to extract extension from URL
-                    ext = os.path.splitext(path)[1].lower()
-                    if not ext or ext not in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']:
-                        ext = '.jpg'  # default extension
-
-                    # Use sequential numbering
-                    img_filename = f"image{idx}{ext}"
-                    img_path = os.path.join(folder_path, img_filename)
-
-                    # Download image
-                    if download_image(img_url, img_path):
-                        url_to_filename[img_url] = img_filename
+                url_to_filename = download_images_to_folder(image_urls, folder_path)
 
                 # Create formatted markdown with local image paths
                 formatted_markdown = replace_image_urls_with_local(original_markdown, url_to_filename)

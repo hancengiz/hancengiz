@@ -2,8 +2,8 @@ name: Substack Posts Scraper
 
 on:
   schedule:
-    # Runs every 6 hours (posts are less frequent)
-    - cron: '0 */6 * * *'
+    # Runs every hour at the top of the hour
+    - cron: '0 * * * *'
 
   workflow_dispatch:
 
