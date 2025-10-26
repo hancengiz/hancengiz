@@ -45,6 +45,26 @@ def extract_content(content):
     return content.strip()
 
 
+def text_to_unicode_bold(text):
+    """Convert text to Unicode bold characters."""
+    bold_map = {}
+
+    # A-Z: 𝗔-𝗭 (U+1D5D4 - U+1D5ED)
+    for i, char in enumerate('ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
+        bold_map[char] = chr(0x1D5D4 + i)
+
+    # a-z: 𝗮-𝘇 (U+1D5EE - U+1D607)
+    for i, char in enumerate('abcdefghijklmnopqrstuvwxyz'):
+        bold_map[char] = chr(0x1D5EE + i)
+
+    # 0-9: 𝟬-𝟵 (U+1D7EC - U+1D7F5)
+    for i, char in enumerate('0123456789'):
+        bold_map[char] = chr(0x1D7EC + i)
+
+    # Convert each character to bold if mapping exists, otherwise keep as-is
+    return ''.join(bold_map.get(c, c) for c in text)
+
+
 def format_for_twitter(content):
     """Convert Markdown formatting to Twitter-friendly text."""
     # Preserve the content but clean up markdown syntax for Twitter
@@ -53,10 +73,9 @@ def format_for_twitter(content):
     # Remove markdown images ![alt](url) - images will be attached via media_ids
     content = re.sub(r'!\[([^\]]*)\]\([^\)]+\)', '', content)
 
-    # Convert bold (**text** or __text__) - just keep the text
-    # Twitter doesn't have bold, but we can use Unicode alternatives if needed
-    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
-    content = re.sub(r'__([^_]+)__', r'\1', content)
+    # Convert bold (**text** or __text__) to Unicode bold characters
+    content = re.sub(r'\*\*([^*]+)\*\*', lambda m: text_to_unicode_bold(m.group(1)), content)
+    content = re.sub(r'__([^_]+)__', lambda m: text_to_unicode_bold(m.group(1)), content)
 
     # Convert italic (*text* or _text_) - just keep the text
     content = re.sub(r'\*([^*]+)\*', r'\1', content)
