@@ -41,4 +41,4 @@ truncation at word boundaries \- ✅ Open source, easy to modify The whole setup
 is here if you want to clone it:
 https://github.com/hancengiz/hancengiz/tree/main/substack-scraper Built with
 Claude Code in one afternoon. AI-native development is wild. Let’s see if this
-gets automatically posted to twitter(yeah I know know it is called x) ;)
+gets automatically posted to twitter(yeah I know now it is called x) ;)
