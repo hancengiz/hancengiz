@@ -12,6 +12,7 @@ substack-scraper/
 │   └── YYYY-MM-DD_slug/  # One folder per post
 │       ├── original_post.md     # Markdown with remote image URLs
 │       ├── formatted_post.md    # Markdown with local image paths (for viewing)
+│       ├── .published          # Twitter publish marker (if posted)
 │       ├── image1.jpg          # Downloaded images
 │       ├── image2.jpg
 │       └── ...
@@ -19,6 +20,7 @@ substack-scraper/
     └── YYYY-MM-DD_note-{id}/  # One folder per note
         ├── original_note.md     # Markdown with remote image URLs
         ├── formatted_note.md    # Markdown with local image paths (for viewing)
+        ├── .published          # Twitter publish marker (if posted)
         ├── image1.jpg          # Downloaded images (if any)
         └── ...
 ```
