@@ -49,11 +49,13 @@ python scraper.py
 
 ## GitHub Actions
 
-Three separate workflows run independently:
+Five separate workflows run independently:
 
-- **Posts**: Every hour (`.github/workflows/substack-posts.yml`)
-- **Notes**: Every 5 minutes (`.github/workflows/substack-notes.yml`)
-- **Twitter**: Auto-posts new notes to Twitter (`.github/workflows/publish-notes-to-twitter.yml`)
+- **Posts Scraper**: Every hour (`.github/workflows/substack-posts.yml`)
+- **Notes Scraper**: Every 5 minutes (`.github/workflows/substack-notes.yml`)
+- **Twitter Notes**: Auto-posts new notes to Twitter (`.github/workflows/publish-notes-to-twitter.yml`)
+- **Twitter Posts**: Auto-posts new blog posts to Twitter (`.github/workflows/publish-posts-to-twitter.yml`)
+- **README Update**: Updates README after posts/notes change (`.github/workflows/update-readme.yml`)
 
 Posts and notes scraping run automatically, no setup required. Twitter posting requires API credentials (see below).
 
@@ -145,18 +147,30 @@ Edit the cron schedule in the respective workflow files:
 
 ## Twitter Auto-Posting
 
-Automatically posts new Substack notes to Twitter when scraped.
+Automatically posts new Substack content (both notes and blog posts) to Twitter when scraped.
 
 **Setup:**
 1. Get Twitter API credentials from [Developer Portal](https://developer.twitter.com/en/portal/dashboard)
 2. Add 4 secrets to GitHub: `TWITTER_API_KEY`, `TWITTER_API_SECRET`, `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_TOKEN_SECRET`
-3. Workflow runs automatically after notes scraper
+3. Workflows run automatically after respective scrapers complete
 
 **Features:**
-- Posts directly to Twitter (free, 1,500 tweets/month)
+
+**Notes Publishing:**
+- Posts directly to Twitter (free tier: 1,500 tweets/month)
 - Smart truncation (~250 chars + link)
+- Uploads up to 4 images (premium tier only)
+- Markdown formatting converted to Unicode bold
 - Duplicate prevention via `.published` marker files
 - Tweet URL saved in each note folder
+
+**Blog Posts Publishing:**
+- Posts new blog posts with first paragraph summary
+- Smart extraction of meaningful content (skips headers, images, "thanks for reading")
+- Truncates to fit Twitter's 280 char limit with smart word breaks
+- Includes featured/first image from post (premium tier only)
+- Duplicate prevention via `.published` marker files
+- Tweet URL saved in each post folder
 
 **See:** [TWITTER_PUBLISH_SETUP.md](TWITTER_PUBLISH_SETUP.md) for detailed setup instructions
 
