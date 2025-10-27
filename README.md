@@ -84,6 +84,11 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 ## Latest Blog Posts
 
+### [Vibe Coded a PDF Reader MCP Tool for Claude Code - to save my context](https://www.cengizhan.com/p/vibe-coded-a-pdf-reader-mcp-tool)
+*October 27, 2025*
+
+Last week I was trying to analyze yet another massive McKinsey report with Claude, watching my precious context window evaporate, and I thought: "there has to be a better way."
+
 ### [Claude Claude, Don’t Be Mean—How Right Have I Been?](https://www.cengizhan.com/p/claude-claude-dont-be-meanhow-right)
 *October 25, 2025*
 
@@ -93,11 +98,6 @@ You know what's funny about working with Claude Code? It's relentlessly encourag
 *October 25, 2025*
 
 TL;DR: The "spec-first" vs "ship-fast" debate is a dead end.   AI-native software teams don't win by rejecting process--they win by evolving it.   They know when to explore freely, when to specify what they've learned into structure, and when to...
-
-### [Beyond Vibe-Coding: Spec-Driven Development](https://www.cengizhan.com/p/beyond-vibe-coding-spec-driven-development-80e80aade50e)
-*July 28, 2025*
-
-Vibe-coding is fun. You throw an idea at the AI, see what it spits out, tweak it, and repeat. For side projects, that's fine.
 
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
