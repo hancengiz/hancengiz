@@ -102,6 +102,12 @@ Vibe-coding is fun. You throw an idea at the AI, see what it spits out, tweak it
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
+**[If you love reading and also appreciate listening ...](https://substack.com/note/c-170638689)** · *October 27, 2025*
+
+If you love reading and also appreciate listening to your PDFs, books, and various documents, you might want to consider the Speechify app.
+
+---
+
 **[Note 170484138](https://substack.com/note/c-170484138)** · *October 26, 2025*
 
 Read the full post for more details.
@@ -111,12 +117,6 @@ Read the full post for more details.
 **[right about the time I was considering switching t...](https://substack.com/note/c-170438071)** · *October 26, 2025*
 
 right about the time I was considering switching to chatgpt atlas browser:) Piloting Claude for Chrome <https://www.anthropic.com/news/claude-for-chrome>
-
----
-
-**[Just added a feature to publish formatted tweets w...](https://substack.com/note/c-170413838)** · *October 26, 2025*
-
-Just added a feature to publish formatted tweets with images from my Substack to Twitter completely from my phone during bumper-to-bumper traffic. 🚀🚀
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
