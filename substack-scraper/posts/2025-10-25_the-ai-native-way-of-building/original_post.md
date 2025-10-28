@@ -131,8 +131,8 @@ your cue to move on.
 This is the most neglected step in AI-native workflows, and it's where the
 magic actually happens.
 
-Specification is when you stop coding and start **understanding what you
-built**.  
+Specification is when you stop "vibing"(coding) and start **understanding what
+you built (with vibing)**.  
 You read the AI-generated code like an archaeologist, but you're not digging
 for bugs--you're digging for design.
 
@@ -140,8 +140,10 @@ What patterns emerged?
 Why did this approach work better?  
 Where are the boundaries between modules that seem to form naturally?
 
-Then you write that down. Not as a bureaucratic spec, but as a **specification
-of discovery into knowledge**.
+Then you write that down, not as a bureaucratic spec, but as a **specification
+of discovery into knowledge**. This is a **BIG** subject, **what really goes
+into your project as specifications** , does it change depending on X, Y, Z?
+This will be another thing I want to write about.
 
  **What this looks like:**
 
