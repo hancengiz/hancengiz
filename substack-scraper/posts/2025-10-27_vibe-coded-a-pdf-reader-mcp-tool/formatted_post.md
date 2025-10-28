@@ -95,7 +95,7 @@ Now I can:
 
     
     
-    claude mcp add pdf-reader npx @hancengiz/pdf-reader-mcp-server
+    claude mcp add pdf-reader npx @fabriqa.ai/pdf-reader-mcp
 
 Restart Claude Code. Done. You now have PDF superpowers.
 
@@ -149,7 +149,7 @@ via stdio. Nothing fancy, just works.
 
 It's on npm and GitHub if you want to check it out or improve it:
 
-  *  **npm** : [@hancengiz/pdf-reader-mcp-server](https://www.npmjs.com/package/@hancengiz/pdf-reader-mcp-server)
+  *  **npm** : [@fabriqa.ai/pdf-reader-mcp](https://www.npmjs.com/package/@fabriqa.ai/pdf-reader-mcp)
 
   *  **GitHub** : [hancengiz/read_pdf_as_text_mcp](https://github.com/hancengiz/read_pdf_as_text_mcp)
 
