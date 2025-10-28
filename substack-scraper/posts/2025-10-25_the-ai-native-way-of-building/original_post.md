@@ -247,8 +247,7 @@ The team knows what's happening without asking.
 They work with _your_ patterns and standards, not generic examples from
 training data.
 
-This isn't optional infrastructure--it's wThanks for reading! Subscribe for
-free to receive new posts and support my work.hat prevents organizational
+This isn't optional infrastructure--it's what prevents organizational
 antibodies from rejecting your AI workflow.
 
 Specs, updates, and reviews should flow naturally across the same channels
