@@ -2,7 +2,7 @@
 
 # Hi there, I'm Cengiz Han 👋
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=2E9EF7&center=true&vCenter=true&width=600&lines=AI-Native+Solutions+%26+SDLC;Cloud-Native+%26+Serverless+Architectures;Event-Driven+Microservices;Software+Developer+from+Istanbul)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=2E9EF7&center=true&vCenter=true&width=600&lines=AI-Native+Engineering+%26+Solutions;Cloud-Native+%26+Serverless+Architectures;Event-Driven+Microservices;Software+Developer+from+Istanbul)](https://git.io/typing-svg)
 
 [![GitHub followers](https://img.shields.io/github/followers/hancengiz?label=Followers&style=social)](https://github.com/hancengiz)
 [![GitHub stars](https://img.shields.io/github/stars/hancengiz?label=Stars&style=social)](https://github.com/hancengiz)
@@ -13,7 +13,7 @@
 
 ## About Me
 
-Software Developer based in Istanbul, Turkey, specializing in cloud-native and serverless event-driven microservices. I'm passionate about building scalable backend systems, AI-native solutions, and modern distributed architectures. I focus on creating robust logging infrastructure, improving developer experience through automation, better tooling, and AI-native SDLC practices.
+Software Developer based in Istanbul, Turkey, specializing in cloud-native and serverless event-driven microservices. I'm passionate about building scalable backend systems, AI-native solutions, and modern distributed architectures. I focus on creating robust logging infrastructure, improving developer experience through automation, better tooling, and AI-native engineering practices.
 
 ## 🎯 How Right Am I?
 
@@ -31,14 +31,14 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 - 🤖 Building AI-native solutions with spec-driven development
 - ☁️ Designing serverless event-driven microservices on AWS
-- 📝 Writing about observability, distributed systems, and modern SDLC practices
+- 📝 Writing about observability, distributed systems, and modern engineering practices
 - 🔧 Exploring new tools and technologies to improve developer experience
 
 ## 💻 Tech Stack
 
 <div align="center">
 
-### 🤖 AI-Native Development & SDLC
+### 🤖 AI-Native Engineering
 ![Claude](https://img.shields.io/badge/Claude-181818?style=for-the-badge&logo=anthropic&logoColor=white)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-5436DA?style=for-the-badge&logo=anthropic&logoColor=white)
 ![Cursor AI](https://img.shields.io/badge/Cursor_AI-000000?style=for-the-badge&logo=cursor&logoColor=white)
@@ -73,7 +73,7 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 ## 🎯 Areas of Focus
 
-- 🤖 AI-Native Solutions & SDLC
+- 🤖 AI-Native Engineering & Solutions
 - ☁️ Cloud-Native & Serverless Architectures
 - 🎯 Event-Driven Microservices
 - 🏗️ Backend Development & Distributed Systems
@@ -147,7 +147,7 @@ right about the time I was considering switching to chatgpt atlas browser:) Pilo
 
 [![Twitter](https://img.shields.io/twitter/follow/hancengiz?style=for-the-badge&logo=x&logoColor=white&label=Follow%20@hancengiz&color=1DA1F2)](https://x.com/hancengiz)
 
-**Latest thoughts on AI-native development, serverless architectures, and modern SDLC**
+**Latest thoughts on AI-native development, serverless architectures, and modern engineering**
 
 [→ See my latest tweets](https://x.com/hancengiz)
 
