@@ -26,7 +26,7 @@ Even when I work alone, I still follow the BMAD Method or a similar approach I'v
 
 Currently, I’m turning one of those vibe-coded prototypes into production-ready software, and that prototype already has 12 ADRs. These early records are now shaping formal specifications, architecture, and delivery plans while preserving the creative spark that initiated the project.
 
-This approach aligns with Rick Nason’s philosophy in "It’s Not Complicated": some projects are simple, others are complicated, and some are truly complex. Each type requires a different level of structure. That’s exactly what I'm integrating into <http://fabriqa.ai> (the ai-native sdlc product I am building)—a set of adaptive workflows for simple, complicated, and complex projects, along with one that helps convert a prototype into a spec-driven production project.
+This approach aligns with Rick Nason’s philosophy in "It’s Not Complicated": some projects are simple, others are complicated, and some are truly complex. Each type requires a different level of structure. That’s exactly what I'm integrating into <http://fabriqa.ai> (the ai-native engineering product I am building)—a set of adaptive workflows for simple, complicated, and complex projects, along with one that helps convert a prototype into a spec-driven production project.
 
 If you're working solo, you can start crafting your own version of this:
 
