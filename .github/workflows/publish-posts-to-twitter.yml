@@ -62,11 +62,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add substack-scraper/posts/**/.published
-          git commit -m "Mark posts as published to Twitter
-
-          🤖 Generated with [Claude Code](https://claude.com/claude-code)
-          via [Happy](https://happy.engineering)
-
-          Co-Authored-By: Claude <noreply@anthropic.com>
-          Co-Authored-By: Happy <yesreply@happy.engineering>"
+          git commit -m "Mark posts as published to Twitter"
           git push

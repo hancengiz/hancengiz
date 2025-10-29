@@ -64,11 +64,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
-          git commit -m "Update README with latest blog posts and notes
-
-          🤖 Generated with [Claude Code](https://claude.com/claude-code)
-          via [Happy](https://happy.engineering)
-
-          Co-Authored-By: Claude <noreply@anthropic.com>
-          Co-Authored-By: Happy <yesreply@happy.engineering>"
+          git commit -m "Update README with latest blog posts and notes"
           git push

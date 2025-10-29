@@ -69,11 +69,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add substack-scraper/notes/
-          git commit -m "Add new Substack notes - $(date +'%Y-%m-%d %H:%M:%S')
-
-          Generated with [Claude Code](https://claude.ai/code)
-          via [Happy](https://happy.engineering)
-
-          Co-Authored-By: Claude <noreply@anthropic.com>
-          Co-Authored-By: Happy <yesreply@happy.engineering>"
+          git commit -m "Add new Substack notes - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
