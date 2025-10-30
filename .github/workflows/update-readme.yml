@@ -18,6 +18,11 @@ on:
       - 'substack-scraper/posts/**'
       - 'substack-scraper/notes/**'
 
+# Serialize with other workflows that push to main branch
+concurrency:
+  group: repo-updates-main
+  cancel-in-progress: false
+
 jobs:
   update-readme:
     runs-on: ubuntu-latest

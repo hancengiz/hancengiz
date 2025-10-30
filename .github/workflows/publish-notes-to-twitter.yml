@@ -10,6 +10,11 @@ on:
   # Allow manual trigger for testing
   workflow_dispatch:
 
+# Serialize with other workflows that push to main branch
+concurrency:
+  group: repo-updates-main
+  cancel-in-progress: false
+
 jobs:
   publish-notes:
     runs-on: ubuntu-latest
