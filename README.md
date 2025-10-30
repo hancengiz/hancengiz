@@ -102,6 +102,12 @@ TL;DR: The "spec-first" vs "ship-fast" debate is a dead end.   AI-native softwar
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
+**[Beyond Vibe Coding](https://substack.com/note/c-171672960)** · *October 30, 2025*
+
+Read the full post for more details.
+
+---
+
 **[If you love reading and also appreciate listening ...](https://substack.com/note/c-170638689)** · *October 27, 2025*
 
 If you love reading and also appreciate listening to your PDFs, books, and various documents, you might want to consider the Speechify app.
@@ -111,12 +117,6 @@ If you love reading and also appreciate listening to your PDFs, books, and vario
 **[Note 170484138](https://substack.com/note/c-170484138)** · *October 26, 2025*
 
 Read the full post for more details.
-
----
-
-**[right about the time I was considering switching t...](https://substack.com/note/c-170438071)** · *October 26, 2025*
-
-right about the time I was considering switching to chatgpt atlas browser:) Piloting Claude for Chrome <https://www.anthropic.com/news/claude-for-chrome>
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
