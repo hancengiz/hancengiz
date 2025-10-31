@@ -14,6 +14,11 @@ on:
       - 'substack-scraper/**'
       - '.github/workflows/substack-notes.yml'
 
+# Serialize with other workflows that push to main branch
+concurrency:
+  group: repo-updates-main
+  cancel-in-progress: false
+
 jobs:
   scrape-notes:
     runs-on: ubuntu-latest

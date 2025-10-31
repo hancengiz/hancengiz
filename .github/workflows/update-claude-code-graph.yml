@@ -6,6 +6,11 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch: # Allow manual trigger
 
+# Serialize with other workflows that push to main branch
+concurrency:
+  group: repo-updates-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
