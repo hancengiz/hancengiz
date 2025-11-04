@@ -102,6 +102,12 @@ You know what's funny about working with Claude Code? It's relentlessly encourag
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
+**[Have you talked to an AI agent in your dream yet? ...](https://substack.com/note/c-173453109)** · *November 04, 2025*
+
+Have you talked to an AI agent in your dream yet? :)
+
+---
+
 **[Beyond Vibe Coding](https://substack.com/note/c-171672960)** · *October 30, 2025*
 
 Read the full post for more details.
@@ -111,12 +117,6 @@ Read the full post for more details.
 **[If you love reading and also appreciate listening ...](https://substack.com/note/c-170638689)** · *October 27, 2025*
 
 If you love reading and also appreciate listening to your PDFs, books, and various documents, you might want to consider the Speechify app.
-
----
-
-**[Note 170484138](https://substack.com/note/c-170484138)** · *October 26, 2025*
-
-Read the full post for more details.
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
