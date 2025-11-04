@@ -84,6 +84,11 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 ## Latest Blog Posts
 
+### [One More Piece Built: Adding YouTube Analysis to My Learning Iron Man Suit](https://www.cengizhan.com/p/one-more-piece-built-adding-youtube)
+*November 04, 2025*
+
+Look, I have a problem. There are too many videos to watch, too little time, and my YouTube "Watch Later" list has become a graveyard of good intentions. You know how it goes:
+
 ### [Vibe Coded a PDF Reader MCP Tool for Claude Code - to save my context](https://www.cengizhan.com/p/vibe-coded-a-pdf-reader-mcp-tool)
 *October 27, 2025*
 
@@ -93,11 +98,6 @@ Last week I was trying to analyze yet another massive McKinsey report with Claud
 *October 25, 2025*
 
 You know what's funny about working with Claude Code? It's relentlessly encouraging. Every conversation feels like having a very supportive colleague who's genuinely excited about your ideas--sometimes to an almost comical degree.
-
-### [The AI-Native Way of Building](https://www.cengizhan.com/p/the-ai-native-way-of-building)
-*October 25, 2025*
-
-TL;DR: The "spec-first" vs "ship-fast" debate is a dead end.   AI-native software teams don't win by rejecting process--they win by evolving it.   They know when to explore freely, when to specify what they've learned into structure, and when to...
 
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
