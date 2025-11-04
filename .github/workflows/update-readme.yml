@@ -1,4 +1,4 @@
-name: Update README with Latest Posts
+name: Update README with Latest Posts and Notes
 
 on:
   # Trigger after posts or notes workflows complete successfully
