@@ -102,6 +102,12 @@ You know what's funny about working with Claude Code? It's relentlessly encourag
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
+**[anyone used factory droid or amp by sourcegraph? t...](https://substack.com/note/c-174955837)** · *November 08, 2025*
+
+anyone used factory droid or amp by sourcegraph? thinking looking at alternatives to claude code/cursor/copilot to catchup with the ecosystem
+
+---
+
 **[Excited about this project!](https://substack.com/note/c-174524642)** · *November 07, 2025*
 
 Anyone using Obsidian + AI together to recommend workflows? Best practices?
@@ -111,12 +117,6 @@ Anyone using Obsidian + AI together to recommend workflows? Best practices?
 **[Have you talked to an AI agent in your dream yet? ...](https://substack.com/note/c-173453109)** · *November 04, 2025*
 
 Have you talked to an AI agent in your dream yet? :)
-
----
-
-**[Beyond Vibe Coding](https://substack.com/note/c-171672960)** · *October 30, 2025*
-
-Read the full post for more details.
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
