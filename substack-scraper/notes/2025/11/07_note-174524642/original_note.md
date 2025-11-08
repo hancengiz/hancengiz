@@ -9,7 +9,7 @@ url: https://substack.com/note/c-174524642
 type: note
 note_id: 174524642
 photo_url: https://substack-post-media.s3.amazonaws.com/public/images/dd3c9352-78f7-4a7e-ab29-7efd239dd41c_400x400.jpeg
-reactions: 0
+reactions: 1
 restacks: 0
 replies: 0
 ---
@@ -21,6 +21,7 @@ Anyone using Obsidian...
 **Published:** Fri, 07 Nov 2025 06:33:16 GMT
 **Author:** Cengiz Han (@hancengiz)
 **Link:** [https://substack.com/note/c-174524642](https://substack.com/note/c-174524642)
+**Engagement:** 1 reactions, 0 restacks, 0 replies
 
 ---
 
