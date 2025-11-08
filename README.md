@@ -112,6 +112,8 @@ anyone used factory droid or amp by sourcegraph? thinking looking at alternative
 
 Anyone using Obsidian + AI together to recommend workflows? Best practices?
 
+*❤️ 1*
+
 ---
 
 **[Have you talked to an AI agent in your dream yet? ...](https://substack.com/note/c-173453109)** · *November 04, 2025*
