@@ -102,23 +102,21 @@ Last week I was trying to analyze yet another massive McKinsey report with Claud
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
+**[Read this article if you want to learn more about ...](https://substack.com/note/c-175300442)** · *November 09, 2025*
+
+Read this article if you want to learn more about the recently announced Agent Skills for Claude. <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>
+
+---
+
+**[https://www.cengizhan.com/p/claude-code-prompt-coa...](https://substack.com/note/c-175298937)** · *November 09, 2025*
+
+<https://www.cengizhan.com/p/claude-code-prompt-coach-skill-to?r=bi6fp&utmcampaign=post&utmmedium=web&showWelcomeOnShare=false>
+
+---
+
 **[anyone used factory droid or amp by sourcegraph? t...](https://substack.com/note/c-174955837)** · *November 08, 2025*
 
 anyone used factory droid or amp by sourcegraph? thinking looking at alternatives to claude code/cursor/copilot to catchup with the ecosystem
-
----
-
-**[Excited about this project!](https://substack.com/note/c-174524642)** · *November 07, 2025*
-
-Anyone using Obsidian + AI together to recommend workflows? Best practices?
-
-*❤️ 1*
-
----
-
-**[Have you talked to an AI agent in your dream yet? ...](https://substack.com/note/c-173453109)** · *November 04, 2025*
-
-Have you talked to an AI agent in your dream yet? :)
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
