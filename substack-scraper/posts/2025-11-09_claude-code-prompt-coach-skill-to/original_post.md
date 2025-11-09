@@ -90,8 +90,8 @@ Running Prompt Coach on my own 30 days of Claude Code sessions (133 sessions,
 ###  **1\. I 'm Burning Through My Usage Limits with Opus**
 
  **The pattern:** 17% of my API calls use Opus 4.1, but they account for **47%
-of my token consumption** (136.74equivalentoutof136.74 _equivalentoutof_
-291.30 calculated usage).
+of my token consumption** ($136.74 equivalent out of $291.30 calculated
+usage).
 
 That's 5x more expensive per token than Sonnet. Most of those Opus calls?
 Totally unnecessary. Code reviews, documentation, refactoring--Sonnet handles
@@ -112,8 +112,12 @@ unnecessarily. If I were on pay-per-token pricing, this would cost me
 
   * 1.4% scored 0-4/10 (needs work)
 
-The excellent prompts? Context-rich commands like `git commit` where Claude
-has full git diff context. Efficient communication.
+The excellent prompts? Context-rich commands like this one. Efficient
+communication.
+
+`@agent-youtube-transcript-analyzer what was the ironman metaphor karpathy
+gave in this video? I love it but forgot how it was exactly, quote him
+directly and explain? https://www.you tube.com/watch?v=<VIDEO_ID>`
 
 The bad ones? Extremely brief standalone prompts lacking context: "run", "ok",
 "where", "delete"--all triggering unnecessary clarification rounds.
@@ -154,8 +158,9 @@ switches. This is actually a limitation of the current skill--it needs to
 filter out projects where I spent less than, say, 10 minutes. I might update
 it to capture this distinction.
 
-If you're also curious about how you use Claude Code, keep reading. (Or jump
-straight to installation if you want to try it now.)
+If you're also curious about how you use Claude Code, keep reading. (Or [jump
+straight](https://www.cengizhan.com/p/claude-code-prompt-coach-skill-to#%C2%A7how-can-you-start-using-this) to installation if you want to try it
+now.)
 
 ##  **What It Actually Shows You**
 
@@ -187,7 +192,7 @@ Then it gives you a breakdown:
     Average prompt score: 7.2/10 (Very Good!)
     
     ✅ Context-Rich Brief Prompts Identified: 18 (18%)
-    Examples: "git commit", "yes", "1", "v", "clear"
+    Examples: "git commit", "yes", "1", "v", "clear".
     These score 8-10/10 - excellent use of environmental context!
     
     📊 Prompt Category Breakdown:
@@ -223,6 +228,12 @@ Then it gives you a breakdown:
     📉 Cost: +30 seconds parsing issues
     
 
+Off course not only git commit and other short promtps counted as excellent. I
+included a context awareness check to the skill so it counts these short
+prompts as fine prompts. See the [full
+list](https://github.com/hancengiz/claude-code-prompt-coach-skill/blob/main/docs/prompt-quality-analysis-report-public.md#excellent-prompts-8-1010-71-prompts-72) from my recent report. Also, please share your
+findings in the comments section on this post.  
+  
 It's like having a prompt engineering coach that watched every conversation
 you've ever had with Claude and graded you on it.
 
@@ -235,7 +246,7 @@ everything.
 
  **What this means:**
 
-  * Pay-per-token users: Cached tokens cost 10x less (0.30vs3 _vs_ 3 per million)
+  * Pay-per-token users: Cached tokens cost 10x less (0.30$ vs 3 _$_ per million tokens)
 
   * Subscription users: Faster responses, less server processing time needed
 
@@ -281,7 +292,8 @@ filters out streaming response duplicates to show actual Anthropic billing.
 
  _Verification: The token cost calculation is now consistent with ccusage. The
 0.4% difference ($1.10) comes from deduplication and model-specific pricing
---both tools now apply identical strategies._
+--both tools now apply identical strategies. (The difference is probably just
+a timing issue between my runs.)_
 
 [![](https://substackcdn.com/image/fetch/$s_!yg7Q!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd1aff0c6-249e-4da9-b778-e5ccb9712b5d_2044x1356.png)](https://substackcdn.com/image/fetch/$s_!yg7Q!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd1aff0c6-249e-4da9-b778-e5ccb9712b5d_2044x1356.png)
 
@@ -367,6 +379,9 @@ When are you actually good at this?
 
 As a night owl, this hurts to see. But the data doesn't lie--I'm objectively
 worse at coding after 8pm. 🦉💔
+
+[Share Cengiz
+Han](https://www.cengizhan.com/?utm_source=substack&utm_medium=email&utm_content=share&action=share)
 
 ##  **How Can You Start Using This?**
 
