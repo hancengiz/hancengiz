@@ -19,7 +19,7 @@ Software Developer based in Istanbul, Turkey, specializing in cloud-native and s
 
 <div align="center">
 
-[![Substack](https://img.shields.io/badge/Substack-www.cengizhan.com-12100E?style=for-the-badge&logo=substack&logoColor=white)](https://www.cengizhan.com)
+[![Substack](https://img.shields.io/badge/substack-www.cengizhan.com-FE6619?style=for-the-badge&logo=substack&logoColor=FE6619&labelColor=black&labelColor=Black)](https://www.cengizhan.com)
 [![Twitter](https://img.shields.io/badge/twitter-%40hancengiz-black?style=for-the-badge&labelColor=Black&logo=x)](https://x.com/hancengiz)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Cengiz_Han-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/hancengiz)
 [![GitHub](https://img.shields.io/badge/GitHub-hancengiz-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/hancengiz)
