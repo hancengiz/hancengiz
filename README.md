@@ -84,6 +84,11 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 ## Latest Blog Posts
 
+### [Claude Code Prompt Coach Skill to analyse your AI-Assisted Coding Skills](https://www.cengizhan.com/p/claude-code-prompt-coach-skill-to)
+*November 09, 2025*
+
+Ever wonder if you're actually good at working with AI tools? Or if you're just burning tokens with vague prompts and wondering why Claude keeps asking for clarification?
+
 ### [One More Piece Built: Adding YouTube Analysis to My Learning Iron Man Suit](https://www.cengizhan.com/p/one-more-piece-built-adding-youtube)
 *November 04, 2025*
 
@@ -93,11 +98,6 @@ Look, I have a problem. There are too many videos to watch, too little time, and
 *October 27, 2025*
 
 Last week I was trying to analyze yet another massive McKinsey report with Claude, watching my precious context window evaporate, and I thought: "there has to be a better way."
-
-### [Claude Claude, Don’t Be Mean—How Right Have I Been?](https://www.cengizhan.com/p/claude-claude-dont-be-meanhow-right)
-*October 25, 2025*
-
-You know what's funny about working with Claude Code? It's relentlessly encouraging. Every conversation feels like having a very supportive colleague who's genuinely excited about your ideas--sometimes to an almost comical degree.
 
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
