@@ -15,6 +15,17 @@
 
 Software Developer based in Istanbul, Turkey, specializing in cloud-native and serverless event-driven microservices. I'm passionate about building scalable backend systems, AI-native solutions, and modern distributed architectures. I focus on creating robust logging infrastructure, improving developer experience through automation, better tooling, and AI-native engineering practices.
 
+## 🤝 Let's Connect
+
+<div align="center">
+
+[![Substack](https://img.shields.io/badge/Substack-www.cengizhan.com-12100E?style=for-the-badge&logo=substack&logoColor=white)](https://www.cengizhan.com)
+[![Twitter](https://img.shields.io/badge/Twitter-@hancengiz-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/hancengiz)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Cengiz_Han-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/hancengiz)
+[![GitHub](https://img.shields.io/badge/GitHub-hancengiz-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/hancengiz)
+
+</div>
+
 ## 🎯 How Right Am I?
 
 A fun experiment tracking how confident Claude Code is in my approaches! Check out the live stats at [cc.cengizhan.com](https://cc.cengizhan.com/)
@@ -150,17 +161,6 @@ anyone used factory droid or amp by sourcegraph? thinking looking at alternative
 **Latest thoughts on AI-native development, serverless architectures, and modern engineering**
 
 [→ See my latest tweets](https://x.com/hancengiz)
-
-</div>
-
-## 🤝 Let's Connect
-
-<div align="center">
-
-[![Substack](https://img.shields.io/badge/Substack-www.cengizhan.com-12100E?style=for-the-badge&logo=substack&logoColor=white)](https://www.cengizhan.com)
-[![Twitter](https://img.shields.io/badge/Twitter-@hancengiz-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/hancengiz)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Cengiz_Han-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/hancengiz)
-[![GitHub](https://img.shields.io/badge/GitHub-hancengiz-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/hancengiz)
 
 </div>
 
