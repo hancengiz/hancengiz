@@ -158,9 +158,9 @@ anyone used factory droid or amp by sourcegraph? thinking looking at alternative
 <div align="center">
 
 [![Website](https://img.shields.io/badge/Website-cengizhan.com-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](http://cengizhan.com/)
+[![Medium](https://img.shields.io/badge/Substack-@hancengiz-12100E?style=for-the-badge&logo=substack&logoColor=white)](https://substack.com/@hancengiz)
 [![Twitter](https://img.shields.io/badge/Twitter-@hancengiz-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/hancengiz)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Cengiz_Han-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/hancengiz)
-[![Medium](https://img.shields.io/badge/Medium-@hancengiz-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@hancengiz)
 [![GitHub](https://img.shields.io/badge/GitHub-hancengiz-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/hancengiz)
 
 </div>
