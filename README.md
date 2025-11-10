@@ -113,6 +113,12 @@ Look, I have a problem. There are too many videos to watch, too little time, and
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
+**[I was trying to find a name for prompt-based capab...](https://substack.com/note/c-175566107)** · *November 10, 2025*
+
+I was trying to find a name for prompt-based capabilities that can be lazy-loaded that save the context. I invented a term “prompt function” and you could mark them as discoverable. I better rename it to “skill” now then to match the name antrophics...
+
+---
+
 **[Read this article if you want to learn more about ...](https://substack.com/note/c-175300442)** · *November 09, 2025*
 
 Read this article if you want to learn more about the recently announced Agent Skills for Claude. <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>
@@ -122,12 +128,6 @@ Read this article if you want to learn more about the recently announced Agent S
 **[https://www.cengizhan.com/p/claude-code-prompt-coa...](https://substack.com/note/c-175298937)** · *November 09, 2025*
 
 <https://www.cengizhan.com/p/claude-code-prompt-coach-skill-to?r=bi6fp&utmcampaign=post&utmmedium=web&showWelcomeOnShare=false>
-
----
-
-**[anyone used factory droid or amp by sourcegraph? t...](https://substack.com/note/c-174955837)** · *November 08, 2025*
-
-anyone used factory droid or amp by sourcegraph? thinking looking at alternatives to claude code/cursor/copilot to catchup with the ecosystem
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
