@@ -38,12 +38,8 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 </div>
 
-## 🚀 Currently Working On
-
-- 🤖 Building AI-native solutions with spec-driven development
-- ☁️ Designing serverless event-driven microservices on AWS
-- 📝 Writing about observability, distributed systems, and modern engineering practices
-- 🔧 Exploring new tools and technologies to improve developer experience
+## 🚀 Currently Working On 
+- 🤖 read more here : https://www.cengizhan.com/about
 
 ## 💻 Tech Stack
 
