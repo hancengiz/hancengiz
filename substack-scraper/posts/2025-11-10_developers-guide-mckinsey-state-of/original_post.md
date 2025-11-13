@@ -704,9 +704,11 @@ demanded** for a range of jobs."
 
 📊 **Digital Budget Allocation to AI (McKinsey Nov 2025):**
 
- **MetricHigh PerformersOthersGap** Spend >20% of digital budget on AI35%10%
-**3.5x** Spend >11% of digital budget on AI55%25% **2.2x** Spend ≤5% of
-digital budget on AI6%44% **0.14x**
+| Metric | High Performers | Others | Gap. |  
+|---------------------------------------|---------------\---|-------\--|-----------|  
+| Spend >20% of digital budget on AI | 35% | 10% | ****3.5x**** |  
+| Spend >11% of digital budget on AI | 55% | 25% | ****2.2x**** |  
+| Spend ≤5% of digital budget on AI | 6% | 44% | ****0.14x**** |
 
 >  **This information is from LLM, external sources**
 >
