@@ -109,6 +109,12 @@ Look, I have a problem. There are too many videos to watch, too little time, and
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
+**[Vibe coding you said? :) #claude](https://substack.com/note/c-176742330)** · *November 13, 2025*
+
+Read the full post for more details.
+
+---
+
 **[Amazing Greasemonkey (or Violentmonkey or Tampermo...](https://substack.com/note/c-175803551)** · *November 10, 2025*
 
 Amazing Greasemonkey (or Violentmonkey or Tampermonkey) script that adds a Fork function to Claude Chat web UI. <https://greasyfork.org/en/scripts/522141-claude-fork-conversation/feedback>
@@ -118,12 +124,6 @@ Amazing Greasemonkey (or Violentmonkey or Tampermonkey) script that adds a Fork 
 **[Developer’s Guide: The State of AI Global Survey 2...](https://substack.com/note/c-175568087)** · *November 10, 2025*
 
 Developer’s Guide: The State of AI Global Survey 2025
-
----
-
-**[I was trying to find a name for prompt-based capab...](https://substack.com/note/c-175566107)** · *November 10, 2025*
-
-I was trying to find a name for prompt-based capabilities that can be lazy-loaded that save the context. I invented a term “prompt function” and you could mark them as discoverable. I better rename it to “skill” now then to match the name antrophics...
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
