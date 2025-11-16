@@ -109,6 +109,12 @@ Look, I have a problem. There are too many videos to watch, too little time, and
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
+**[There's nothing better than getting approvals from...](https://substack.com/note/c-177941750)** · *November 16, 2025*
+
+There's nothing better than getting approvals from #claudecode on a Sunday night.
+
+---
+
 **[Many legacy services are like my bent shoehorn. It...](https://substack.com/note/c-177791665)** · *November 16, 2025*
 
 Many legacy services are like my bent shoehorn. It still technically works, so nobody touches it. The friction it adds is small enough that I tolerate it. I adjust how I use it, bend it a little, or live with its quirks. But one day it will finally...
@@ -118,12 +124,6 @@ Many legacy services are like my bent shoehorn. It still technically works, so n
 **[Vibe coding you said? :) #claude](https://substack.com/note/c-176742330)** · *November 13, 2025*
 
 Read the full post for more details.
-
----
-
-**[Amazing Greasemonkey (or Violentmonkey or Tampermo...](https://substack.com/note/c-175803551)** · *November 10, 2025*
-
-Amazing Greasemonkey (or Violentmonkey or Tampermonkey) script that adds a Fork function to Claude Chat web UI. <https://greasyfork.org/en/scripts/522141-claude-fork-conversation/feedback>
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
