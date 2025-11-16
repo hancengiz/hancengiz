@@ -1,22 +1,14 @@
 name: Update README with Latest Posts and Notes
 
 on:
-  # Trigger after posts or notes workflows complete successfully
+  # Trigger after posts or notes publishing workflows complete successfully
   workflow_run:
-    workflows: ["Substack Posts Scraper", "Substack Notes Scraper"]
+    workflows: ["Publish Notes to Twitter", "Publish Posts to Twitter"]
     types:
       - completed
 
   # Allow manual trigger
   workflow_dispatch:
-
-  # Also trigger on push to posts or notes folders (for testing)
-  push:
-    branches:
-      - main
-    paths:
-      - 'substack-scraper/posts/**'
-      - 'substack-scraper/notes/**'
 
 # Serialize with other workflows that push to main branch
 concurrency:
@@ -26,10 +18,9 @@ concurrency:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    # Only run if the posts workflow succeeded (or if manually triggered)
+    # Only run if the publishing workflow succeeded (or if manually triggered)
     if: |
       github.event_name == 'workflow_dispatch' ||
-      github.event_name == 'push' ||
       github.event.workflow_run.conclusion == 'success'
 
     permissions:
