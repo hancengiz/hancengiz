@@ -9,7 +9,7 @@ note_id: 177941750
 photo_url: https://substack-post-media.s3.amazonaws.com/public/images/dd3c9352-78f7-4a7e-ab29-7efd239dd41c_400x400.jpeg
 reactions: 0
 restacks: 0
-replies: 0
+replies: 1
 ---
 
 # There's nothing better than getting approvals from...
@@ -17,6 +17,7 @@ replies: 0
 **Published:** Sun, 16 Nov 2025 20:29:09 GMT
 **Author:** Cengiz Han (@hancengiz)
 **Link:** [https://substack.com/note/c-177941750](https://substack.com/note/c-177941750)
+**Engagement:** 0 reactions, 0 restacks, 1 replies
 
 ---
 
