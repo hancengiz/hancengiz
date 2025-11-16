@@ -1,9 +1,9 @@
 name: Update README with Latest Posts and Notes
 
 on:
-  # Trigger after posts or notes workflows complete successfully
+  # Trigger after posts or notes publishing workflows complete successfully
   workflow_run:
-    workflows: ["Substack Posts Scraper", "Substack Notes Scraper"]
+    workflows: ["Publish Notes to Twitter", "Publish Posts to Twitter"]
     types:
       - completed
 
