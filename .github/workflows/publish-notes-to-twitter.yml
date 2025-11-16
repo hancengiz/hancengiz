@@ -1,11 +1,13 @@
 name: Publish Notes to Twitter
 
 on:
-  # Trigger after notes scraper completes successfully
-  workflow_run:
-    workflows: ["Substack Notes Scraper"]
-    types:
-      - completed
+  # Trigger when new notes are committed by the scraper
+  push:
+    branches:
+      - main
+    paths:
+      - 'substack-scraper/notes/**'
+      - '!substack-scraper/notes/**/.published'
 
   # Allow manual trigger for testing
   workflow_dispatch:
@@ -18,10 +20,6 @@ concurrency:
 jobs:
   publish-notes:
     runs-on: ubuntu-latest
-    # Only run if the notes workflow succeeded (or if manually triggered)
-    if: |
-      github.event_name == 'workflow_dispatch' ||
-      github.event.workflow_run.conclusion == 'success'
 
     permissions:
       contents: write
