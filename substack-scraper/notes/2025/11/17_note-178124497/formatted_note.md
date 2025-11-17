@@ -1,5 +1,7 @@
 ---
-title: Copilot. Claude. #ai-in-the-loop
+title: Everyone talks about human-in-the-loop.
+
+I’m testi...
 date: Mon, 17 Nov 2025 11:50:20 GMT
 author: Cengiz Han
 handle: hancengiz
@@ -12,7 +14,9 @@ restacks: 0
 replies: 0
 ---
 
-# Copilot. Claude. #ai-in-the-loop
+# Everyone talks about human-in-the-loop.
+
+I’m testi...
 
 **Published:** Mon, 17 Nov 2025 11:50:20 GMT
 **Author:** Cengiz Han (@hancengiz)
@@ -20,7 +24,9 @@ replies: 0
 
 ---
 
-Copilot. Claude. #ai-in-the-loop
+Everyone talks about human-in-the-loop.
+
+I’m testing AI-in-the-loop.
 
 ![Image](image1.jpeg)
 
