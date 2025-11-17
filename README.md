@@ -109,21 +109,21 @@ Look, I have a problem. There are too many videos to watch, too little time, and
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
-**[Everyone talks about human-in-the-loop.](https://substack.com/note/c-178124497)** · *November 17, 2025*
+**[Note 170317259](https://substack.com/note/c-170317259)** · *November 17, 2025*
 
-Read the full post for more details.
-
----
-
-**[There's nothing better than getting approvals from...](https://substack.com/note/c-177941750)** · *November 16, 2025*
-
-There's nothing better than getting approvals from #claudecode on a Sunday night.
+Response to this comment : <https://www.cengizhan.com/p/the-ai-native-way-of-building/comments?utmsource=substack&utmmedium=web&utmcampaign=postviewer>
 
 ---
 
-**[Many legacy services are like my bent shoehorn. It...](https://substack.com/note/c-177791665)** · *November 16, 2025*
+**[Note 170364932](https://substack.com/note/c-170364932)** · *November 17, 2025*
 
-Many legacy services are like my bent shoehorn. It still technically works, so nobody touches it. The friction it adds is small enough that I tolerate it. I adjust how I use it, bend it a little, or live with its quirks. But one day it will finally...
+I automated my Substack notes to Twitter (completely free)
+
+---
+
+**[Note 170413838](https://substack.com/note/c-170413838)** · *November 17, 2025*
+
+Just added a feature to publish formatted tweets with images from my Substack to Twitter completely from my phone during bumper-to-bumper traffic. 🚀🚀
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
