@@ -1,6 +1,6 @@
 ---
-title: right about the time I was considering switching t...
-date: Sun, 26 Oct 2025 19:25:47 GMT
+title: Note 170438071
+published: Sun, 26 Oct 2025 19:25:47 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-170438071
@@ -11,13 +11,4 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-
-# right about the time I was considering switching t...
-
-**Published:** Sun, 26 Oct 2025 19:25:47 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-170438071](https://substack.com/note/c-170438071)
-
----
-
-right about the time I was considering switching to chatgpt atlas browser:) **Piloting Claude for Chrome** <https://www.anthropic.com/news/claude-for-chrome>
+right about the time I was considering switching to chatgpt atlas browser:) **Piloting Claude for Chrome **[https://www.anthropic.com/news/claude-for-chrome](https://www.anthropic.com/news/claude-for-chrome)

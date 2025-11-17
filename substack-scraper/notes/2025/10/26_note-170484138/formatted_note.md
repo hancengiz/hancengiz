@@ -1,6 +1,6 @@
 ---
 title: Note 170484138
-date: Sun, 26 Oct 2025 22:11:06 GMT
+published: Sun, 26 Oct 2025 22:11:06 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-170484138
@@ -11,13 +11,4 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-
-# Note 170484138
-
-**Published:** Sun, 26 Oct 2025 22:11:06 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-170484138](https://substack.com/note/c-170484138)
-
----
-
 No content

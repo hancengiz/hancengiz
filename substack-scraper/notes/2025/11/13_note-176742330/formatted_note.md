@@ -1,6 +1,6 @@
 ---
-title: Vibe coding you said? :) #claude
-date: Thu, 13 Nov 2025 11:12:52 GMT
+title: Note 176742330
+published: Thu, 13 Nov 2025 11:12:52 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-176742330
@@ -11,17 +11,6 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-
-# Vibe coding you said? :) #claude
-
-**Published:** Thu, 13 Nov 2025 11:12:52 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-176742330](https://substack.com/note/c-176742330)
-
----
-
 Vibe coding you said? :) #claude
 
 ![Image](image1.png)
-
-

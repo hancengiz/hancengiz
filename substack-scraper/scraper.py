@@ -378,7 +378,7 @@ def build_note_frontmatter(title, formatted_date, name, handle, note_url, note_i
     """Build YAML frontmatter for a note."""
     frontmatter = f"""---
 title: {title}
-date: {formatted_date}
+published: {formatted_date}
 author: {name}
 handle: {handle}
 url: {note_url}
@@ -413,9 +413,7 @@ def build_note_metadata(title, formatted_date, name, handle, note_url,
                        reaction_count, restacks, replies_count,
                        reply_to_post=None, reply_to_url=None):
     """Build metadata section for a note."""
-    metadata = f"""# {title}
-
-**Published:** {formatted_date}
+    metadata = f"""**Published:** {formatted_date}
 **Author:** {name} (@{handle})
 **Link:** [{note_url}]({note_url})"""
 
@@ -619,11 +617,8 @@ def fetch_notes(base_url, output_dir):
                 else:
                     note_url = urljoin(base_url, f'/notes/post/{note_id}')
 
-                # Create title from body (use plain body for title, not formatted)
-                if body:
-                    title = body[:50] + ('...' if len(body) > 50 else '')
-                else:
-                    title = f'Note {note_id}'
+                # Substack notes don't have titles, just use note ID as identifier
+                title = f'Note {note_id}'
 
                 # Parse date
                 try:
@@ -659,8 +654,11 @@ def fetch_notes(base_url, output_dir):
                 # Append attachment images to markdown content
                 if attachment_image_urls:
                     content_md += '\n\n'
-                    for img_url in attachment_image_urls:
-                        content_md += f'![Image]({img_url})\n\n'
+                    for idx, img_url in enumerate(attachment_image_urls):
+                        content_md += f'![Image]({img_url})'
+                        # Add newline between images, but not after the last one
+                        if idx < len(attachment_image_urls) - 1:
+                            content_md += '\n\n'
 
                 # Extract images from markdown and clean URLs (remove newlines from wrapped text)
                 markdown_image_urls = extract_images_from_markdown(content_md)
@@ -684,15 +682,7 @@ def fetch_notes(base_url, output_dir):
                     photo_url, reaction_count, restacks, replies_count,
                     reply_to_post, reply_to_url
                 )
-                metadata = build_note_metadata(
-                    title, formatted_date, name, handle, note_url,
-                    reaction_count, restacks, replies_count,
-                    reply_to_post, reply_to_url
-                )
                 original_markdown = f"""{frontmatter}
-
-{metadata}
-
 {content_md}
 """
 

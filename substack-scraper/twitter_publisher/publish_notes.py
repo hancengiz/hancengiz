@@ -32,15 +32,9 @@ def parse_frontmatter(content):
 
 
 def extract_content(content):
-    """Extract main content from note (after frontmatter and metadata)."""
-    # Remove frontmatter
-    content = re.sub(r'^---\n.*?\n---\n+', '', content, flags=re.DOTALL)
-
-    # Remove title heading (may have whitespace before it)
-    content = re.sub(r'^\s*#\s+.*?\n+', '', content, flags=re.DOTALL)
-
-    # Remove metadata section (**Published:** ... **Link:** ... \n---)
-    content = re.sub(r'^\*\*Published:.*?^---\n+', '', content, flags=re.DOTALL | re.MULTILINE)
+    """Extract main content from note (after frontmatter)."""
+    # Remove frontmatter (handles both with and without blank line after ---)
+    content = re.sub(r'^---\n.*?\n---\n', '', content, flags=re.DOTALL)
 
     return content.strip()
 

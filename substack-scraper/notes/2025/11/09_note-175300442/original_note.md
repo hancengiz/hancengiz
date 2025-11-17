@@ -1,6 +1,6 @@
 ---
-title: Read this article if you want to learn more about ...
-date: Sun, 09 Nov 2025 15:19:13 GMT
+title: Note 175300442
+published: Sun, 09 Nov 2025 15:19:13 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-175300442
@@ -11,13 +11,4 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-
-# Read this article if you want to learn more about ...
-
-**Published:** Sun, 09 Nov 2025 15:19:13 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-175300442](https://substack.com/note/c-175300442)
-
----
-
-Read this article if you want to learn more about the recently announced Agent Skills for Claude. <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>
+Read this article if you want to learn more about the recently announced Agent Skills for Claude. [https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)

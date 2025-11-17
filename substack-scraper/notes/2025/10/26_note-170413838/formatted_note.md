@@ -1,6 +1,6 @@
 ---
-title: Just added a feature to publish formatted tweets w...
-date: Sun, 26 Oct 2025 18:04:35 GMT
+title: Note 170413838
+published: Sun, 26 Oct 2025 18:04:35 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-170413838
@@ -11,22 +11,10 @@ reactions: 0
 restacks: 0
 replies: 1
 ---
-
-# Just added a feature to publish formatted tweets w...
-
-**Published:** Sun, 26 Oct 2025 18:04:35 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-170413838](https://substack.com/note/c-170413838)
-**Engagement:** 0 reactions, 0 restacks, 1 replies
-
----
-
 Just added a feature to publish formatted tweets with images from my Substack to Twitter completely from my phone during bumper-to-bumper traffic. 🚀🚀
 
 **I love this new AI era❤️**
 
-![Image](image2.jpeg)
-
 ![Image](image1.jpeg)
 
-
+![Image](image2.jpeg)

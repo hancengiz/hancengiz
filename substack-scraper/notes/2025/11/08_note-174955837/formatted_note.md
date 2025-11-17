@@ -1,6 +1,6 @@
 ---
-title: anyone used factory droid or amp by sourcegraph? t...
-date: Sat, 08 Nov 2025 13:53:42 GMT
+title: Note 174955837
+published: Sat, 08 Nov 2025 13:53:42 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-174955837
@@ -11,13 +11,4 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-
-# anyone used factory droid or amp by sourcegraph? t...
-
-**Published:** Sat, 08 Nov 2025 13:53:42 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-174955837](https://substack.com/note/c-174955837)
-
----
-
 anyone used factory droid or amp by sourcegraph? thinking looking at alternatives to claude code/cursor/copilot to catchup with the ecosystem

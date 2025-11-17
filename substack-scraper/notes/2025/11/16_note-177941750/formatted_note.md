@@ -1,6 +1,6 @@
 ---
-title: There's nothing better than getting approvals from...
-date: Sun, 16 Nov 2025 20:29:09 GMT
+title: Note 177941750
+published: Sun, 16 Nov 2025 20:29:09 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-177941750
@@ -11,18 +11,6 @@ reactions: 0
 restacks: 0
 replies: 1
 ---
-
-# There's nothing better than getting approvals from...
-
-**Published:** Sun, 16 Nov 2025 20:29:09 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-177941750](https://substack.com/note/c-177941750)
-**Engagement:** 0 reactions, 0 restacks, 1 replies
-
----
-
 There's nothing better than getting approvals from #claudecode on a Sunday night.
 
 ![Image](image1.png)
-
-

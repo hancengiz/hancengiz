@@ -1,6 +1,6 @@
 ---
-title: Beyond Vibe Coding 
-date: Thu, 30 Oct 2025 06:04:05 GMT
+title: Note 171672960
+published: Thu, 30 Oct 2025 06:04:05 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-171672960
@@ -11,13 +11,4 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-
-# Beyond Vibe Coding 
-
-**Published:** Thu, 30 Oct 2025 06:04:05 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-171672960](https://substack.com/note/c-171672960)
-
----
-
-Beyond Vibe Coding
+Beyond Vibe Coding 

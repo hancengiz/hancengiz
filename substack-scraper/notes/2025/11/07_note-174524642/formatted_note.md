@@ -1,8 +1,6 @@
 ---
-title: Excited about this project!
-
-Anyone using Obsidian...
-date: Fri, 07 Nov 2025 06:33:16 GMT
+title: Note 174524642
+published: Fri, 07 Nov 2025 06:33:16 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-174524642
@@ -13,22 +11,8 @@ reactions: 1
 restacks: 0
 replies: 0
 ---
-
-# Excited about this project!
-
-Anyone using Obsidian...
-
-**Published:** Fri, 07 Nov 2025 06:33:16 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-174524642](https://substack.com/note/c-174524642)
-**Engagement:** 1 reactions, 0 restacks, 0 replies
-
----
-
 Excited about this project!
 
 Anyone using Obsidian + AI together to recommend workflows? Best practices?
 
 ![Image](image1.jpeg)
-
-

@@ -1,6 +1,6 @@
 ---
-title: Amazing Greasemonkey (or Violentmonkey or Tampermo...
-date: Mon, 10 Nov 2025 21:21:27 GMT
+title: Note 175803551
+published: Mon, 10 Nov 2025 21:21:27 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-175803551
@@ -11,17 +11,6 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-
-# Amazing Greasemonkey (or Violentmonkey or Tampermo...
-
-**Published:** Mon, 10 Nov 2025 21:21:27 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-175803551](https://substack.com/note/c-175803551)
-
----
-
-Amazing Greasemonkey (or Violentmonkey or Tampermonkey) script that adds a Fork function to Claude Chat web UI. <https://greasyfork.org/en/scripts/522141-claude-fork-conversation/feedback>
+Amazing Greasemonkey (or Violentmonkey or Tampermonkey) script that adds a Fork function to Claude Chat web UI. [https://greasyfork.org/en/scripts/522141-claude-fork-conversation/feedback](https://greasyfork.org/en/scripts/522141-claude-fork-conversation/feedback)
 
 ![Image](image1.png)
-
-

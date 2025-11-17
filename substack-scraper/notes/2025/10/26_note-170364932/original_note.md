@@ -1,6 +1,6 @@
 ---
-title: I automated my Substack notes to Twitter (complete...
-date: Sun, 26 Oct 2025 15:28:28 GMT
+title: Note 170364932
+published: Sun, 26 Oct 2025 15:28:28 GMT
 author: Cengiz Han
 handle: hancengiz
 url: https://substack.com/note/c-170364932
@@ -11,15 +11,6 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-
-# I automated my Substack notes to Twitter (complete...
-
-**Published:** Sun, 26 Oct 2025 15:28:28 GMT
-**Author:** Cengiz Han (@hancengiz)
-**Link:** [https://substack.com/note/c-170364932](https://substack.com/note/c-170364932)
-
----
-
 I automated my Substack notes to Twitter (completely free)
 
 Every time I publish a note here on Substack, it automatically posts to Twitter within 5 minutes. No Zapier, no Buffer, no manual copying. Just pure automation.
@@ -27,11 +18,8 @@ Every time I publish a note here on Substack, it automatically posts to Twitter 
 **How it works:**
 
 1.   GitHub Actions scrapes my Substack notes API every 5 minutes
-
 2.   When a new note appears, another workflow kicks in
-
 3.   It posts directly to Twitter using the API v2 (free tier: 1,500 tweets/month)
-
 4.   A .published marker file tracks which notes have been tweeted
 
   Why I built this:
@@ -44,27 +32,20 @@ Every time I publish a note here on Substack, it automatically posts to Twitter 
 
   The tech stack:
 
-*   GitHub Actions (cron: every 5 minutes)
-
-*   Twitter API v2 (free tier, no credit card)
-
-*   Python + tweepy
-
-*   Marker files for duplicate prevention
+-   GitHub Actions (cron: every 5 minutes)
+-   Twitter API v2 (free tier, no credit card)
+-   Python + tweepy
+-   Marker files for duplicate prevention
 
 **What I like about it:**
 
-*   ✅ Completely free (within Twitter's 1,500 tweets/month)
+-   ✅ Completely free (within Twitter's 1,500 tweets/month)
+-   ✅ No third-party dependencies
+-   ✅ Tweet URLs saved in each note folder
+-   ✅ Smart truncation at word boundaries
+-   ✅ Open source, easy to modify
 
-*   ✅ No third-party dependencies
-
-*   ✅ Tweet URLs saved in each note folder
-
-*   ✅ Smart truncation at word boundaries
-
-*   ✅ Open source, easy to modify
-
-The whole setup is here if you want to clone it: <https://github.com/hancengiz/hancengiz/tree/main/substack-scraper>
+The whole setup is here if you want to clone it: [https://github.com/hancengiz/hancengiz/tree/main/substack-scraper](https://github.com/hancengiz/hancengiz/tree/main/substack-scraper)
 
 Built with Claude Code in one afternoon. AI-native development is wild.
 
