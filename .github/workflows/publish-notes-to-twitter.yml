@@ -1,15 +1,7 @@
 name: Publish Notes to Twitter
 
 on:
-  # Trigger when new notes are committed by the scraper
-  push:
-    branches:
-      - main
-    paths:
-      - 'substack-scraper/notes/**'
-      - '!substack-scraper/notes/**/.published'
-
-  # Allow manual trigger for testing
+  # Triggered by the notes scraper workflow when new notes are found
   workflow_dispatch:
 
 # Serialize with other workflows that push to main branch

@@ -65,3 +65,17 @@ jobs:
           git add substack-scraper/posts/
           git commit -m "Add new Substack posts - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
+
+      - name: Trigger Twitter publishing workflow
+        if: steps.git-check.outputs.changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'publish-posts-to-twitter.yml',
+              ref: 'main'
+            });
+            console.log('Triggered Twitter publishing workflow for posts');
