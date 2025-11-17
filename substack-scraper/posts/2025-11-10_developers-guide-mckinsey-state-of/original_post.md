@@ -1288,7 +1288,7 @@ Bryce Hall, Tara Balakrishnan (QuantumBlack, AI by McKinsey)
 
 * * *
 
-[Subscribe now](https://www.cengizhan.com/subscribe?)
+[Subscribe now](https://www.cengizhan.com/subscribe)
 
 ###  **Explore All Analyses**
 
