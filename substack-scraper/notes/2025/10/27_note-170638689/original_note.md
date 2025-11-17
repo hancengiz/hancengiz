@@ -17,6 +17,6 @@ I use the Speechify app frequently. I already got premium and it looks like it's
 
 Use this link to receive a huge discount on their premium plan, if you also use this link it gives me additional period on my premium:) 🎉 Even if you do not subscribe to premium plan, I highly recommend trying it out if you like consuming your content as audio. Chrome extension and mobile app is my favorites.
 
-[https://share.speechify.com/mcHf5eN](https://share.speechify.com/mcHf5eN)
+<https://share.speechify.com/mcHf5eN>
 
 ![Image](https://substack-post-media.s3.amazonaws.com/public/images/0ac56e99-c4fa-4951-b973-af251be45d0e_1324x1724.png)

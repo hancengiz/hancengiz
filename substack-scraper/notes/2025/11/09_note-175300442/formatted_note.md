@@ -11,4 +11,4 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-Read this article if you want to learn more about the recently announced Agent Skills for Claude. [https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
+Read this article if you want to learn more about the recently announced Agent Skills for Claude. <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>

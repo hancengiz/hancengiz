@@ -18,8 +18,11 @@ Every time I publish a note here on Substack, it automatically posts to Twitter 
 **How it works:**
 
 1.   GitHub Actions scrapes my Substack notes API every 5 minutes
+
 2.   When a new note appears, another workflow kicks in
+
 3.   It posts directly to Twitter using the API v2 (free tier: 1,500 tweets/month)
+
 4.   A .published marker file tracks which notes have been tweeted
 
   Why I built this:
@@ -32,20 +35,27 @@ Every time I publish a note here on Substack, it automatically posts to Twitter 
 
   The tech stack:
 
--   GitHub Actions (cron: every 5 minutes)
--   Twitter API v2 (free tier, no credit card)
--   Python + tweepy
--   Marker files for duplicate prevention
+*   GitHub Actions (cron: every 5 minutes)
+
+*   Twitter API v2 (free tier, no credit card)
+
+*   Python + tweepy
+
+*   Marker files for duplicate prevention
 
 **What I like about it:**
 
--   ✅ Completely free (within Twitter's 1,500 tweets/month)
--   ✅ No third-party dependencies
--   ✅ Tweet URLs saved in each note folder
--   ✅ Smart truncation at word boundaries
--   ✅ Open source, easy to modify
+*   ✅ Completely free (within Twitter's 1,500 tweets/month)
 
-The whole setup is here if you want to clone it: [https://github.com/hancengiz/hancengiz/tree/main/substack-scraper](https://github.com/hancengiz/hancengiz/tree/main/substack-scraper)
+*   ✅ No third-party dependencies
+
+*   ✅ Tweet URLs saved in each note folder
+
+*   ✅ Smart truncation at word boundaries
+
+*   ✅ Open source, easy to modify
+
+The whole setup is here if you want to clone it: <https://github.com/hancengiz/hancengiz/tree/main/substack-scraper>
 
 Built with Claude Code in one afternoon. AI-native development is wild.
 

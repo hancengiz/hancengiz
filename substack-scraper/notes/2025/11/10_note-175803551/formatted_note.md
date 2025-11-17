@@ -11,6 +11,6 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-Amazing Greasemonkey (or Violentmonkey or Tampermonkey) script that adds a Fork function to Claude Chat web UI. [https://greasyfork.org/en/scripts/522141-claude-fork-conversation/feedback](https://greasyfork.org/en/scripts/522141-claude-fork-conversation/feedback)
+Amazing Greasemonkey (or Violentmonkey or Tampermonkey) script that adds a Fork function to Claude Chat web UI. <https://greasyfork.org/en/scripts/522141-claude-fork-conversation/feedback>
 
 ![Image](image1.png)

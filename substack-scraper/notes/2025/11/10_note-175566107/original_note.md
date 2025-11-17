@@ -11,6 +11,6 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-I was trying to find a name for prompt-based capabilities that can be lazy-loaded that save the context. I invented a term “prompt function” and you could mark them as discoverable. I better rename it to “skill” now then to match the name antrophics gave. :) [https://www.claude.com/blog/skills](https://www.claude.com/blog/skills)
+I was trying to find a name for prompt-based capabilities that can be lazy-loaded that save the context. I invented a term “prompt function” and you could mark them as discoverable. I better rename it to “skill” now then to match the name antrophics gave. :) <https://www.claude.com/blog/skills>
 
 ![Image](https://substack-post-media.s3.amazonaws.com/public/images/acf74a92-a889-44e7-94a9-00fe7bd240ca_1360x1750.png)

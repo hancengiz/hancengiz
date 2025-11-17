@@ -11,4 +11,4 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-[https://www.cengizhan.com/p/claude-code-prompt-coach-skill-to?r=bi6fp&utm_campaign=post&utm_medium=web&showWelcomeOnShare=false](https://www.cengizhan.com/p/claude-code-prompt-coach-skill-to?r=bi6fp&utm_campaign=post&utm_medium=web&showWelcomeOnShare=false)
+<https://www.cengizhan.com/p/claude-code-prompt-coach-skill-to?r=bi6fp&utm_campaign=post&utm_medium=web&showWelcomeOnShare=false>
