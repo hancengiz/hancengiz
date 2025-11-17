@@ -279,10 +279,10 @@ flowchart TD
     E --> F{Premium Mode?}
     F -->|Yes| G[format_for_twitter]
     F -->|No| H[Use raw content]
-    G --> I[Remove ![alt]'url']
-    I --> J[Convert **bold** to 𝗯𝗼𝗹𝗱]
+    G --> I["Remove image markdown"]
+    I --> J["Convert **bold** to 𝗯𝗼𝗹𝗱"]
     J --> K[Clean up links]
-    K --> L[Add 👉 {url} at end]
+    K --> L["Add 👉 url at end"]
     H --> M[Truncate if needed]
     M --> L
 
