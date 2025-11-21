@@ -1,6 +1,6 @@
 <div align="center">
-> [!IMPORTANT]
-> Key information users need to know to achieve their goal.
+[!IMPORTANT]
+Key information users need to know to achieve their goal.
   
 # Hi there, I'm Cengiz Han 👋
 
