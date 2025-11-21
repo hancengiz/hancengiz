@@ -1,5 +1,7 @@
 <div align="center">
-
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+  
 # Hi there, I'm Cengiz Han 👋
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=2E9EF7&center=true&vCenter=true&width=600&lines=AI-Native+Engineering+%26+Solutions;Cloud-Native+%26+Serverless+Architectures;Event-Driven+Microservices;Software+Developer+from+Istanbul)](https://git.io/typing-svg)
