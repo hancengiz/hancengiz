@@ -1,6 +1,6 @@
 ---
 title: Note 
-published: Sun, 23 Nov 2025 23:36:22 GMT
+published: Sun, 23 Nov 2025 23:36:41 GMT
 author: Unknown
 handle: 
 url: https://www.cengizhan.com/notes/post/
