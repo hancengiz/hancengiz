@@ -7,13 +7,6 @@ on:
 
   workflow_dispatch:
 
-  push:
-    branches:
-      - main
-    paths:
-      - 'substack-scraper/**'
-      - '.github/workflows/substack-posts.yml'
-
 jobs:
   scrape-posts:
     runs-on: ubuntu-latest
