@@ -582,6 +582,11 @@ def fetch_notes(base_url, output_dir):
                 comment = item.get('comment', {})
 
                 note_id = comment.get('id', '')
+
+                # Skip items without a valid note_id (e.g., likes on other posts)
+                if not note_id:
+                    continue
+
                 name = comment.get('name', 'Unknown')
                 handle = comment.get('handle', '')
                 body = comment.get('body', '')
