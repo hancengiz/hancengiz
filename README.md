@@ -110,19 +110,19 @@ Look, I have a problem. There are too many videos to watch, too little time, and
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
-**[Note 170317259](https://substack.com/note/c-170317259)** · *December 18, 2025*
+**[Note 170317259](https://substack.com/note/c-170317259)** · *December 19, 2025*
 
 Response to this comment : <https://www.cengizhan.com/p/the-ai-native-way-of-building/comments?utmsource=substack&utmmedium=web&utmcampaign=postviewer>
 
 ---
 
-**[Note 170364932](https://substack.com/note/c-170364932)** · *December 18, 2025*
+**[Note 170364932](https://substack.com/note/c-170364932)** · *December 19, 2025*
 
 I automated my Substack notes to Twitter (completely free)
 
 ---
 
-**[Note 170413838](https://substack.com/note/c-170413838)** · *December 18, 2025*
+**[Note 170413838](https://substack.com/note/c-170413838)** · *December 19, 2025*
 
 Just added a feature to publish formatted tweets with images from my Substack to Twitter completely from my phone during bumper-to-bumper traffic. 🚀🚀
 
