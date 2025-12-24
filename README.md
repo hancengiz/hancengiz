@@ -92,6 +92,11 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 ## Latest Blog Posts
 
+### [Announcing specs.md: Structure for AI-Native Development](https://www.cengizhan.com/p/announcing-specsmd-structure-for)
+*December 24, 2025*
+
+TL;DR: Vibe-coding works for side projects. But production systems need more.   [specs.md](http://specs.md/) brings the Explore -> Specify -> Engineer loop into your AI coding workflow.   It's open source, in alpha, and I'm looking for feedback from...
+
 ### [Developer’s Guide: The State of AI Global Survey 2025](https://www.cengizhan.com/p/developers-guide-mckinsey-state-of)
 *November 10, 2025*
 
@@ -101,11 +106,6 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 *November 09, 2025*
 
 Ever wonder if you're actually good at working with AI tools? Or if you're just burning tokens with vague prompts and wondering why Claude keeps asking for clarification?
-
-### [One More Piece Built: Adding YouTube Analysis to My Learning Iron Man Suit](https://www.cengizhan.com/p/one-more-piece-built-adding-youtube)
-*November 04, 2025*
-
-Look, I have a problem. There are too many videos to watch, too little time, and my YouTube "Watch Later" list has become a graveyard of good intentions. You know how it goes:
 
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
