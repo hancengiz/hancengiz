@@ -71,7 +71,7 @@ It plugs into the tools you already use: Claude Code, Cursor, GitHub Copilot.
 
 ##  **How It Works**
 
-[![](https://substackcdn.com/image/fetch/$s_!Uajg!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc4fd04f3-a9d0-47aa-bcdd-ef7bf7b712b4_1424x1400.png)](https://asciinema.org/a/763877)
+[![](https://substackcdn.com/image/fetch/$s_!Uajg!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc4fd04f3-a9d0-47aa-bcdd-ef7bf7b712b4_1424x1400.png)](https://asciinema.org/a/763995)
 
 You don't start by prompting blindly. You start by capturing intent.
 

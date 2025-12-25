@@ -71,7 +71,7 @@ It plugs into the tools you already use: Claude Code, Cursor, GitHub Copilot.
 
 ##  **How It Works**
 
-[![](image1.png)](https://asciinema.org/a/763877)
+[![](image1.png)](https://asciinema.org/a/763995)
 
 You don't start by prompting blindly. You start by capturing intent.
 
