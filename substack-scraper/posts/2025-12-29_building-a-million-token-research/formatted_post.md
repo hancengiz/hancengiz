@@ -19,7 +19,7 @@ type: post
  **TL;DR:** Claude Code's extensible agent system lets you create custom sub-
 agents that leverage different AI models for specialized tasks. I built a
 Gemini research specialist that uses Google's 1 million token context window
-for research--and it's transformed how I gather information during coding
+for deep research--and it's transformed how I gather information during coding
 sessions.
 
 * * *
@@ -38,10 +38,9 @@ your flow state. Spend 45 minutes reading documentation, Stack Overflow
 answers, and blog posts. Try to hold all that context in your head while
 switching back to code.
 
-The mental cost is brutal. Context switching alone can cost 23 minutes to
-regain focus, according to productivity research. But the bigger problem is
-synthesis--turning scattered information into actionable knowledge while
-keeping your coding context intact.
+The mental cost is brutal. Context switching destroys flow state. But the
+bigger problem is synthesis--turning scattered information into actionable
+knowledge while keeping your coding context intact.
 
 What if your coding assistant could delegate research to a specialized agent
 that processes a million tokens of context and returns synthesized insights
@@ -71,9 +70,6 @@ understanding and editing. Gemini for web research and massive context
 synthesis.
 
 * * *
-
-Thanks for reading cengizhan.com! Subscribe for free to receive new posts and
-support my work.
 
 ##  **The Gemini Research Specialist Agent**
 
@@ -177,52 +173,6 @@ For developers, this means research that actually captures:
 
 * * *
 
-##  **Building the Agent: Key Design Decisions**
-
-Creating an effective research agent required several deliberate choices:
-
-###  **1\. Clear Agent Description**
-
-Claude Code needs to know when to delegate. The agent description explicitly
-defines the trigger conditions:
-
-    
-    
-    Use this agent when the user needs to research information,
-    gather data from the web, investigate topics, find current
-    information, or explore subjects that require internet
-    search capabilities.
-    
-
-This ensures Claude recognizes research requests and routes them
-appropriately.
-
-###  **2\. Prompt Engineering for Research Quality**
-
-The agent's system prompt shapes how Gemini approaches research tasks:
-
-  * Focus on synthesizing, not just retrieving
-
-  * Prioritize actionable insights over exhaustive listings
-
-  * Consider recency and source credibility
-
-  * Structure output for developer consumption
-
-###  **3\. Asynchronous Execution**
-
-Research takes time. The agent runs in the background so you're not blocked
-waiting for results. This preserves your flow state--you can continue coding
-other parts while research completes.
-
-###  **4\. Context Integration**
-
-When the agent returns, its findings integrate into your Claude Code
-conversation. You're not switching tools or copying information. The research
-becomes part of your working context.
-
-* * *
-
 ##  **Real-World Use Cases**
 
 ###  **1\. Learning New Protocols and Technologies**
@@ -258,50 +208,7 @@ This transforms the agent from a search tool into a **learning accelerator**.
 You're not just finding information--you're building understanding and
 creating reusable knowledge assets.
 
-###  **2\. Technology Evaluation**
-
-You're choosing between vector databases for your AI application. Instead of
-opening tabs for Pinecone, Weaviate, Milvus, Qdrant, and Chroma documentation:
-
-    
-    
-    "Compare the performance characteristics of different vector
-    databases for a use case with 10M embeddings, focusing on
-    query latency, scalability, and operational complexity"
-    
-
-The agent processes documentation, benchmarks, and community experiences
-simultaneously, returning a synthesis that would take hours to compile
-manually.
-
-###  **3\. Library Deep Dives**
-
-You need to understand how a framework handles a specific scenario:
-
-    
-    
-    "Research how Next.js App Router handles streaming,
-    error boundaries, and suspense in server components,
-    including known edge cases and workarounds"
-    
-
-The agent can process the full Next.js documentation, relevant GitHub issues,
-and developer discussions to provide a comprehensive answer.
-
-###  **4\. Current State of the Art**
-
-Technology moves fast. Staying current is exhausting:
-
-    
-    
-    "What are the latest developments in local LLM inference
-    optimization as of late 2025?"
-    
-
-The agent researches current information, giving you a snapshot of the
-landscape without context-switching to browser research.
-
-###  **5\. Academic Research and Whitepaper Discovery**
+###  **2\. Academic Research and Whitepaper Discovery**
 
 Staying current with academic research is nearly impossible manually. New
 papers drop daily on arXiv, and finding the ones relevant to your work
@@ -326,139 +233,28 @@ For practitioners, this bridges the gap between academic innovation and real-
 world application. You get the insights without the hours of reading dense
 papers.
 
-###  **6\. Implementation Pattern Research**
-
-Before building, understand what works:
+###  **3\. Technology Comparisons**
 
     
     
-    "Research production patterns for implementing rate limiting
-    in distributed systems, focusing on Redis-based approaches
-    versus token bucket implementations"
+    "Compare the performance characteristics of different vector
+    databases for a use case with 10M embeddings, focusing on
+    query latency, scalability, and operational complexity"
     
 
-* * *
-
-## **The Workflow Integration Advantage**
-
-Here's what makes this powerful: the research happens inside your coding
-session. The insights feed directly into your context. You don't lose your
-mental model of the code you're writing.
-
- **Before: Fragmented Research**
-
-  1. Code -> encounter unknown
-
-  2. Switch to browser
-
-  3. Research (lose coding context)
-
-  4. Return to code
-
-  5. Try to remember insights
-
-  6. Repeat
-
- **After: Integrated Research**
-
-  1. Code -> encounter unknown
-
-  2. Request research (stay in terminal)
-
-  3. Continue coding other parts
-
-  4. Receive synthesized insights
-
-  5. Apply directly to your code
-
-The agent system also handles something subtle but important: it knows what
-format of answer you need. It's not returning raw search results or document
-dumps. It's synthesizing research into developer-focused insights because it
-understands you're in a coding context.
+The agent processes documentation, benchmarks, and community experiences
+simultaneously, returning a synthesis that would take hours to compile
+manually.
 
 * * *
 
-##  **Practical Tips for Effective Research Prompts**
+##  **Limitations**
 
-Not all research requests are equal. Here's how to get the most from the
-agent:
+  *  **Research latency** : 30-60 seconds for complex queries. Thorough research isn't instant.
 
-###  **Be Specific About Your Context**
+  *  **Synthesis quality** : Large context enables better synthesis, but verify critical findings.
 
- **Weak:** "Research authentication"  
- **Strong:** "Research OAuth 2.0 best practices for SPAs in 2025, focusing on
-token storage security and refresh token rotation"
-
-###  **Specify What You Need to Know**
-
- **Weak:** "Tell me about React Server Components"  
- **Strong:** "Research React Server Components focusing on data fetching
-patterns, when to use them vs client components, and common migration pitfalls
-from Pages Router"
-
-###  **Request Comparisons Explicitly**
-
- **Weak:** "Research state management"  
- **Strong:** "Compare Zustand vs Jotai vs Redux Toolkit for a medium-sized
-React application, focusing on bundle size, learning curve, and TypeScript
-support"
-
-###  **Ask for Current Information When It Matters**
-
- **Weak:** "How does Kubernetes handle autoscaling?"  
- **Strong:** "What are the latest best practices for Kubernetes pod
-autoscaling in 2025, including HPA, VPA, and KEDA approaches?"
-
-* * *
-
-##  **The Bigger Picture: Multi-Model Agent Architectures**
-
-This research agent illustrates a larger pattern in AI-native development:
-**using specialized models for specialized tasks**.
-
-Claude excels at code understanding, reasoning about complex systems, and
-careful editing. Gemini excels at processing massive context and web search.
-Why choose one when you can orchestrate both?
-
-This mirrors how effective development teams work. You don't ask your backend
-specialist to also handle UX research. You leverage expertise where it
-matters.
-
-The architecture becomes:
-
-  *  **Primary agent (Claude)** : Code understanding, editing, problem-solving
-
-  *  **Research specialist (Gemini)** : Web research, information synthesis, current data
-
-  *  **Task delegation** : The right model for the right job
-
-As AI development tools mature, expect this pattern to deepen. Specialized
-agents for security analysis, performance optimization, documentation
-generation--each leveraging their unique strengths.
-
-* * *
-
-##  **Limitations and Considerations**
-
-Let's be honest about the constraints:
-
- **Research latency** : Deep research takes time. The agent may run for 30-60
-seconds on complex queries. This is a feature, not a bug--thorough research
-isn't instant.
-
- **Information currency** : While the agent accesses current web information,
-it's still subject to what's indexed and available. Cutting-edge developments
-from yesterday might not surface.
-
- **Synthesis quality** : Large context windows enable better synthesis, but
-they don't guarantee perfect interpretation. Verify critical findings.
-
- **Token costs** : Million-token operations aren't cheap. Use targeted
-research requests rather than "tell me everything about X" approaches.
-
- **Setup complexity** : Building custom agents requires understanding Claude
-Code's agent delegation system. The initial investment pays off in workflow
-efficiency.
+  *  **Token costs** : Use targeted requests rather than "tell me everything about X."
 
 * * *
 
@@ -467,82 +263,111 @@ efficiency.
 Here's the full implementation. Create this file at `~/.claude/agents/gemini-
 research-specialist.md`:
 
-    
-    
-    ---
-    name: gemini-research-specialist
-    description: Use this agent when the user needs to research information, gather data from the web, investigate topics, find current information, or explore subjects that require internet search capabilities. Examples:\n\n<example>\nContext: User needs current information about a technology.\nuser: "What are the latest developments in quantum computing?"\nassistant: "I'll use the gemini-research-specialist agent to research the latest developments in quantum computing for you."\n<commentary>The user is asking for current information that requires web research, so launch the gemini-research-specialist agent.</commentary>\n</example>\n\n<example>\nContext: User is working on a project and needs background information.\nuser: "I'm building a recommendation system. Can you research best practices for collaborative filtering?"\nassistant: "Let me use the gemini-research-specialist agent to research best practices for collaborative filtering in recommendation systems."\n<commentary>The user needs research on a specific technical topic, so use the gemini-research-specialist agent to gather comprehensive information.</commentary>\n</example>\n\n<example>\nContext: User needs comparative analysis requiring research.\nuser: "Compare the performance characteristics of different vector databases"\nassistant: "I'll deploy the gemini-research-specialist agent to research and compare performance characteristics across different vector databases."\n<commentary>This requires gathering current information from multiple sources, making it ideal for the research specialist agent.</commentary>\n</example>
-    model: sonnet
-    ---
-    
-    You are an elite Research Specialist with expertise in conducting thorough, efficient, and accurate research using the Gemini AI model in headless mode. Your primary tool is the command `gemini -p "prompt"` which you will use to gather information from the web and synthesize findings.
-    
-    ## Core Responsibilities
-    
-    1. **Execute Targeted Research**: When given a research task, formulate precise, well-structured prompts for Gemini that will yield the most relevant and comprehensive information.
-    
-    2. **Strategic Prompt Design**: Craft your Gemini prompts to:
-       - Be specific and focused on the exact information needed
-       - Request current, factual information when timeliness matters
-       - Ask for multiple perspectives or sources when appropriate
-       - Include requests for examples, data, or evidence to support findings
-       - Specify the desired format or structure of the response when helpful
-    
-    3. **Synthesize and Present Findings**: After receiving results from Gemini:
-       - Organize information logically and coherently
-       - Highlight key findings and insights
-       - Identify any gaps or limitations in the research
-       - Present information in a clear, actionable format
-       - Cite or reference the nature of sources when relevant
-    
-    ## Operational Guidelines
-    
-    **Research Process**:
-    - Begin by clarifying the research objective and scope
-    - Break complex research questions into focused sub-queries if needed
-    - Execute Gemini searches using the exact format: `gemini -p "your precise prompt here"`
-    - Evaluate the quality and relevance of returned information
-    - Conduct follow-up searches if initial results are incomplete or require deeper investigation
-    
-    **Quality Assurance**:
-    - Cross-reference information when making critical claims
-    - Note when information may be time-sensitive or subject to change
-    - Distinguish between factual information, expert opinions, and speculation
-    - Acknowledge uncertainty when sources conflict or information is limited
-    
-    **Prompt Engineering Best Practices**:
-    - Use clear, unambiguous language in your Gemini prompts
-    - Include relevant context that helps narrow the search scope
-    - Request specific types of information (statistics, examples, comparisons, etc.)
-    - Ask for recent or current information when timeliness is important
-    - Frame questions to elicit comprehensive yet focused responses
-    
-    **Output Standards**:
-    - Present research findings in a well-structured format (use headings, bullet points, or numbered lists as appropriate)
-    - Lead with the most important or directly relevant information
-    - Provide context and background when it aids understanding
-    - Include actionable insights or recommendations when applicable
-    - Clearly indicate if additional research would be beneficial
-    
-    ## Edge Cases and Special Situations
-    
-    - **Insufficient Results**: If initial research yields limited information, reformulate your prompt with different angles or broader/narrower scope
-    - **Conflicting Information**: When sources disagree, present multiple perspectives and note the discrepancy
-    - **Rapidly Evolving Topics**: Explicitly note that information may change quickly and recommend follow-up research timelines
-    - **Highly Technical Topics**: Break down complex findings into accessible explanations while maintaining accuracy
-    - **Ambiguous Requests**: Proactively ask clarifying questions before conducting research to ensure you're investigating the right topic
-    
-    ## Self-Verification
-    
-    Before presenting findings, ask yourself:
-    - Does this information directly address the research question?
-    - Have I provided sufficient depth and breadth of coverage?
-    - Are there obvious gaps or follow-up questions that should be addressed?
-    - Is the information presented in a clear, actionable format?
-    - Have I noted any important caveats or limitations?
-    
-    Your goal is to be a reliable, efficient research partner that delivers high-quality, relevant information through strategic use of Gemini's capabilities. Always prioritize accuracy, clarity, and usefulness in your research outputs.
-    
+name | description | model  
+---|---|---  
+  
+gemini-research-specialist
+
+|
+
+Use this agent when the user needs to research information, gather data from
+the web, investigate topics, find current information, or explore subjects
+that require internet search capabilities.
+
+|
+
+sonnet  
+  
+You are an elite Research Specialist with expertise in conducting thorough,
+efficient, and accurate research using the Gemini AI model in headless mode.
+Your primary tool is the command `gemini "prompt"` which you will use to
+gather information from the web and synthesize findings.
+
+## Core Responsibilities
+
+[](https://www.cengizhan.com/feed#core-responsibilities)
+
+  1. **Execute Targeted Research** : When given a research task, formulate precise, well-structured prompts for Gemini that will yield the most relevant and comprehensive information.
+
+  2. **Strategic Prompt Design** : Craft your Gemini prompts to:
+
+    * Be specific and focused on the exact information needed
+    * Request current, factual information when timeliness matters
+    * Ask for multiple perspectives or sources when appropriate
+    * Include requests for examples, data, or evidence to support findings
+    * Specify the desired format or structure of the response when helpful
+  3. **Synthesize and Present Findings** : After receiving results from Gemini:
+
+    * Organize information logically and coherently
+    * Highlight key findings and insights
+    * Identify any gaps or limitations in the research
+    * Present information in a clear, actionable format
+    * Cite or reference the nature of sources when relevant
+
+## Operational Guidelines
+
+[](https://www.cengizhan.com/feed#operational-guidelines)
+
+**Research Process** :
+
+  * Begin by clarifying the research objective and scope
+  * Break complex research questions into focused sub-queries if needed
+  * Execute Gemini searches using the exact format: `gemini "your precise prompt here"`
+  * Evaluate the quality and relevance of returned information
+  * Conduct follow-up searches if initial results are incomplete or require deeper investigation
+
+**Quality Assurance** :
+
+  * Cross-reference information when making critical claims
+  * Note when information may be time-sensitive or subject to change
+  * Distinguish between factual information, expert opinions, and speculation
+  * Acknowledge uncertainty when sources conflict or information is limited
+
+**Prompt Engineering Best Practices** :
+
+  * Use clear, unambiguous language in your Gemini prompts
+  * Include relevant context that helps narrow the search scope
+  * Request specific types of information (statistics, examples, comparisons, etc.)
+  * Ask for recent or current information when timeliness is important
+  * Frame questions to elicit comprehensive yet focused responses
+
+**Output Standards** :
+
+  * Present research findings in a well-structured format (use headings, bullet points, or numbered lists as appropriate)
+  * Lead with the most important or directly relevant information
+  * Provide context and background when it aids understanding
+  * Include actionable insights or recommendations when applicable
+  * Clearly indicate if additional research would be beneficial
+
+## Edge Cases and Special Situations
+
+[](https://www.cengizhan.com/feed#edge-cases-and-special-situations)
+
+  * **Insufficient Results** : If initial research yields limited information, reformulate your prompt with different angles or broader/narrower scope
+  * **Conflicting Information** : When sources disagree, present multiple perspectives and note the discrepancy
+  * **Rapidly Evolving Topics** : Explicitly note that information may change quickly and recommend follow-up research timelines
+  * **Highly Technical Topics** : Break down complex findings into accessible explanations while maintaining accuracy
+  * **Ambiguous Requests** : Proactively ask clarifying questions before conducting research to ensure you're investigating the right topic
+
+## Self-Verification
+
+[](https://www.cengizhan.com/feed#self-verification)
+
+Before presenting findings, ask yourself:
+
+  * Does this information directly address the research question?
+  * Have I provided sufficient depth and breadth of coverage?
+  * Are there obvious gaps or follow-up questions that should be addressed?
+  * Is the information presented in a clear, actionable format?
+  * Have I noted any important caveats or limitations?
+
+Your goal is to be a reliable, efficient research partner that delivers high-
+quality, relevant information through strategic use of Gemini's capabilities.
+Always prioritize accuracy, clarity, and usefulness in your research outputs.
+
+[view
+raw](https://gist.github.com/hancengiz/63ccfad08f297c57b778c5da13849275/raw/ae9eb72cee0bfdc2c093461d3004fa5076828af6/gemini-research-specialist.md) [ gemini-research-specialist.md
+](https://gist.github.com/hancengiz/63ccfad08f297c57b778c5da13849275#file-gemini-research-specialist-md) hosted with ❤ by [GitHub](https://github.com)
 
 ### **Prerequisites**
 
@@ -570,69 +395,12 @@ Before the agent works, you need Gemini CLI installed and configured:
 The Google login option is recommended for most users since it's simpler and
 includes a generous free tier.
 
-###  **Key Design Elements**
-
- **The frontmatter** tells Claude Code when and how to use this agent:
-
-  * `name`: The identifier Claude uses when delegating
-
-  * `description`: Rich examples help Claude recognize when to delegate (the `\n\n<example>` pattern is intentional)
-
-  * `model`: The Claude model the agent itself uses for orchestration (sonnet for speed)
-
- **The system prompt** shapes the research behavior:
-
-  * Instructs the agent to use `gemini -p "prompt"` for actual research
-
-  * Defines quality standards for synthesis
-
-  * Handles edge cases like conflicting sources
-
-  * Ensures output is developer-friendly
-
 ###  **How It Works Under the Hood**
 
 The core pattern is simple: **a Claude Code agent that invokes another CLI
 tool**.
 
-    
-    
-    ┌─────────────────────────────────────────────────────────┐
-    │  Claude Code (your terminal session)                    │
-    │                                                         │
-    │  You: "Research best practices for rate limiting"       │
-    │           │                                             │
-    │           ▼                                             │
-    │  ┌─────────────────────────────────────────────────┐   │
-    │  │  Task Tool spawns gemini-research-specialist    │   │
-    │  │  (Claude Sonnet agent)                          │   │
-    │  │                                                 │   │
-    │  │  Agent runs: gemini "rate limiting patterns..." │   │
-    │  │              ───────────────────────────────────│───┼──► Gemini CLI
-    │  │                        │                        │   │    (web search,
-    │  │                        ▼                        │   │     1M context)
-    │  │  Agent synthesizes Gemini's response            │   │
-    │  │  Returns findings to Claude Code                │   │
-    │  └─────────────────────────────────────────────────┘   │
-    │           │                                             │
-    │           ▼                                             │
-    │  Claude Code: "Based on the research, here are..."      │
-    └─────────────────────────────────────────────────────────┘
-    
-
-The flow:
-
-  1. You ask Claude Code a research question
-
-  2. Claude recognizes the pattern and spawns a sub-agent using the Task tool
-
-  3. The sub-agent (Claude Sonnet) executes `gemini "..."` via Bash
-
-  4. Gemini CLI performs web searches with its 1M token context window
-
-  5. The sub-agent synthesizes Gemini's response
-
-  6. Results return to your main Claude Code session
+![](image2.png)
 
  **This is the key insight: Claude Code agents can invoke any CLI tool.** The
 agent is just a markdown file that defines when to trigger and what
@@ -653,14 +421,14 @@ You could use this same pattern to integrate:
 
 ##  **Getting Started: Step by Step**
 
-  1.  **Create the agents directory** (if it doesn't exist):
+ **Create the agents directory** (if it doesn't exist):
 
     
     
     mkdir -p ~/.claude/agents
     
 
-  1. **Create the agent file** :
+**Create the agent file** :
 
     
     
@@ -668,7 +436,7 @@ You could use this same pattern to integrate:
     nano ~/.claude/agents/gemini-research-specialist.md
     
 
-  1. **Install and configure Gemini CLI** :
+**Install and configure Gemini CLI** :
 
     
     
@@ -676,124 +444,14 @@ You could use this same pattern to integrate:
     export GEMINI_API_KEY="your-key-here"
     
 
-  1. **Test the agent** : In Claude Code, try:
+**Test the agent** : In Claude Code, try:
 
     
     
     Research the latest best practices for TypeScript monorepo tooling in 2025
     
 
-  1. **Iterate** : Adjust the system prompt based on the quality of research you receive
+**Iterate** : Adjust the system prompt based on the quality of research you
+receive
 
-* * *
-
-##  **The Future of AI-Augmented Research**
-
-We're watching the research workflow transform in real-time. The pattern--
-specialized agents with massive context windows handling domain-specific tasks
---will only accelerate.
-
-What this means for developers:
-
-  * Less context switching, more flow state
-
-  * Research quality that matches the breadth you'd never have time for
-
-  * Insights synthesized for your specific context
-
-  * Knowledge work that scales with AI rather than competing with it
-
-The million-token context window isn't just a bigger number. It's a
-qualitative shift in what's possible when researching during development.
-Combined with Claude Code's extensible agent architecture, it represents a
-glimpse of how AI-native development tools will actually work.
-
-Not AI replacing developers. Not developers ignoring AI. Instead: specialized
-AI agents as force multipliers, each excelling at specific tasks, orchestrated
-together in an integrated environment.
-
-Your research assistant is ready to be built. It can live in your terminal.
-And it can hold more context in memory than you could read in a week.
-
-* * *
-
-##  **Further Reading**
-
-  * Claude Code documentation on custom agents and task delegation
-
-  * Google's technical deep dive on Gemini's context window architecture
-
-  * Context engineering principles for effective AI tool usage
-
-Building a Million-Token Research Agent for Claude Code
-
-The Research Problem Every Developer Knows
-
-Why Build a Custom Research Agent?
-
-The Gemini Research Specialist Agent
-
-How It Works in Practice
-
-The 1 Million Token Context Window: Why It Matters
-
-The Mental Model: Research Synthesis at Scale
-
-Building the Agent: Key Design Decisions
-
-  1. Clear Agent Description
-
-  2. Prompt Engineering for Research Quality
-
-  3. Asynchronous Execution
-
-  4. Context Integration
-
-Real-World Use Cases
-
-  1. Learning New Protocols and Technologies
-
-  2. Technology Evaluation
-
-  3. Library Deep Dives
-
-  4. Current State of the Art
-
-  5. Academic Research and Whitepaper Discovery
-
-  6. Implementation Pattern Research
-
-The Workflow Integration Advantage
-
-Practical Tips for Effective Research Prompts
-
-Be Specific About Your Context
-
-Specify What You Need to Know
-
-Request Comparisons Explicitly
-
-Ask for Current Information When It Matters
-
-The Bigger Picture: Multi-Model Agent Architectures
-
-Limitations and Considerations
-
-The Complete Source Code
-
-Prerequisites
-
-Key Design Elements
-
-How It Works Under the Hood
-
-Getting Started: Step by Step
-
-The Future of AI-Augmented Research
-
-Further Reading
-
-imgursm.msqiniu
-
-Thanks for reading cengizhan.com! Subscribe for free to receive new posts and
-support my work.
+Have fun!
