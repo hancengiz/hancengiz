@@ -95,7 +95,7 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 ### [Building a Million-Token Research Agent for Claude Code](https://www.cengizhan.com/p/building-a-million-token-research)
 *December 29, 2025*
 
-TL;DR: Claude Code's extensible agent system lets you create custom sub- agents that leverage different AI models for specialized tasks. I built a Gemini research specialist that uses Google's 1 million token context window for research--and it's...
+TL;DR: Claude Code's extensible agent system lets you create custom sub- agents that leverage different AI models for specialized tasks. I built a Gemini research specialist that uses Google's 1 million token context window for deep research--and...
 
 ### [Announcing specs.md: Structure for AI-Native Development](https://www.cengizhan.com/p/announcing-specsmd-structure-for)
 *December 24, 2025*
