@@ -33,12 +33,11 @@ one simple interface for everything.
 
  **Here 's a quick demo:**
 
- _See it in action on[asciinema](https://asciinema.org/a/765265) if the video
+ _See it in action
+on[asciinema](https://asciinema.org/a/Kjg9itpahwD8pO5KjU25Ev8lq) if the video
 doesn't load._
 
 * * *
-
-##  **Why I Built It**
 
 I have multiple AI CLIs installed, each with different model naming
 conventions. I wanted one unified interface that could handle everything
@@ -183,7 +182,7 @@ want:
 
 * * *
 
-## **Configuration (If You Care)**
+## **Configuration (Optional)**
 
 The `~/.llm-cli/models.json` file is where everything lives. After first run
 it's populated with defaults:
@@ -230,7 +229,7 @@ I built this for me. If it helps you too, great. If not, no worries.
 
 * * *
 
-##  **The Tech (For Those Who Care)**
+##  **Source Code**
 
 Go + Cobra (CLI framework) + some JSON config parsing. It shells out to the
 underlying CLIs, captures output, and streams it back to you. Nothing fancy,
@@ -245,8 +244,6 @@ just works.
   *  **Go:** `go install github.com/fabriqaai/llm-cli@latest`
 
 * * *
-
-##  **The Bottom Line**
 
 This is a tiny tool that solves a tiny annoyance. But sometimes those are the
 best tools.
