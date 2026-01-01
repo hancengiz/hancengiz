@@ -92,6 +92,11 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 ## Latest Blog Posts
 
+### [llm-cli: Simple Aliases for Your Favorite AI Models](https://www.cengizhan.com/p/llm-cli-simple-aliases-for-your-favorite)
+*January 01, 2026*
+
+I use multiple AI models every day. Claude for code. Gemini for quick queries. Sometimes I want Opus for deep reasoning, sometimes Haiku for fast responses. Sometimes Flash for something lightweight.
+
 ### [Announcing claude-code-logs: A Searchable Web View of Your Claude Code Conversations](https://www.cengizhan.com/p/announcing-claude-code-logs-a-searchable)
 *December 29, 2025*
 
@@ -101,11 +106,6 @@ If you use Claude Code, you've probably had this moment: you remember solving a 
 *December 29, 2025*
 
 TL;DR: Claude Code's extensible agent system lets you create custom sub- agents that leverage different AI models for specialized tasks. I built a Gemini research specialist that uses Google's 1 million token context window for deep research--and...
-
-### [Announcing specs.md: Structure for AI-Native Development](https://www.cengizhan.com/p/announcing-specsmd-structure-for)
-*December 24, 2025*
-
-TL;DR: Vibe-coding works for side projects. But production systems need more.   [specs.md](http://specs.md/) brings the Explore -> Specify -> Engineer loop into your AI coding workflow.   It's open source, in alpha, and I'm looking for feedback from...
 
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
