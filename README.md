@@ -92,6 +92,11 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 ## Latest Blog Posts
 
+### [A new Simple Flow added to SPECS.MD : for solo devs and small teams](https://www.cengizhan.com/p/simple-flow-lightweight-specs-for)
+*January 13, 2026*
+
+[specs.md](http://specs.md/) has now a new flow; simple flow.
+
 ### [llm-cli: Simple Aliases for Your Favorite AI Models](https://www.cengizhan.com/p/llm-cli-simple-aliases-for-your-favorite)
 *January 01, 2026*
 
@@ -101,11 +106,6 @@ I use multiple AI models every day. Claude for code. Gemini for quick queries. S
 *December 29, 2025*
 
 If you use Claude Code, you've probably had this moment: you remember solving a problem brilliantly with Claude last week, but now you can't find that conversation. Or you crafted a prompt that combined sequential thinking with MCP tools to do deep...
-
-### [Building a Million-Token Research Agent for Claude Code](https://www.cengizhan.com/p/building-a-million-token-research)
-*December 29, 2025*
-
-TL;DR: Claude Code's extensible agent system lets you create custom sub- agents that leverage different AI models for specialized tasks. I built a Gemini research specialist that uses Google's 1 million token context window for deep research--and...
 
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
