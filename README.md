@@ -92,6 +92,11 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 
 ## Latest Blog Posts
 
+### [Building a Permanent Archive of Every AI Conversation](https://www.cengizhan.com/p/building-a-permanent-archive-of-every)
+*January 18, 2026*
+
+Every interaction I have with Claude Code generates valuable data. The prompts I write, the clarifications I need, the approaches that work and the ones that fail. This data sits in `~/.claude/projects/` as JSONL files, but here is the problem:...
+
 ### [A new Simple Flow added to SPECS.MD : for solo devs and small teams](https://www.cengizhan.com/p/simple-flow-lightweight-specs-for)
 *January 13, 2026*
 
@@ -101,11 +106,6 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 *January 01, 2026*
 
 I use multiple AI models every day. Claude for code. Gemini for quick queries. Sometimes I want Opus for deep reasoning, sometimes Haiku for fast responses. Sometimes Flash for something lightweight.
-
-### [Announcing claude-code-logs: A Searchable Web View of Your Claude Code Conversations](https://www.cengizhan.com/p/announcing-claude-code-logs-a-searchable)
-*December 29, 2025*
-
-If you use Claude Code, you've probably had this moment: you remember solving a problem brilliantly with Claude last week, but now you can't find that conversation. Or you crafted a prompt that combined sequential thinking with MCP tools to do deep...
 
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
