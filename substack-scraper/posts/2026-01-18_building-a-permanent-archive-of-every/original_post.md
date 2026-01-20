@@ -119,11 +119,11 @@ months. Comparisons across projects. Correlations between prompting patterns
 and project outcomes.
 
 The archive also raises interesting questions about privacy and sharing. My
-conversations contain proprietary code, client information, and half-formed
-ideas that I would not want published. But anonymized patterns, aggregated
-statistics, and general insights could be valuable to share with the
-community. The right abstraction layer would let me analyze everything locally
-while sharing only the meta-patterns publicly.
+conversations contain proprietary code, and half-formed ideas that I would not
+want published. But anonymized patterns, aggregated statistics, and general
+insights could be valuable to share with the community. The right abstraction
+layer would let me analyze everything locally while sharing only the meta-
+patterns publicly.
 
 ##  **How to Set This Up**
 
