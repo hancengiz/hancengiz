@@ -88,19 +88,19 @@ I use multiple AI models every day. Claude for code. Gemini for quick queries. S
 ➡️ [Read more on my blog](https://www.cengizhan.com)
 ## Latest Notes
 
-**[Note 170317259](https://substack.com/note/c-170317259)** · *January 28, 2026*
+**[Note 170317259](https://substack.com/note/c-170317259)** · *January 29, 2026*
 
 Response to this comment : <https://www.cengizhan.com/p/the-ai-native-way-of-building/comments?utmsource=substack&utmmedium=web&utmcampaign=postviewer>
 
 ---
 
-**[Note 170364932](https://substack.com/note/c-170364932)** · *January 28, 2026*
+**[Note 170364932](https://substack.com/note/c-170364932)** · *January 29, 2026*
 
 I automated my Substack notes to Twitter (completely free)
 
 ---
 
-**[Note 170413838](https://substack.com/note/c-170413838)** · *January 28, 2026*
+**[Note 170413838](https://substack.com/note/c-170413838)** · *January 29, 2026*
 
 Just added a feature to publish formatted tweets with images from my Substack to Twitter completely from my phone during bumper-to-bumper traffic. 🚀🚀
 
