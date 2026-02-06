@@ -16,6 +16,8 @@
 
 Software Developer based in Istanbul, Turkey, specializing in cloud-native and serverless event-driven microservices. I'm passionate about building scalable backend systems, AI-native solutions, and modern distributed architectures. I focus on creating robust logging infrastructure, improving developer experience through automation, better tooling, and AI-native engineering practices.
 
+Currently building: https://specs.md/ https://github.com/fabriqaai/specs.md
+
 ## 🤝 Let's Connect
 
 <div align="center">
