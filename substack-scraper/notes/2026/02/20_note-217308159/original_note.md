@@ -9,7 +9,7 @@ note_id: 217308159
 photo_url: https://substackcdn.com/image/fetch/$s_!A8_F!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdd3c9352-78f7-4a7e-ab29-7efd239dd41c_400x400.jpeg
 reactions: 0
 restacks: 0
-replies: 0
+replies: 1
 ---
 Dan Shapiro recently release an blog post went viral. I have released a AI Native Maturity Model late 2025 that covers the same problem. looks at from more of a maturity model perspective.
 
