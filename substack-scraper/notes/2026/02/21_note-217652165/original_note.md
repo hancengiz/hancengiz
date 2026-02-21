@@ -11,7 +11,7 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-if you are using <http://specs.md> outside of vscode (or forks of it) you can use npx specsmd@latest dashboard command to bring a terminal compatible dashboard of the current state.  codex app, opencode, intellij, fabriqa desktop terminal windows or a standalone terminal
+if you are using <http://specs.md> outside of vscode (or forks of it) you can use “npx specsmd@latest dashboard” command to bring a terminal compatible dashboard of the current state.  codex app, opencode, intellij, fabriqa desktop terminal windows or a standalone terminal
 
 ![Image](https://substack-post-media.s3.amazonaws.com/public/images/d83cebd6-4830-4e49-8799-70e23ae6eedc_3670x2682.png)
 

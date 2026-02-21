@@ -11,14 +11,14 @@ reactions: 0
 restacks: 0
 replies: 0
 ---
-if you are using <http://specs.md> outside of vscode (or forks of it) you can use npx specsmd@latest dashboard command to bring a terminal compatible dashboard of the current state.  codex app, opencode, intellij, fabriqa desktop terminal windows or a standalone terminal
+if you are using <http://specs.md> outside of vscode (or forks of it) you can use “npx specsmd@latest dashboard” command to bring a terminal compatible dashboard of the current state.  codex app, opencode, intellij, fabriqa desktop terminal windows or a standalone terminal
+
+![Image](image2.png)
+
+![Image](image3.png)
 
 ![Image](image4.png)
 
 ![Image](image1.png)
 
 ![Image](image5.png)
-
-![Image](image3.png)
-
-![Image](image2.png)
