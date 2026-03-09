@@ -16,7 +16,7 @@
 
 Software Developer based in Istanbul, Turkey, specializing in cloud-native and serverless event-driven microservices. I'm passionate about building scalable backend systems, AI-native solutions, and modern distributed architectures. I focus on creating robust logging infrastructure, improving developer experience through automation, better tooling, and AI-native engineering practices.
 
-Currently building: https://specs.md/ https://github.com/fabriqaai/specs.md
+Currently building: https://fabriqa.ai https://specs.md/
 
 ## 🤝 Let's Connect
 
@@ -29,36 +29,10 @@ Currently building: https://specs.md/ https://github.com/fabriqaai/specs.md
 
 </div>
 
-## 🎯 How Right Am I?
-
-A fun experiment tracking how confident Claude Code is in my approaches! Check out the live stats at [cc.cengizhan.com](https://cc.cengizhan.com/)
-
-<div align="center">
-
-![Claude Code Confidence Graph](absolutely-right/assets/claude-code-graph-1773014212.png)
-
-*[Updated daily via GitHub Actions](https://github.com/hancengiz/hancengiz/actions)*
-
-</div>
 
 ## 🚀 Currently Working On 
-- 🤖 read more here : https://www.cengizhan.com/about
-
-## 💻 Tech Stack
-
-<div align="center">
-
-### 🤖 AI-Native Engineering
-![Claude](https://img.shields.io/badge/Claude-181818?style=for-the-badge&logo=anthropic&logoColor=white)
-![Claude Code](https://img.shields.io/badge/Claude_Code-5436DA?style=for-the-badge&logo=anthropic&logoColor=white)
-![Cursor AI](https://img.shields.io/badge/Cursor_AI-000000?style=for-the-badge&logo=cursor&logoColor=white)
-![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-000000?style=for-the-badge&logo=githubcopilot&logoColor=white)
-![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
-![AI Agents](https://img.shields.io/badge/AI_Agents-FF6B6B?style=for-the-badge&logo=openai&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
-
-</div>
-
+- 🤖 https://fabriqa.ai
+  
 ## 🎯 Areas of Focus
 
 - 🤖 AI-Native Engineering & Solutions
@@ -69,42 +43,6 @@ A fun experiment tracking how confident Claude Code is in my approaches! Check o
 - 🐳 Containerization & DevOps
 - 🔧 Developer Tooling & Testing Frameworks
 - ⚡ Message Queue Systems & Event Streaming
-
-## Latest Blog Posts
-
-### [Building a Permanent Archive of Every AI Conversation](https://www.cengizhan.com/p/building-a-permanent-archive-of-every)
-*January 18, 2026*
-
-Every interaction I have with Claude Code generates valuable data. The prompts I write, the clarifications I need, the approaches that work and the ones that fail. This data sits in `~/.claude/projects/` as JSONL files, but here is the problem:...
-
-### [A new Simple Flow added to SPECS.MD : for solo devs and small teams](https://www.cengizhan.com/p/simple-flow-lightweight-specs-for)
-*January 13, 2026*
-
-[specs.md](http://specs.md/) has now a new flow; simple flow.
-
-### [llm-cli: Simple Aliases for Your Favorite AI Models](https://www.cengizhan.com/p/llm-cli-simple-aliases-for-your-favorite)
-*January 01, 2026*
-
-I use multiple AI models every day. Claude for code. Gemini for quick queries. Sometimes I want Opus for deep reasoning, sometimes Haiku for fast responses. Sometimes Flash for something lightweight.
-
-➡️ [Read more on my blog](https://www.cengizhan.com)
-## Latest Notes
-
-**[Note 170317259](https://substack.com/note/c-170317259)** · *March 09, 2026*
-
-Response to this comment : <https://www.cengizhan.com/p/the-ai-native-way-of-building/comments?utmsource=substack&utmmedium=web&utmcampaign=postviewer>
-
----
-
-**[Note 170364932](https://substack.com/note/c-170364932)** · *March 09, 2026*
-
-I automated my Substack notes to Twitter (completely free)
-
----
-
-**[Note 170413838](https://substack.com/note/c-170413838)** · *March 09, 2026*
-
-Just added a feature to publish formatted tweets with images from my Substack to Twitter completely from my phone during bumper-to-bumper traffic. 🚀🚀
 
 
 ➡️ [See all notes](https://www.cengizhan.com/notes)
