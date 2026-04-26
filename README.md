@@ -18,7 +18,7 @@ https://www.cengizhan.com/about
 
 Currently building: https://fabriqa.ai https://specs.md/
 
-## 🤝 Let's Connect
+## Let's Connect 🤝
 
 <div align="center">
 
@@ -36,16 +36,13 @@ Currently building: https://fabriqa.ai https://specs.md/
 
 <div align="center">
 
-### 📈 GitHub Stats
 <p>
 <img height="180em" src="https://github-readme-stats.vercel.app/api?username=hancengiz&show_icons=true&theme=solarized-light&hide_border=true&count_private=true" />
 <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hancengiz&layout=compact&theme=solarized-light&hide_border=true&langs_count=8" />
 </p>
 
-### 🔥 GitHub Streak Stats
 ![](https://github-readme-streak-stats.herokuapp.com/?user=hancengiz&theme=solarized-light&hide_border=true)
 
-### 📉 Contribution Graph
 ![](https://github-readme-activity-graph.vercel.app/graph?username=hancengiz&theme=github-compact&hide_border=true&bg_color=fdf6e3&color=657b83&line=cb4b16&point=268bd2)
 
 </div>
