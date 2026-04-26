@@ -50,27 +50,3 @@ Currently building: https://fabriqa.ai https://specs.md/
 ![](https://github-readme-activity-graph.vercel.app/graph?username=hancengiz&theme=github-compact&hide_border=true&bg_color=fdf6e3&color=657b83&line=cb4b16&point=268bd2)
 
 </div>
-
-## 🐦 Follow Me on Twitter/X
-
-<div align="center">
-
-[![Twitter](https://img.shields.io/twitter/follow/hancengiz?style=for-the-badge&logo=x&logoColor=white&label=Follow%20@hancengiz&color=1DA1F2)](https://x.com/hancengiz)
-
-**Latest thoughts on AI-native development, serverless architectures, and modern engineering**
-
-[→ See my latest tweets](https://x.com/hancengiz)
-
-</div>
-
----
-
-<div align="center">
-
-### *Building better systems, one commit at a time* 💻
-
-*Embracing AI-native development to shape the future of software engineering*
-
-**Thank you for visiting!** 🚀
-
-</div>
