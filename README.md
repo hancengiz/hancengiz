@@ -18,7 +18,11 @@ blog: https://www.cengizhan.com/
 
 about: https://www.cengizhan.com/about
 
-Currently building: https://fabriqa.ai https://specs.md/
+Currently building:
+
+https://fabriqa.ai
+
+https://specs.md/
 
 ## Let's Connect 🤝
 
