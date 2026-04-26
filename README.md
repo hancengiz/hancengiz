@@ -29,7 +29,6 @@ Currently building: https://fabriqa.ai https://specs.md/
 
 </div>
 
-➡️ [See all notes](https://www.cengizhan.com/notes)
 ## 📊 GitHub Stats & Activity
 
 <div align="center">
