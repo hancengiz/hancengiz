@@ -3,7 +3,7 @@
   
 # Hi there, I'm Cengiz Han 👋
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=2E9EF7&center=true&vCenter=true&width=600&lines=AI-Native+Engineering+%26+Solutions;Building fabriqa.ai)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=2E9EF7&center=true&vCenter=true&width=600&lines=AI-Native+Engineering+%26+Solutions;Building+fabriqa.ai)](https://git.io/typing-svg)
 
 [![GitHub followers](https://img.shields.io/github/followers/hancengiz?label=Followers&style=social)](https://github.com/hancengiz)
 [![GitHub stars](https://img.shields.io/github/stars/hancengiz?label=Stars&style=social)](https://github.com/hancengiz)
