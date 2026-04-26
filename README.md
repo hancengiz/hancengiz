@@ -36,9 +36,6 @@ Currently building: https://fabriqa.ai https://specs.md/
 
 <div align="center">
 
-### 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=hancengiz&theme=flat&no-frame=true&row=1&column=7)
-
 ### 📈 GitHub Stats
 <p>
 <img height="180em" src="https://github-readme-stats.vercel.app/api?username=hancengiz&show_icons=true&theme=solarized-light&hide_border=true&count_private=true" />
