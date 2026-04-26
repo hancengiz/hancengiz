@@ -29,22 +29,6 @@ Currently building: https://fabriqa.ai https://specs.md/
 
 </div>
 
-
-## 🚀 Currently Working On 
-- 🤖 https://fabriqa.ai
-  
-## 🎯 Areas of Focus
-
-- 🤖 AI-Native Engineering & Solutions
-- ☁️ Cloud-Native & Serverless Architectures
-- 🎯 Event-Driven Microservices
-- 🏗️ Backend Development & Distributed Systems
-- 📊 Logging & Monitoring Infrastructure
-- 🐳 Containerization & DevOps
-- 🔧 Developer Tooling & Testing Frameworks
-- ⚡ Message Queue Systems & Event Streaming
-
-
 ➡️ [See all notes](https://www.cengizhan.com/notes)
 ## 📊 GitHub Stats & Activity
 
