@@ -14,7 +14,8 @@
 
 ## About Me
 
-https://www.cengizhan.com/about
+blog: https://www.cengizhan.com/
+about: https://www.cengizhan.com/about
 
 Currently building: https://fabriqa.ai https://specs.md/
 
